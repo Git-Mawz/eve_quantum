@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -47,6 +49,22 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $portrait;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="user")
+     */
+    private $question;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="user")
+     */
+    private $answer;
+
+    public function __construct()
+    {
+        $this->question = new ArrayCollection();
+        $this->answer = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -163,6 +181,68 @@ class User implements UserInterface
     public function setPortrait(string $portrait): self
     {
         $this->portrait = $portrait;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Question[]
+     */
+    public function getQuestion(): Collection
+    {
+        return $this->question;
+    }
+
+    public function addQuestion(Question $question): self
+    {
+        if (!$this->question->contains($question)) {
+            $this->question[] = $question;
+            $question->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): self
+    {
+        if ($this->question->contains($question)) {
+            $this->question->removeElement($question);
+            // set the owning side to null (unless already changed)
+            if ($question->getUser() === $this) {
+                $question->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Answer[]
+     */
+    public function getAnswer(): Collection
+    {
+        return $this->answer;
+    }
+
+    public function addAnswer(Answer $answer): self
+    {
+        if (!$this->answer->contains($answer)) {
+            $this->answer[] = $answer;
+            $answer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answer $answer): self
+    {
+        if ($this->answer->contains($answer)) {
+            $this->answer->removeElement($answer);
+            // set the owning side to null (unless already changed)
+            if ($answer->getUser() === $this) {
+                $answer->setUser(null);
+            }
+        }
 
         return $this;
     }
