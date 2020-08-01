@@ -68,6 +68,7 @@ class MainController extends AbstractController
                 $resourceOwner = $provider->getResourceOwner($accessToken);
         
                 var_export($resourceOwner->toArray());
+
         
             } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
         
@@ -82,4 +83,15 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+
+    /**
+     * @Route("/home", name="home")
+     */
+    public function home ()
+    {
+        return $this->render('main/home.html.twig', [
+            'user' => $this->getUser()
+        ]);
+    }
+
 }
