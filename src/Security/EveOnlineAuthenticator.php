@@ -93,7 +93,7 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider)
     {   
         $user = $this->userChecker->checkUser($credentials);
-        $this->currentUser = $user;
+        // $this->currentUser = $user;
         return $user;
     }
 
