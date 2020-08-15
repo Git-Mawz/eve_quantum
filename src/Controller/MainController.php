@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
     /**
-     * @Route("/login", name="main")
+     * @Route("/login", name="main_login")
      */
-    public function index()
+    public function login(SessionInterface $session)
     {
         
         $provider = new \Killmails\OAuth2\Client\Provider\EveOnline([
@@ -31,21 +32,21 @@ class MainController extends AbstractController
             
             $authorizationUrl = $provider->getAuthorizationUrl($options);
         
-            // Get the state generated for you and store it to the session.
-            $_SESSION['oauth2state'] = $provider->getState();
+            // // Get the state generated for you and store it to the session.
+            // $_SESSION['oauth2state'] = $provider->getState();
         
             // Redirect the user to the authorization URL.
             header('Location: ' . $authorizationUrl);
             exit;
         
-        // Check given state against previously stored one to mitigate CSRF attack
-        } elseif (empty($_GET['state']) || (isset($_SESSION['oauth2state']) && $_GET['state'] !== $_SESSION['oauth2state'])) {
+        // // Check given state against previously stored one to mitigate CSRF attack
+        // } elseif (empty($_GET['state']) || (isset($_SESSION['oauth2state']) && $_GET['state'] !== $_SESSION['oauth2state'])) {
         
-            if (isset($_SESSION['oauth2state'])) {
-                unset($_SESSION['oauth2state']);
-            }
+        //     if (isset($_SESSION['oauth2state'])) {
+        //         unset($_SESSION['oauth2state']);
+        //     }
         
-            exit('Invalid state');
+        //     exit('Invalid state');
         
         } else {
         
@@ -58,16 +59,19 @@ class MainController extends AbstractController
         
                 // We have an access token, which we may use in authenticated
                 // requests against the service provider's API.
-                echo 'Access Token: ' . $accessToken->getToken() . "<br>";
-                echo 'Refresh Token: ' . $accessToken->getRefreshToken() . "<br>";
-                echo 'Expired in: ' . $accessToken->getExpires() . "<br>";
-                echo 'Already expired? ' . ($accessToken->hasExpired() ? 'expired' : 'not expired') . "<br>";
+                // echo 'Access Token: ' . $accessToken->getToken() . "<br>";
+                // echo 'Refresh Token: ' . $accessToken->getRefreshToken() . "<br>";
+                // echo 'Expired in: ' . $accessToken->getExpires() . "<br>";
+                // echo 'Already expired? ' . ($accessToken->hasExpired() ? 'expired' : 'not expired') . "<br>";
         
                 // Using the access token, we may look up details about the
                 // resource owner.
                 $resourceOwner = $provider->getResourceOwner($accessToken);
+
+                $session->set('resourceOwner', $resourceOwner);
+                $session->set('accessToken', $accessToken);
         
-                var_export($resourceOwner->toArray());
+                // var_export($resourceOwner->toArray());
 
         
             } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
@@ -85,13 +89,15 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/home", name="home")
+     * @Route("/home", name="main_home")
      */
     public function home ()
     {
         return $this->render('main/home.html.twig', [
-            'user' => $this->getUser()
+            'user' => $this->get('session')->get('resourceOwner')
         ]);
     }
+
+
 
 }

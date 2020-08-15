@@ -19,15 +19,15 @@ class UserChecker
 
     public function checkUser($credentials)
     {
-        $storedUser = $this->userRepository->findOneBy(['character_owner_hash' => $credentials['CharacterOwnerHash']]);
+        $storedUser = $this->userRepository->findOneBy(['character_owner_hash' => $credentials->getCharacterOwnerHash()]);
 
         if ($storedUser == null) {
             $newUser = new User();
-            $newUser->setName($credentials['CharacterName']);
-            $newUser->setEveCharacterId($credentials['CharacterID']);
-            $newUser->setCharacterOwnerHash($credentials['CharacterOwnerHash']);
+            $newUser->setName($credentials->getCharacterName());
+            $newUser->setEveCharacterId($credentials->getCharacterID());
+            $newUser->setCharacterOwnerHash($credentials->getCharacterOwnerHash());
             $newUser->setCreatedAt(new \DateTime());
-            $newUser->setPortrait('https://images.evetech.net/Character/' . $credentials['CharacterID'] . '_128.jpg');
+            $newUser->setPortrait('https://images.evetech.net/Character/' . $credentials->getCharacterID() . '_256.jpg');
 
             $this->em->persist($newUser);
             $this->em->flush();
