@@ -25,11 +25,12 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
 
     public function supports(Request $request)
     {
-        if ($request->getSession()->get('credentials')) {
-            return false;
-        }
-        dump('Dans l\'authenticator');
-        return true;
+        // if ($request->getSession()->get('credentials')) {
+        //     return false;
+        // }
+        // dump('Dans l\'authenticator');
+        // return true;
+        return $request->query->get('code');
     }
 
     public function getCredentials(Request $request)
@@ -88,13 +89,14 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
                 // Using the access token, we may look up details about the
                 // resource owner.
                 $resourceOwner = $provider->getResourceOwner($accessToken);
-        
                 $credentials = $resourceOwner->toArray();
+
 
         
             } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
         
                 // Failed to get the access token or user details.
+                dump('erreur');
                 exit($e->getMessage());
         
             }
@@ -102,9 +104,7 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
             // dd($credentials);
             return $credentials;
 
-        }
-
-        
+        } 
 
     }
 
