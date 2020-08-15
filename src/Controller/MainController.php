@@ -37,18 +37,18 @@ class MainController extends AbstractController
         return $this->render('main/about.html.twig');
     }
 
-        /**
+    /**
      * @Route("/logout", name="main_logout")
      */
     public function logout()
     {
         $client = HttpClient::create();
-        // On fait une requete vers la route de logoff d'eve online
+        // We make a request to eve online logout route
         $client->request('GET', 'https://login.eveonline.com/Account/LogOff');
-        // On vide la session
+        // We clear session
         $session = $this->get('session');
         $session->clear();
-        // On retourne à la page d'accueil
+        // We go back to home page
         return $this->redirectToRoute('main_home');
     }
 

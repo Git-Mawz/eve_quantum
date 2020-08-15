@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Eve Quantum {% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
 
@@ -27,7 +27,7 @@
                     <a class="nav-link" href="{{path('question_add')}}">Poser une Question</a>
                 </li> #}
                 <li class="nav-item">
-                    <a class="nav-link" href="">Mon Profil</span></a>
+                    <a class="nav-link" href="{{path('character_details')}}">Mon Profil</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Questions</a>
