@@ -8,12 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class CharacterController extends AbstractController
 {
     /**
-     * @Route("/sheet", name="character_sheet")
+     * @Route("/details", name="character_details")
      */
-    public function sheet()
+    public function details()
     {
-        return $this->render('character/sheet.html.twig', [
-            'controller_name' => 'CharacterController',
+        return $this->render('character/details.html.twig', [
+            'user' => $this->getUser(),
         ]);
     }
 }
