@@ -138,9 +138,9 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
         // todo
     }
 
-    // protected function getLoginUrl()
-    // {
-    //     return $this->urlGenerator->generate(self::LOGIN_ROUTE);
-    // }
+    protected function getLoginUrl()
+    {
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    }
 
 }

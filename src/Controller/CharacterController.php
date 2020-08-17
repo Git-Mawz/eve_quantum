@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class CharacterController extends AbstractController
 {
     /**
-     * @Route("/details", name="character_details")
+     * @Route("/profile", name="character_profile")
      */
-    public function details()
+    public function profile()
     {
-        return $this->render('character/details.html.twig', [
+        return $this->render('character/profile.html.twig', [
             'user' => $this->getUser(),
         ]);
     }
