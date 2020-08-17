@@ -19,7 +19,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="main_login")
+     * @Route("/login", name="app_login")
      */
     public function login()
     {
@@ -38,7 +38,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="main_logout")
+     * @Route("/logout", name="app_logout")
      */
     public function logout()
     {
@@ -48,8 +48,11 @@ class MainController extends AbstractController
         // We clear session
         $session = $this->get('session');
         $session->clear();
-        // We go back to home page
-        return $this->redirectToRoute('main_home');
+        // // We go back to home page
+        // return $this->redirectToRoute('main_home');
+
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+
     }
 
 }

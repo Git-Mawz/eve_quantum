@@ -18,6 +18,8 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 class EveOnlineAuthenticator extends AbstractGuardAuthenticator
 {   
 
+    public const LOGIN_ROUTE = 'app_login';
+
     private $userChecker;
     private $session;
     private $resourceOwner;
@@ -33,11 +35,14 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
 
     public function supports(Request $request)
     {
-        if ($this->session->get('resourceOwner')) {
-            return false;
-        }
+        // if ($this->session->get('resourceOwner')) {
+        //     return false;
+        // }
 
-        return true;
+        // return true;
+
+        return self::LOGIN_ROUTE === $request->attributes->get('_route');
+
     }
 
     public function getCredentials(Request $request)
@@ -123,11 +128,21 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        // todo
+        $data = [
+            // you might translate this message
+            'message' => 'Authentication Required'
+        ];
+        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
 
     public function supportsRememberMe()
     {
         // todo
     }
+
+    // protected function getLoginUrl()
+    // {
+    //     return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    // }
+
 }
