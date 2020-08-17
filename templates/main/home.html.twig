@@ -4,8 +4,9 @@
 
 {% block body %}
 
-    <h2>Dans la page home necessitant une authentification</h2>
+    <h2>Pas d'auth necessaire</h2>
     {# {% dump(user) %} #}
     {# {% dump(app.user.name) %} #}
+    <a href="{{ path('app_login') }}">Se connecter</a>
 
 {% endblock %}
