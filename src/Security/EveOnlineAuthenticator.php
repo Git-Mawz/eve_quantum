@@ -22,16 +22,12 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     private $userChecker;
     private $eveOauth2;
     private $session;
-    // private $resourceOwner;
-    // private $accessToken;
-
 
     public function __construct(UserChecker $userChecker, SessionInterface $session, EveOauth2 $eveOauth2)
     {
         $this->session = $session;
         $this->userChecker = $userChecker;
         $this->eveOauth2 = $eveOauth2;
-      
     }
 
     public function supports(Request $request)
@@ -43,7 +39,6 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
         // return true;
 
         return self::LOGIN_ROUTE === $request->attributes->get('_route');
-
     }
 
     public function getCredentials(Request $request)
@@ -54,7 +49,6 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider)
     {   
         $user = $this->userChecker->checkUser($credentials);
-        // $this->currentUser = $user;
         return $user;
     }
 
