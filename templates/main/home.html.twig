@@ -15,7 +15,7 @@
     {% if app.user is null %}
         <a class="btn btn-primary btn-lg" href="{{path('app_login')}}" role="button">Se connecter</a>
     {% else %}
-        <a class="btn btn-primary btn-lg" href="" role="button">Poser une question</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('question_add') }}" role="button">Poser une question</a>
     {% endif %}
     
     </p>

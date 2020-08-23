@@ -4,8 +4,8 @@
 
 {% block body %}
 
-<h1>Bienvenue {{ user.name }} </h1>
-<img src="{{ user.portrait }}">
-{{dump(user)}}
+<h1>Bienvenue {{ app.user.name }} </h1>
+<img src="{{ app.user.portrait }}">
+{{dump(app.user)}}
 {{ dump(app.session) }}
 {% endblock %}

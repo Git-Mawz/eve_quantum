@@ -12,8 +12,6 @@ class CharacterController extends AbstractController
      */
     public function profile()
     {
-        return $this->render('character/profile.html.twig', [
-            'user' => $this->getUser(),
-        ]);
+        return $this->render('character/profile.html.twig');
     }
 }
