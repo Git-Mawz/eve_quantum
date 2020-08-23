@@ -90,7 +90,6 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     {
         $request->getSession()->getFlashBag()->add('notice', 'Vous devez être connecté pour accéder à cette partie de Eve Quantum');
         return new RedirectResponse($this->urlGenerator->generate('main_home'));
-        
     }
 
     public function supportsRememberMe()
