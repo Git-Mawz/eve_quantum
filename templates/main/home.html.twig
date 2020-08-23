@@ -4,9 +4,22 @@
 
 {% block body %}
 
-    <h2>Pas d'auth necessaire</h2>
-    {# {% dump(user) %} #}
-    {# {% dump(app.user.name) %} #}
-    <a href="{{ path('app_login') }}">Se connecter</a>
+
+    <h1 class="display-4">Bienvenue sur Eve Quantum !</h1>
+    <p class="lead">Eve Quantum est un site d'entraide destiné aux joueurs francophone d'Eve Online.</p>
+    <hr class="my-4">
+    <p>Vous allez pouvoir poser vos questions sur le jeu, et obtenir des réponses à la fois sur le site mais également directement in-game via un Eve Mail sur votre personnage.</p>
+    <p>Pour se faire il vous suffit de vous connecter et de selectionner votre personnage.</p>
+    <p class="lead">
+    
+    {% if app.user is null %}
+        <a class="btn btn-primary btn-lg" href="{{path('app_login')}}" role="button">Se connecter</a>
+    {% else %}
+        <a class="btn btn-primary btn-lg" href="" role="button">Poser une question</a>
+    {% endif %}
+    
+    </p>
+
 
 {% endblock %}
+

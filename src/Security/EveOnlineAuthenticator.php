@@ -77,13 +77,12 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         // On stock les tokens (access token et refresh token) en session
-        // dd($this->eveOauth2->getResourceOwner());
-        // dd($this->eveOauth2->getAccessToken());
-        $this->session->set('resourceOwner', $this->eveOauth2->getResourceOwner());
+  
+        // $this->session->set('resourceOwner', $this->eveOauth2->getResourceOwner());
         $this->session->set('accessToken', $this->eveOauth2->getAccessToken());
 
         // Si l'utilisateur se connecte avec succès, il est rediriger vers sa page de profil
-        return new RedirectResponse($this->urlGenerator->generate('character_profile'));
+        return new RedirectResponse($this->urlGenerator->generate('main_home'));
 
     }
 
