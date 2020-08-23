@@ -8,4 +8,6 @@
 <img src="{{ app.user.portrait }}">
 {{dump(app.user)}}
 {{ dump(app.session) }}
+{{ dump(app.session.get('accessToken').token) }}
+{{ dump(app.session.get('accessToken').refreshToken) }}
 {% endblock %}
