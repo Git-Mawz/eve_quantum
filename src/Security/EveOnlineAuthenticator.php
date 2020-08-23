@@ -4,40 +4,42 @@ namespace App\Security;
 
 use App\Service\EveOauth2;
 use App\Service\UserChecker;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class EveOnlineAuthenticator extends AbstractGuardAuthenticator
 {   
+    use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
 
     private $userChecker;
     private $eveOauth2;
     private $session;
+    private $urlGenerator;
 
-    public function __construct(UserChecker $userChecker, SessionInterface $session, EveOauth2 $eveOauth2)
+    public function __construct(UserChecker $userChecker, SessionInterface $session, EveOauth2 $eveOauth2, UrlGeneratorInterface $urlGenerator)
     {
         $this->session = $session;
         $this->userChecker = $userChecker;
         $this->eveOauth2 = $eveOauth2;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function supports(Request $request)
     {
-        // if ($this->session->get('resourceOwner')) {
-        //     return false;
-        // }
-
-        // return true;
-
+        // Si le nom de la route "app_login" (/login défini dans le MaincController)
+        // est dans la requête, alors supports return True et déclanche l'authentification
         return self::LOGIN_ROUTE === $request->attributes->get('_route');
     }
 
@@ -49,6 +51,7 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider)
     {   
         $user = $this->userChecker->checkUser($credentials);
+        // dump($user);
         return $user;
     }
 
@@ -67,22 +70,28 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];
 
-        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+        // return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+        return new Response();
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        // On stock les tokens (access token et refresh token) en session
+        // dd($this->eveOauth2->getResourceOwner());
+        // dd($this->eveOauth2->getAccessToken());
         $this->session->set('resourceOwner', $this->eveOauth2->getResourceOwner());
         $this->session->set('accessToken', $this->eveOauth2->getAccessToken());
+
+        // Si l'utilisateur se connecte avec succès, il est rediriger vers sa page de profil
+        return new RedirectResponse($this->urlGenerator->generate('character_profile'));
+
     }
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        $data = [
-            // you might translate this message
-            'message' => 'Authentication Required'
-        ];
-        return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+
+        return new RedirectResponse($this->urlGenerator->generate('main_home'));
+        
     }
 
     public function supportsRememberMe()
