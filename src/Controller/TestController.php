@@ -14,6 +14,9 @@ class TestController extends AbstractController
     public function index(EsiClient $esiClient)
     {   
         $esiClient->RefreshToken();
+
+        dump($this->get('session')->get('accessToken'));
+
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
         ]);
