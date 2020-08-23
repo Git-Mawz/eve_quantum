@@ -20,7 +20,7 @@ class EveTokenRefreshSubscriber implements EventSubscriberInterface
         $provider = new \Killmails\OAuth2\Client\Provider\EveOnline([
             'clientId'          => $_ENV["CLIENT_ID"],
             'clientSecret'      => $_ENV["SECRET_KEY"],
-            'redirectUri'       => 'http://localhost:8000/login',
+            'redirectUri'       => $_ENV["CALLBACK_URL"],
             ]);
 
         $existingAccessToken = $this->session->get('accessToken');

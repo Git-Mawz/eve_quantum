@@ -23,7 +23,7 @@ class EveOauth2
         $provider = new \Killmails\OAuth2\Client\Provider\EveOnline([
             'clientId'          => $_ENV["CLIENT_ID"],
             'clientSecret'      => $_ENV["SECRET_KEY"],
-            'redirectUri'       => 'http://localhost:8000/login',
+            'redirectUri'       => $_ENV["CALLBACK_URL"],
             ]);
             
         // If we don't have an authorization code then get one
