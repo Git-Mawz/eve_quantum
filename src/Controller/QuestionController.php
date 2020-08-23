@@ -6,6 +6,7 @@ use App\Entity\Answer;
 use App\Form\AnswerType;
 use App\Entity\Question;
 use App\Form\QuestionType;
+use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,11 +20,13 @@ class QuestionController extends AbstractController
     /**
      * @Route("/list", name="list")
      */
-    public function list()
+    public function list(QuestionRepository $questionRepository)
     {   
         // Exemple d'accès avec le role ROLE_USER necessaire
         // $this->denyAccessUnlessGranted('ROLE_USER');
-        return $this->render('question/list.html.twig');
+        return $this->render('question/list.html.twig', [
+            'questions' => $questionRepository->findAll()
+        ]);
     }
 
     /**
@@ -47,7 +50,6 @@ class QuestionController extends AbstractController
 
             return $this->redirectToRoute('question_read', ['id' => $question->getId()]);
         }
-
 
         return $this->render('question/read.html.twig', [
             'question' => $question,

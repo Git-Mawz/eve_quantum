@@ -16,14 +16,16 @@
         </tr>
     </thead>
     <tbody>
-    {% for question in app.user.question %}
+
+    {% for question in questions %}
     <tr class="table">
-      <th scope="row">{{ question.user.name }}</th>
-      <td><a href="{{ path('question_read', {id: question.id}) }}">{{ question.title }}</a></td>
-      <td>{{ question.content|slice(0,70) }} ...</td>
-      <td>{{ question.createdAt|date("m:i \\l\\e d/m/Y") }}</td>
+    <th scope="row">{{ question.user.name }}</th>
+    <td><a href="{{ path('question_read', {id: question.id}) }}">{{ question.title }}</a></td>
+    <td>{{ question.content|slice(0,70) }} ...</td>
+    <td>{{ question.createdAt|date("m:i \\l\\e d/m/Y") }}</td>
     </tr>
     {% endfor %}
+    
     </tbody>
 </table> 
 
