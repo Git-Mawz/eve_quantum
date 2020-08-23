@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Answer;
+use App\Form\AnswerType;
 use App\Entity\Question;
 use App\Form\QuestionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,10 +29,29 @@ class QuestionController extends AbstractController
     /**
      * @Route("/{id}", name="read", requirements={"id"="\d+"})
      */
-    public function read(Question $question)
-    {
+    public function read(Question $question, Request $request)
+    {   
+        $newAnswer = new Answer();
+        $form = $this->createForm(AnswerType::class, $newAnswer);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $newAnswer->setUser($this->getUser());
+            $newAnswer->setCreatedAt(new \DateTime());
+            $newAnswer->setQuestion($question);
+            $em->persist($newAnswer);
+            $em->flush();
+
+            return $this->redirectToRoute('question_read', ['id' => $question->getId()]);
+        }
+
+
         return $this->render('question/read.html.twig', [
-            'question' => $question
+            'question' => $question,
+            'form' => $form->createView()
         ]);
     }
 
