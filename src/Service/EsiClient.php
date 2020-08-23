@@ -3,17 +3,22 @@
 namespace App\Service;
 
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class EsiClient
 {
     private $baseEsiUrl = 'https://esi.evetech.net/latest';
 
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     public function getCharacterMail($characterId)
     {
-        //On récupère le token dans la session
-        $tokens = $this->get('session')->get('token');
-        // dd($tokens);
-        $accessToken = $tokens->getToken('accessToken');
+        $accessToken = $this->session->get('accessToken')->getToken();
 
         // On créé le client pour la requête
         $client = HttpClient::create([
