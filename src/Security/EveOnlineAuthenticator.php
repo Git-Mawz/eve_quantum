@@ -39,7 +39,7 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     public function supports(Request $request)
     {
         // Si le nom de la route "app_login" (/login défini dans le MaincController)
-        // est dans la requête, alors supports return True et déclanche l'authentification
+        // est dans la requête, alors supports return True et déclenche l'authentification
         return self::LOGIN_ROUTE === $request->attributes->get('_route');
     }
 
