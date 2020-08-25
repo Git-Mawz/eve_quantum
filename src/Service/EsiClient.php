@@ -5,6 +5,10 @@ namespace App\Service;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+
+use App\Entity\Utils\EveMail;
+use App\Entity\Utils\Recipients;
+
 class EsiClient
 {
     private $baseEsiUrl = 'https://esi.evetech.net/latest';
@@ -57,17 +61,26 @@ class EsiClient
 
     public function sendInGameMail($characterId)
     {   
+
+        $recipients = new Recipients();
+        $recipients->recipient_id = 2113085965;
+        $recipients->recipient_type= 'character';
+
+
+        $mail = new EveMail();
+        $mail->approved_cost = 0;
+        $mail->body = 'Test création et envoi mail InGame !';
+        $mail->subject = 'Test';
+        $mail->recipients = $recipients;
+
+        echo (json_encode($mail));
+        die;
+
+        
+
         $response = $this->client->request('POST', $this->baseEsiUrl . '/characters/' . $characterId . '/mail', [
-            'body' => [
-                'mail' => [
-                    'approved_cost' => 0,
-                    'body' => 'Test création et envoi mail InGame !',
-                    'recipients' => [
-                        'recipient_id' => '2113085965',
-                        'recipient_type' => 'character'
-                    ],
-                    'subject' => 'Test'
-                ]
+            'json' => [
+                'mail' => json_encode($mail)
             ]
         ]);
         $response->getContent();
@@ -79,7 +92,7 @@ class EsiClient
             'query' => [
                 'add_to_beginning' => false,
                 'clear_other_waypoints' => false,
-                'destination_id' => 30000142
+                'destination_id' => 30000142 // Jita
             ]
         ]);
     }
