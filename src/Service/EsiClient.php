@@ -5,10 +5,6 @@ namespace App\Service;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-
-use App\Entity\Utils\EveMail;
-use App\Entity\Utils\Recipients;
-
 class EsiClient
 {
     private $baseEsiUrl = 'https://esi.evetech.net/latest';
