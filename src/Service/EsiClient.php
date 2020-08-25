@@ -17,7 +17,7 @@ class EsiClient
         $this->client = HttpClient::create([
             'headers' => [
                 'Authorization' => 'Bearer ' . $session->get('accessToken')->getToken(),
-                'User-Agent' => 'Krawks',
+                'User-Agent' => 'Eve Quantum',
                 ]
             ]);
 
@@ -30,7 +30,8 @@ class EsiClient
         $this->session = $session;
     }
 
-    // Methode utilisé dans l'event kernel.request avec l'event suscriber EveTokenFrefreshSubscriber.php
+    // Logique de cette méthode utilisé dans l'event kernel.request avec l'event suscriber EveTokenFrefreshSubscriber.php
+    // Cette méthode reste ici afin d'avoir un moyen de refresh manuellement le token sur la route /test/refreshToken
     public function RefreshToken()
     {
         $existingAccessToken = $this->session->get('accessToken');
@@ -54,14 +55,33 @@ class EsiClient
         return $mails;
     }
 
-    public function getCharacterCurrentSkill()
-    {
-
+    public function sendInGameMail($characterId)
+    {   
+        $response = $this->client->request('POST', $this->baseEsiUrl . '/characters/' . $characterId . '/mail', [
+            'body' => [
+                'mail' => [
+                    'approved_cost' => 0,
+                    'body' => 'Test création et envoi mail InGame !',
+                    'recipients' => [
+                        'recipient_id' => '2113085965',
+                        'recipient_type' => 'character'
+                    ],
+                    'subject' => 'Test'
+                ]
+            ]
+        ]);
+        $response->getContent();
     }
 
-    public function getCharacterSkillQueue()
+    public function setDestination()
     {
-        
+        $response = $this->client->request('POST', $this->baseEsiUrl . '/ui/autopilot/waypoint/', [
+            'query' => [
+                'add_to_beginning' => false,
+                'clear_other_waypoints' => false,
+                'destination_id' => 30000142
+            ]
+        ]);
     }
 
 }

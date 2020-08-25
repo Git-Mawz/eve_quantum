@@ -33,7 +33,7 @@ class EveOauth2
             // urlAuthorize option and generates and applies any necessary parameters
             // (e.g. state).
             $options = [
-                'scope' => ['esi-mail.read_mail.v1', 'esi-mail.send_mail.v1'] // array or string
+                'scope' => ['esi-mail.read_mail.v1', 'esi-mail.send_mail.v1', 'esi-ui.write_waypoint.v1'] // array or string
             ];
             
             $authorizationUrl = $provider->getAuthorizationUrl($options);
