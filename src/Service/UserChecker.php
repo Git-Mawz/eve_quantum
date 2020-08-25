@@ -17,6 +17,13 @@ class UserChecker
         $this->em = $em;
     }
 
+    /**
+     * Look for a user in DB or create it in case he do not exist
+     * This method is linked to the getUser() method in the EveOnlineAuthenticator.php class
+     *
+     * @param mixed $credentials
+     * @return void
+     */
     public function checkUser($credentials)
     {
         $storedUser = $this->userRepository->findOneBy(['character_owner_hash' => $credentials->getCharacterOwnerHash()]);

@@ -35,12 +35,12 @@ class TestController extends AbstractController
 
     }
 
-        /**
+    /**
      * @Route("/setdest", name="setdest")
      */
     public function setDestination(EsiClient $esiClient)
     {
-        $esiClient->setDestination();
+        $esiClient->setDestination($destinationId);
 
     }
 

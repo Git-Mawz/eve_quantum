@@ -5,6 +5,12 @@ namespace App\Service;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Where all usefull methods are stored to consume ESI
+ * https://esi.evetech.net/ui/
+ * @author Mawz 
+ */
+
 class EsiClient
 {
     private $baseEsiUrl = 'https://esi.evetech.net/latest';
@@ -32,8 +38,11 @@ class EsiClient
 
     }
 
-    // Logique de cette méthode utilisé dans l'event kernel.request avec l'event suscriber EveTokenFrefreshSubscriber.php
-    // Cette méthode reste ici afin d'avoir un moyen de refresh manuellement le token sur la route /test/refreshToken
+    /**
+     * Allow to refresh manually Eve Online Token with the refresh token
+     *
+     * @return void
+     */
     public function refreshToken()
     {
         $existingAccessToken = $this->session->get('accessToken');
@@ -47,6 +56,13 @@ class EsiClient
         }
     }
 
+    /**
+     * Allow to send and Eve mail
+     *
+     * @param integer $sender characterId of the sender (get it in controllers with $this->getUser())
+     * @param integer $receiver characterId of the character you want to send the mail to
+     * @return void
+     */
     public function sendInGameMail($sender, $receiver)
     {   
         $response = $this->client->request('POST', $this->baseEsiUrl . '/characters/' . $sender . '/mail', [
@@ -67,6 +83,12 @@ class EsiClient
 
     }
 
+    /**
+     * Allow to set a solar system as a destination in game with his destination_id
+     *
+     * @param interger $destinationId destination_id of the system you want to set the destination to
+     * @return void
+     */
     public function setDestination($destinationId)
     {
         $response = $this->client->request('POST', $this->baseEsiUrl . '/ui/autopilot/waypoint/', [
