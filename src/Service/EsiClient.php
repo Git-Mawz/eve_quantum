@@ -58,21 +58,21 @@ class EsiClient
     public function sendInGameMail($characterId)
     {   
         $response = $this->client->request('POST', $this->baseEsiUrl . '/characters/' . $characterId . '/mail', [
-            'body' => [
-                'mail' => array (
-                    'approved_cost' => 0,
-                    'body' => 'test2',
-                    'recipients' => array (
-                        0 => array (
-                            'recipient_id' => '2113085965',
-                            'recipient_type' => 'character',
-                        ),
-                    ),
-                    'subject' => 'test2',
-                  )
-            ]
+            'json' => array (
+                'approved_cost' => 0,
+                'body' => 'test symfony',
+                'recipients' => 
+                array (
+                  0 => 
+                  array (
+                    'recipient_id' => 2113085965,
+                    'recipient_type' => 'character',
+                  ),
+                ),
+                'subject' => 'test symfo',
+              )
         ]);
-        // $response->getContent();
+        
     }
 
     public function setDestination()
