@@ -13,9 +13,6 @@ class CharacterController extends AbstractController
      */
     public function profile(EsiClient $esiClient)
     {
-        $mails = $esiClient->getCharacterMail($this->getUser()->getEveCharacterId());
-        dump($mails);
-
         return $this->render('character/profile.html.twig');
     }
 }
