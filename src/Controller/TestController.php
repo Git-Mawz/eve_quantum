@@ -31,7 +31,9 @@ class TestController extends AbstractController
      */
     public function sendIngameMail(EsiClient $esiClient)
     {
-        $esiClient->sendIngameMail($this->getUser()->getEveCharacterId(), 2117405856);
+        $subject = 'Hello';
+        $body = 'This is a test content';
+        $esiClient->sendIngameMail($this->getUser()->getEveCharacterId(), 2115511700, $subject, $body);
 
     }
 

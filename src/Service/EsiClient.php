@@ -61,14 +61,16 @@ class EsiClient
      *
      * @param integer $sender characterId of the sender (get it in controllers with $this->getUser())
      * @param integer $receiver characterId of the character you want to send the mail to
+     * @param string $subject subject of the Eve mail
+     * @param string $body body/content of the Eve mail
      * @return void
      */
-    public function sendInGameMail($sender, $receiver)
+    public function sendInGameMail($sender, $receiver, $subject, $body)
     {   
         $response = $this->client->request('POST', $this->baseEsiUrl . '/characters/' . $sender . '/mail', [
             'json' => array (
                 'approved_cost' => 0,
-                'body' => 'test symfony',
+                'body' => $body,
                 'recipients' => 
                 array (
                   0 => 
@@ -77,7 +79,7 @@ class EsiClient
                     'recipient_type' => 'character',
                   ),
                 ),
-                'subject' => 'test symfo',
+                'subject' => $subject,
               )
         ]);
 
