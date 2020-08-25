@@ -17,7 +17,7 @@ class TestController extends AbstractController
      */
     public function index(EsiClient $esiClient)
     {   
-        $esiClient->RefreshToken();
+        $esiClient->refreshToken();
 
         dump($this->get('session')->get('accessToken'));
 
@@ -31,7 +31,7 @@ class TestController extends AbstractController
      */
     public function sendIngameMail(EsiClient $esiClient)
     {
-        $esiClient->sendIngameMail($this->getUser()->getEveCharacterId());
+        $esiClient->sendIngameMail($this->getUser()->getEveCharacterId(), 2117405856);
 
     }
 
