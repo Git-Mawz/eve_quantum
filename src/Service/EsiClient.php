@@ -61,29 +61,22 @@ class EsiClient
 
     public function sendInGameMail($characterId)
     {   
-
-        $recipients = new Recipients();
-        $recipients->recipient_id = 2113085965;
-        $recipients->recipient_type= 'character';
-
-
-        $mail = new EveMail();
-        $mail->approved_cost = 0;
-        $mail->body = 'Test création et envoi mail InGame !';
-        $mail->subject = 'Test';
-        $mail->recipients = $recipients;
-
-        echo (json_encode($mail));
-        die;
-
-        
-
         $response = $this->client->request('POST', $this->baseEsiUrl . '/characters/' . $characterId . '/mail', [
-            'json' => [
-                'mail' => json_encode($mail)
+            'body' => [
+                'mail' => array (
+                    'approved_cost' => 0,
+                    'body' => 'test2',
+                    'recipients' => array (
+                        0 => array (
+                            'recipient_id' => '2113085965',
+                            'recipient_type' => 'character',
+                        ),
+                    ),
+                    'subject' => 'test2',
+                  )
             ]
         ]);
-        $response->getContent();
+        // $response->getContent();
     }
 
     public function setDestination()

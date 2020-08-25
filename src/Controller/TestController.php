@@ -33,7 +33,6 @@ class TestController extends AbstractController
     {
         $esiClient->sendIngameMail($this->getUser()->getEveCharacterId());
 
-        return new JsonResponse(['data' => $esiClient->sendIngameMail($this->getUser()->getEveCharacterId())]);
     }
 
         /**
