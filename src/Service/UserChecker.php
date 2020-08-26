@@ -25,9 +25,9 @@ class UserChecker
      * This method is linked to the getUser() method in the EveOnlineAuthenticator.php class
      *
      * @param mixed $credentials
-     * @return void
+     * @return User
      */
-    public function checkUser($credentials)
+    public function checkUser($credentials): User
     {
         $storedUser = $this->userRepository->findOneBy([static::CHARACTER_OWNER_HASH => $credentials->getCharacterOwnerHash()]);
 
