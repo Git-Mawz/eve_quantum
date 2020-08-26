@@ -18,25 +18,24 @@
 
             <div class="collapse navbar-collapse d-flex" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                {# On utilise le characterOwnerHash mis en session à la connexion pour déterminé si l'utilisateur est bien connecté #}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('question_add') }}">Poser une Question</a>
-                </li>
-                {# exemple for active button
-                <li class="nav-item{% if app.request.attributes.get('_route') == 'question_add' %} active {% endif %}">
-                    <a class="nav-link" href="{{path('question_add')}}">Poser une Question</a>
-                </li> #}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('character_profile')}}">Mon Profil</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('question_list')}}">Questions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('main_about')}}">A Propos</a>
-                </li>
-                    <a href="{{path('app_logout')}}" type="button" class="btn btn-danger">Déconnexion</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('question_add') }}">Poser une Question</a>
+                    </li>
+                    {# exemple for active button
+                    <li class="nav-item{% if app.request.attributes.get('_route') == 'question_add' %} active {% endif %}">
+                        <a class="nav-link" href="{{path('question_add')}}">Poser une Question</a>
+                    </li> #}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('character_profile')}}">Mon Profil</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('question_list')}}">Questions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('main_about')}}">A Propos</a>
+                    </li>
                 </ul>
+                <a href="{{path('app_logout')}}" type="button" class="btn btn-danger">Déconnexion</a>
             </div>
             </nav>
         </header>
