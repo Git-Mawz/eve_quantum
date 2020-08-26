@@ -21,8 +21,8 @@
     {% if app.user is null %}
         <a class="btn btn-primary btn-lg" href="{{path('app_login')}}" role="button">Se connecter</a>
         <p class="lead">Besoin d'un compte?</p>
-        <p><a target="_blank" href="https://www.eveonline.com/fr/signup?invc=1eaeaece-f3bb-43dd-a21a-2912589ac93d">Lien avec parainage</a></p>
-        <p><a target="_blank" href="https://www.eveonline.com/fr/signup">Lien sans parainage</a></p>
+        <p><a target="_blank" href="https://www.eveonline.com/fr/signup?invc=1eaeaece-f3bb-43dd-a21a-2912589ac93d">Lien de parrainage</a></p>
+        <p><a target="_blank" href="https://www.eveonline.com/fr/signup">Lien sans parrainage</a></p>
     {% else %}
         <a class="btn btn-primary btn-lg" href="{{ path('question_add') }}" role="button">Poser une question</a>
     {% endif %}
