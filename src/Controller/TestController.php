@@ -42,7 +42,7 @@ class TestController extends AbstractController
      */
     public function setDestination(EsiClient $esiClient)
     {
-        $esiClient->setDestination(30000142);
+        $esiClient->setDestination(30000142); // Jita 30000142
     }
 
 }

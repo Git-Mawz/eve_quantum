@@ -10,6 +10,9 @@ class UserChecker
 {   
     private $userRepository;
     private $em;
+    const CHARACTER_OWNER_HASH = 'character_owner_hash';
+    const BASE_PORTRAIT_URL = 'https://images.evetech.net/Character/';
+    const DEFAULT_JPG_FORMAT = '_256.jpg';
 
     public function __construct(UserRepository $userRepository, EntityManagerInterface $em)
     {
@@ -26,7 +29,7 @@ class UserChecker
      */
     public function checkUser($credentials)
     {
-        $storedUser = $this->userRepository->findOneBy(['character_owner_hash' => $credentials->getCharacterOwnerHash()]);
+        $storedUser = $this->userRepository->findOneBy([static::CHARACTER_OWNER_HASH => $credentials->getCharacterOwnerHash()]);
 
         if ($storedUser == null) {
             $newUser = new User();
@@ -34,7 +37,7 @@ class UserChecker
             $newUser->setEveCharacterId($credentials->getCharacterID());
             $newUser->setCharacterOwnerHash($credentials->getCharacterOwnerHash());
             $newUser->setCreatedAt(new \DateTime());
-            $newUser->setPortrait('https://images.evetech.net/Character/' . $credentials->getCharacterID() . '_256.jpg');
+            $newUser->setPortrait(static::BASE_PORTRAIT_URL . $credentials->getCharacterID() . static::DEFAULT_JPG_FORMAT);
 
             $this->em->persist($newUser);
             $this->em->flush();
