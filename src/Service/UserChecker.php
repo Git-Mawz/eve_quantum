@@ -38,6 +38,7 @@ class UserChecker
             $newUser->setCharacterOwnerHash($credentials->getCharacterOwnerHash());
             $newUser->setCreatedAt(new \DateTime());
             $newUser->setPortrait(static::BASE_PORTRAIT_URL . $credentials->getCharacterID() . static::DEFAULT_JPG_FORMAT);
+            $newUser->setBanned(false);
 
             $this->em->persist($newUser);
             $this->em->flush();

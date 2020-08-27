@@ -60,6 +60,11 @@ class User implements UserInterface
      */
     private $answer;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $banned;
+
     public function __construct()
     {
         $this->question = new ArrayCollection();
@@ -243,6 +248,18 @@ class User implements UserInterface
                 $answer->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(bool $banned): self
+    {
+        $this->banned = $banned;
 
         return $this;
     }
