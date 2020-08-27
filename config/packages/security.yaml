@@ -19,6 +19,17 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            anonymous: true
+            pattern: ^/admin
+            provider: app_admin_provider
+            guard:
+                authenticators:
+                    - App\Security\AdminAuthenticator
+            logout:
+                path: admin_logout
+                # where to redirect after logout
+                target: main_home
         main:
             anonymous: true
             lazy: true
@@ -28,16 +39,6 @@ security:
                     - App\Security\EveOnlineAuthenticator
             logout:
                 path: app_logout
-                # where to redirect after logout
-                target: main_home
-        admin:
-            pattern: ^/admin
-            provider: app_admin_provider
-            guard:
-                authenticators:
-                    - App\Security\AdminAuthenticator
-            logout:
-                path: admin_logout
                 # where to redirect after logout
                 target: main_home
 
@@ -55,4 +56,4 @@ security:
         - { path: ^/question, roles: ROLE_USER }
         - { path: ^/question, roles: ROLE_USER }
         - { path: ^/answer, roles: ROLE_USER }
-        - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
