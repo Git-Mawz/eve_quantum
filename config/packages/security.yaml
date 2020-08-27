@@ -33,5 +33,6 @@ security:
     access_control:
         - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profil, roles: ROLE_USER }
-        # - { path: ^/question/list, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/question, roles: ROLE_USER }
+        - { path: ^/question, roles: ROLE_USER }
+        - { path: ^/answer, roles: ROLE_USER }
