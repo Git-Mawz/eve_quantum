@@ -20,7 +20,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         admin:
-            # anonymous: true
+            anonymous: true
             pattern: ^/admin
             provider: app_admin_provider
             guard:
@@ -55,4 +55,5 @@ security:
         - { path: ^/question, roles: ROLE_USER }
         - { path: ^/question, roles: ROLE_USER }
         - { path: ^/answer, roles: ROLE_USER }
-        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/dashboard$, roles: ROLE_ADMIN }
