@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "easycorp/easyadmin-bundle": "^3.1",
         "killmails/oauth2-eve": "^1.0",
         "league/oauth2-client": "^2.5",
         "phpdocumentor/reflection-docblock": "^5.2",
