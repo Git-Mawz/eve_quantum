@@ -30,6 +30,16 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 target: main_home
+        admin:
+            pattern: ^/admin
+            provider: app_admin_provider
+            guard:
+                authenticators:
+                    - App\Security\AdminAuthenticator
+            logout:
+                path: admin_logout
+                # where to redirect after logout
+                target: main_home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -45,3 +55,4 @@ security:
         - { path: ^/question, roles: ROLE_USER }
         - { path: ^/question, roles: ROLE_USER }
         - { path: ^/answer, roles: ROLE_USER }
+        - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
