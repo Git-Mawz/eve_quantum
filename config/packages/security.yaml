@@ -57,3 +57,6 @@ security:
         - { path: ^/answer, roles: ROLE_USER }
         - { path: ^/admin/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/dashboard$, roles: ROLE_ADMIN }
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
