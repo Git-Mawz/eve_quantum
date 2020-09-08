@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -25,7 +26,7 @@ class UserCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('characterOwnerHash'),
             IntegerField::new('eveCharacterId'),
-            ImageField::new('portrait'),
+            AvatarField::new('portrait'),
             DateTimeField::new('createdAt'),
             BooleanField::new('banned')
         ];
