@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 class AdminCrudController extends AbstractCrudController
@@ -28,6 +29,7 @@ class AdminCrudController extends AbstractCrudController
         ];
     }
 
+    // Say to easy admin that i will define some actions here
     public function configureActions(Actions $actions): Actions
     {
         $addAdmin = Action::new('addAdmin')
@@ -37,10 +39,17 @@ class AdminCrudController extends AbstractCrudController
         return $actions->add(Crud::PAGE_INDEX, $addAdmin);
     }
 
-    // Custom methods
+    // Customization of the actions (need a route and a route name)
+
+    /**
+     * @Route ("/admin/add_admin", name="add_admin")
+     */
+
     public function addAdmin(Request $request)
     {
         
+        dd($request);
+
     }
    
 }
