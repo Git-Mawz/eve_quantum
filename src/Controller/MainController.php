@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Suggest;
+use App\Form\SuggestType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
@@ -53,4 +56,36 @@ class MainController extends AbstractController
 
     }
 
+    /**
+     * @Route("/suggest", name="main_suggest")
+     */
+
+     public function suggest(Request $request)
+     {
+        $newSuggest = new Suggest();
+        $form = $this->createForm(SuggestType::class, $newSuggest);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $newSuggest->setCreatedAt(new \Datetime()); 
+            if ($this->getUser()) {
+                $newSuggest->setUser($this->getUser());
+            }
+            $em->persist($newSuggest);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Votre suggestion à bien été envoyé, merci !');
+
+            return $this->redirectToRoute('character_profile');
+        }
+
+
+        return $this->render('main/suggest.html.twig', [
+            'form' => $form->createView()
+        ]);
+     }
+
 }
+

@@ -82,7 +82,7 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
         $this->session->set('accessToken', $this->eveOauth2->getAccessToken());
 
         // Si l'utilisateur se connecte avec succès, il est rediriger vers sa page de profil
-        return new RedirectResponse($this->urlGenerator->generate('main_home'));
+        return new RedirectResponse($this->urlGenerator->generate('character_profile'));
 
     }
 

@@ -65,10 +65,16 @@ class User implements UserInterface
      */
     private $banned;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Suggest::class, mappedBy="user")
+     */
+    private $suggests;
+
     public function __construct()
     {
         $this->question = new ArrayCollection();
         $this->answer = new ArrayCollection();
+        $this->suggests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -260,6 +266,37 @@ class User implements UserInterface
     public function setBanned(bool $banned): self
     {
         $this->banned = $banned;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Suggest[]
+     */
+    public function getSuggests(): Collection
+    {
+        return $this->suggests;
+    }
+
+    public function addSuggest(Suggest $suggest): self
+    {
+        if (!$this->suggests->contains($suggest)) {
+            $this->suggests[] = $suggest;
+            $suggest->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuggest(Suggest $suggest): self
+    {
+        if ($this->suggests->contains($suggest)) {
+            $this->suggests->removeElement($suggest);
+            // set the owning side to null (unless already changed)
+            if ($suggest->getUser() === $this) {
+                $suggest->setUser(null);
+            }
+        }
 
         return $this;
     }
