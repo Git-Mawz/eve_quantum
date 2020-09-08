@@ -3,9 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Admin;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminCrudController extends AbstractCrudController
 {
@@ -24,10 +28,20 @@ class AdminCrudController extends AbstractCrudController
         ];
     }
 
-    public function createEntity(string $entityFqcn)
+    public function configureActions(Actions $actions): Actions
     {
-        $newAdmin = new Admin();
-        return $newAdmin;
+        $addAdmin = Action::new('addAdmin')
+            ->linkToRoute('add_admin')
+        ;
+
+        return $actions->add(Crud::PAGE_INDEX, $addAdmin);
     }
+
+    // Custom methods
+    public function addAdmin(Request $request)
+    {
+        
+    }
+   
 }
 
