@@ -25,7 +25,6 @@ class QuestionCrudController extends AbstractCrudController
             TextEditorField::new('content'),
             TextField::new('user'),
             DateTimeField::new('createdAt'),
-
         ];
     }
 }

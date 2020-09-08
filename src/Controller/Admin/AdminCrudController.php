@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class AdminCrudController extends AbstractCrudController
 {
+
     public static function getEntityFqcn(): string
     {
         return Admin::class;
@@ -18,16 +19,15 @@ class AdminCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
             TextField::new('username'),
-            
+            TextField::new('password')
         ];
     }
 
     public function createEntity(string $entityFqcn)
     {
         $newAdmin = new Admin();
-
+        return $newAdmin;
     }
 }
 
