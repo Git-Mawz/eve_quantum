@@ -7,6 +7,7 @@ use App\Entity\Admin;
 use App\Entity\Answer;
 use App\Entity\Category;
 use App\Entity\Question;
+use App\Entity\Suggest;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -46,5 +47,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Categories', 'fas fa-th-list', Category::class);
         yield MenuItem::linkToCrud('Questions', 'fas fa-file-alt', Question::class);
         yield MenuItem::linkToCrud('Réponses', 'far fa-file-alt', Answer::class);
+        yield MenuItem::linkToCrud('Idées', 'far fa-lightbulb', Suggest::class);
     }
 }
