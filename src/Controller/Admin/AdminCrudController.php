@@ -29,28 +29,28 @@ class AdminCrudController extends AbstractCrudController
         ];
     }
 
-    // Say to easy admin that i will define some actions here
-    public function configureActions(Actions $actions): Actions
-    {
-        $addAdmin = Action::new('addAdmin')
-            ->linkToRoute('add_admin')
-        ;
+    // // Say to easy admin that i will define some actions here
+    // public function configureActions(Actions $actions): Actions
+    // {
+    //     $addAdmin = Action::new('addAdmin')
+    //         ->linkToRoute('add_admin')
+    //     ;
 
-        return $actions->add(Crud::PAGE_INDEX, $addAdmin);
-    }
+    //     return $actions->add(Crud::PAGE_INDEX, $addAdmin);
+    // }
 
-    // Customization of the actions (need a route and a route name)
+    // // Customization of the actions (need a route and a route name)
 
-    /**
-     * @Route ("/admin/add_admin", name="add_admin")
-     */
+    // /**
+    //  * @Route ("/admin/add_admin", name="add_admin")
+    //  */
 
-    public function addAdmin(Request $request)
-    {
+    // public function addAdmin(Request $request)
+    // {
         
-        dd($request);
+    //     dd($request);
 
-    }
+    // }
    
 }
 

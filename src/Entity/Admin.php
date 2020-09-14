@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=AdminRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
+
+
 class Admin implements UserInterface
 {
     /**
@@ -106,4 +111,21 @@ class Admin implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    // ! Encode password on admin creation
+
+     /** @ORM\PrePersist */
+    public function encodePassword(LifecycleEventArgs $args)
+    {
+        $entity = $args->getObject();
+        if (!$entity instanceof Admin) {
+            return;
+        }
+
+
+        // dd('dans la methode prePersist');
+
+    }
+
+    // ! Encode password on admin creation
 }
