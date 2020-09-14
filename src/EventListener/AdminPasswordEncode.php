@@ -29,8 +29,21 @@ class AdminPasswordEncode
         $encodedPassword = $this->encoder->encodePassword($entity, $plainPassword);
 
         $entity->setPassword($encodedPassword);
-
     }
 
-    
+    public function preUpdate(LifecycleEventArgs $args)
+    {
+        $entity = $args->getObject();
+
+        if (!$entity instanceof Admin) {
+            return;
+        }
+
+        $plainPassword = $entity->getPassword();
+        $encodedPassword = $this->encoder->encodePassword($entity, $plainPassword);
+
+        $entity->setPassword($encodedPassword);
+    }
+
+
 }
