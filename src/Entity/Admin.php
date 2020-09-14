@@ -111,21 +111,4 @@ class Admin implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    // ! Encode password on admin creation
-
-     /** @ORM\PrePersist */
-    public function encodePassword(LifecycleEventArgs $args)
-    {
-        $entity = $args->getObject();
-        if (!$entity instanceof Admin) {
-            return;
-        }
-
-
-        // dd('dans la methode prePersist');
-
-    }
-
-    // ! Encode password on admin creation
 }
