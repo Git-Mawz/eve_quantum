@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Admin\QuestionCrudController;
 use App\Controller\Admin\UserCrudController;
 use App\Entity\Admin;
 use App\Entity\Answer;
@@ -29,7 +30,12 @@ class DashboardController extends AbstractDashboardController
 
         $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
 
-        return $this->redirect($routeBuilder->setController(UserCrudController::class)->generateUrl());
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($routeBuilder->setController(UserCrudController::class)->generateUrl());
+        }
+
+        return $this->redirect($routeBuilder->setController(QuestionCrudController::class)->generateUrl());
+
 
     }
 
