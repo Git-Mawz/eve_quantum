@@ -40,7 +40,7 @@ class FirstAdminCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('arg1');
-
+        
         $firstAdmin = $this->userRepository->findOneBy(['character_owner_hash' => static::FIRST_ADMIN_CHARACTER_OWNER_HASH]);
         $firstAdmin->setRoles(['ROLE_ADMIN']);
         $this->em->flush();
