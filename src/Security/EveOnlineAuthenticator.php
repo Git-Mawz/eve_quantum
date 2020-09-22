@@ -51,36 +51,41 @@ class EveOnlineAuthenticator extends AbstractGuardAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider)
     {   
         $user = $this->userChecker->checkUser($credentials);
-        // dump($user);
         return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return true;
+        if ($user->getBanned() == false) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $data = [
-            // you may want to customize or obfuscate the message first
-            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
+        // $data = [
+        //     // you may want to customize or obfuscate the message first
+        //     'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
 
-            // or to translate this message
-            // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
-        ];
+        //     // or to translate this message
+        //     // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
+        // ];
 
-        // return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
-        return new Response();
+        // // return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
+        // return new Response();
+        $request->getSession()->getFlashBag()->add('warning', 'Vous avez été temporairement bannis de Eve Quantum');
+        return new RedirectResponse($this->urlGenerator->generate('main_home'));
+
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         // On stock les tokens (access token et refresh token) en session
-  
         // $this->session->set('resourceOwner', $this->eveOauth2->getResourceOwner());
         $this->session->set('accessToken', $this->eveOauth2->getAccessToken());
-
         // Si l'utilisateur se connecte avec succès, il est rediriger vers sa page de profil
         return new RedirectResponse($this->urlGenerator->generate('character_profile'));
 
