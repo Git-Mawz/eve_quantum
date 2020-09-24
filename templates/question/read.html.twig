@@ -12,9 +12,10 @@
             <p>{{question.createdAt|date("H:i d/m/Y", "Europe/Paris") }}</p>
         </div>
     </div>
-        
+    {% if app.user is not null %}
         {{ form_start(form) }}
         {{ form_end(form) }}
+    {% endif %}
 
     {% for answer in question.answer|reverse %}
     

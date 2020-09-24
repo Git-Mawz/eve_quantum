@@ -52,9 +52,8 @@ security:
     access_control:
         - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profil, roles: ROLE_USER }
-        - { path: ^/question, roles: ROLE_USER }
-        - { path: ^/question, roles: ROLE_USER }
-        - { path: ^/answer, roles: ROLE_USER }
+        # - { path: ^/question, roles: ROLE_USER }
+        - { path: ^/question/add, roles: ROLE_USER }
         - { path: ^/admin/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/dashboard$, roles: [ROLE_ADMIN, ROLE_MODERATOR] }
 

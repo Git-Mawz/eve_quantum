@@ -41,6 +41,8 @@ class QuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $this->denyAccessUnlessGranted('ROLE_USER');
+
             $em = $this->getDoctrine()->getManager();
             $newAnswer->setUser($this->getUser());
             $newAnswer->setCreatedAt(new \DateTime());
