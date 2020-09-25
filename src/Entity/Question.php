@@ -17,6 +17,7 @@ class Question
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"question_browse"})
      */
     private $id;
 

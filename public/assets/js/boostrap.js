@@ -1,12 +1,12 @@
 let app = {
 
     init: function() {
-      console.log('pouet pouet');
+      let question = new Question;
+      question.load();
+      console.log(question);
     },
+
     
   };
-
-
-
 
 document.addEventListener('DOMContentLoaded', app.init);
