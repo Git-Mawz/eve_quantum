@@ -9,20 +9,22 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">Auteur</th>
             <th scope="col">Titre</th>
-            <th scope="col">Aperçu</th>
-            <th scope="col">Quand</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Auteur</th>
+            {# <th scope="col">Aperçu</th> #}
+            <th scope="col">Posté</th>
         </tr>
     </thead>
     <tbody>
 
     {% for question in questions %}
     <tr class="table">
-    <th scope="row">{{ question.user.name }}</th>
-    <td><a href="{{ path('question_read', {id: question.id}) }}">{{ question.title }}</a></td>
-    <td>{{ question.content|slice(0,70) }} ...</td>
-    <td>{{ question.createdAt|date("H:i \\l\\e d/m/Y") }}</td>
+        <td><a href="{{ path('question_read', {id: question.id}) }}">{{ question.title }}</a></td>
+        <td>{{ question.category.name }}</td>
+        <td scope="row">{{ question.user.name }}</td>
+        {# <td>{{ question.content|slice(0,60) }} ...</td> #}
+        <td>{{ question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</td>
     </tr>
     {% endfor %}
     
