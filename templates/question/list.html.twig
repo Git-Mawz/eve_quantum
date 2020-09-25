@@ -6,6 +6,8 @@
 
 <h1 class="display-5">Liste des Questions</h1>
 
+<input class="component-question-autocompletion"></input>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -35,5 +37,7 @@
 {% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('assets/js/question.js') }}"></script>
+<script src="{{ asset('assets/js/source/Model/Question.js') }}"></script>
+<script src="{{ asset('assets/js/source/Model/QuestionManager.js') }}"></script>
+<script src="{{ asset('assets/js/source/Component/QuestionAutocompletion.js') }}"></script>
 {% endblock %}
