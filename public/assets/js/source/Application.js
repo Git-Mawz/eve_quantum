@@ -14,15 +14,7 @@ class Application
 
   // micro controller
   actionQuestionAutocompletion() {
-    console.log("%cQuestion autocompletion", 'font-size: 2rem; color #f0f');
-
-    const toto ='world';
-    let string = console.log(`
-      hello ${toto}
-    `);
-
-
-
+    console.log("%cQuestion autocompletion", 'font-size: 1.1rem;');
 
     const selector = ".component-question-autocompletion";
 

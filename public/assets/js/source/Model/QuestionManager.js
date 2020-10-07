@@ -12,7 +12,7 @@ class QuestionManager
     return fetch(this.endPoints.getQuestions).then((response) => {
       return response.json();
     }).then((rawData) => {
-      console.log(rawData);
+      // console.log(rawData);
 
       const questions = JSON.parse(rawData.questions);
 

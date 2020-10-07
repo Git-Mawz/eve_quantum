@@ -7,7 +7,6 @@ class QuestionAutocompletion
 
   constructor(targetElement) {
     this._input = targetElement;
-    console.log(this._input);
   }
 
   initialize() {
@@ -26,17 +25,16 @@ class QuestionAutocompletion
 
     const manager = new QuestionManager();
     manager.loadQuestions().then((questionList) => {
-      console.log(questionList);
+      // console.log(questionList);
       for (let questionInstance of questionList) {
-        console.log(questionInstance.getQuestion());
+        // console.log(questionInstance.getQuestion());
+        // questionInstance.foo().bar();
 
-        questionInstance.foo().bar();
+        console.log(questionInstance.getQuestion());
 
       }
     });
 
   }
-
-
 
 }
