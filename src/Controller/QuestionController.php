@@ -31,7 +31,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="read_id", requirements={"id"="\d+"})
+     * @Route("/{id}", name="read_id", requirements={"id"="\d+"}, methods={"GET","POST"})
      */
     public function read(Question $question, Request $request)
     {   
@@ -51,7 +51,7 @@ class QuestionController extends AbstractController
             $em->persist($newAnswer);
             $em->flush();
 
-            return $this->redirectToRoute('question_read', ['id' => $question->getId()]);
+            return $this->redirectToRoute('question_read_id', ['id' => $question->getId()]);
         }
 
         return $this->render('question/read.html.twig', [
@@ -61,7 +61,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="read_slug")
+     * @Route("/read/{slug}", name="read_slug", methods={"GET","POST"}, requirements={})
      */
     public function readSlug(Question $question, Request $request)
     {   
@@ -81,7 +81,7 @@ class QuestionController extends AbstractController
             $em->persist($newAnswer);
             $em->flush();
 
-            return $this->redirectToRoute('question_read', ['id' => $question->getId()]);
+            return $this->redirectToRoute('question_read_slug', ['slug' => $question->getSlug()]);
         }
 
         return $this->render('question/read.html.twig', [
@@ -91,7 +91,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="add")
+     * @Route("/add", name="add", methods={"GET","POST"})
      */
 
     public function add(Request $request, QuestionSlugger $questionSlugger)
