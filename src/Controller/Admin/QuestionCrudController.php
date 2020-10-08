@@ -22,6 +22,7 @@ class QuestionCrudController extends AbstractCrudController
         return [
             IdField::new('id'),
             TextField::new('title'),
+            TextField::new('slug'),
             TextEditorField::new('content'),
             TextField::new('user'),
             DateTimeField::new('createdAt'),

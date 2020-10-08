@@ -8,8 +8,12 @@ class Question {
         return this;
     }
 
-    getQuestion() {
+    getQuestionTitle() {
         return this._data.title;
+    }
+
+    getQuestionId() {
+        return this._data.id;
     }
 
     // foo() {

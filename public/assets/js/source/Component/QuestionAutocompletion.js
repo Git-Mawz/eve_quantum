@@ -25,14 +25,20 @@ class QuestionAutocompletion
 
     const manager = new QuestionManager();
     manager.loadQuestions().then((questionList) => {
-      // console.log(questionList);
-      for (let questionInstance of questionList) {
-        // console.log(questionInstance.getQuestion());
-        // questionInstance.foo().bar();
+      
+    let searchResult = [];
 
-        console.log(questionInstance.getQuestion());
+      for (let questionInstance of questionList) {
+
+        if (questionInstance.getQuestionTitle().includes(search) == true) {
+
+          searchResult.push(questionInstance);
+
+        }
 
       }
+      console.log(searchResult);
+
     });
 
   }

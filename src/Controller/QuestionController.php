@@ -7,6 +7,7 @@ use App\Form\AnswerType;
 use App\Entity\Question;
 use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
+use App\Service\QuestionSlugger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,7 +64,7 @@ class QuestionController extends AbstractController
      * @Route("/add", name="add")
      */
 
-    public function add(Request $request)
+    public function add(Request $request, QuestionSlugger $questionSlugger)
     {
         $newQuestion = new Question();
         $form = $this->createForm(QuestionType::class, $newQuestion);
@@ -75,6 +76,8 @@ class QuestionController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $newQuestion->setUser($this->getUser());
             $newQuestion->setCreatedAt(new \DateTime());
+            $newQuestion->setSlug($questionSlugger->sluggifyQuestionTitle($newQuestion->getTitle()));
+
             $em->persist($newQuestion);
             $em->flush();
 

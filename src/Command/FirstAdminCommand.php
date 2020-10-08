@@ -14,7 +14,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class FirstAdminCommand extends Command
 {
-    protected static $defaultName = 'app:first-admin';
+    protected static $defaultName = 'create:first-admin';
 
     const FIRST_ADMIN_CHARACTER_OWNER_HASH = 'Dr6YVfZhliOGZ5she3PfL0OIv/E=';
     private $em;

@@ -12,7 +12,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CreateCategoryCommand extends Command
 {
-    protected static $defaultName = 'app:create-category';
+    protected static $defaultName = 'create:question-categories';
 
     private $em;
 
