@@ -42,6 +42,7 @@ class Question
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="question")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"question_browse"})
      */
     private $user;
 

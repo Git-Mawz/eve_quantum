@@ -20,8 +20,16 @@ class Question {
         return this._data.content;
     }
 
-    getQuestionContent() {
+    getQuestionslug() {
         return this._data.slug;
+    }
+
+    getQuestionCategory() {
+        return this._data.category;
+    }
+
+    getQuestionUser() {
+        return this._data.user;
     }
 
     // foo() {

@@ -25,7 +25,7 @@ class QuestionAutocompletion
 
     const manager = new QuestionManager();
     manager.loadQuestions().then((questionList) => {
-      
+
     let searchResult = [];
 
       for (let questionInstance of questionList) {
