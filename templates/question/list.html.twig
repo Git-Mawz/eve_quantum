@@ -22,7 +22,7 @@
 
     {% for question in questions %}
     <tr class="table">
-        <td><a href="{{ path('question_read', {id: question.id}) }}">{{ question.title }}</a></td>
+        <td><a href="{{ path('question_read_slug', {slug: question.slug}) }}">{{ question.title }}</a></td>
         <td>{{ question.category.name }}</td>
         <td scope="row">{{ question.user.name }}</td>
         {# <td>{{ question.content|slice(0,60) }} ...</td> #}

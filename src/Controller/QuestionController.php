@@ -31,9 +31,39 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="read", requirements={"id"="\d+"})
+     * @Route("/{id}", name="read_id", requirements={"id"="\d+"})
      */
     public function read(Question $question, Request $request)
+    {   
+        $newAnswer = new Answer();
+        $form = $this->createForm(AnswerType::class, $newAnswer);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->denyAccessUnlessGranted('ROLE_USER');
+
+            $em = $this->getDoctrine()->getManager();
+            $newAnswer->setUser($this->getUser());
+            $newAnswer->setCreatedAt(new \DateTime());
+            $newAnswer->setQuestion($question);
+            $em->persist($newAnswer);
+            $em->flush();
+
+            return $this->redirectToRoute('question_read', ['id' => $question->getId()]);
+        }
+
+        return $this->render('question/read.html.twig', [
+            'question' => $question,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}", name="read_slug")
+     */
+    public function readSlug(Question $question, Request $request)
     {   
         $newAnswer = new Answer();
         $form = $this->createForm(AnswerType::class, $newAnswer);
