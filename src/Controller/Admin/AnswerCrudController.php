@@ -20,6 +20,7 @@ class AnswerCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
+            TextField::new('question'),
             TextEditorField::new('content'),
             TextField::new('user'),
             DateTimeField::new('createdAt'),

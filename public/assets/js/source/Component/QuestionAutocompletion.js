@@ -27,6 +27,8 @@ class QuestionAutocompletion
     manager.loadQuestions().then((questionList) => {
 
     let searchResult = [];
+    let ul = document.getElementById('search-result');
+    ul.innerHTML = '';
 
       for (let questionInstance of questionList) {
 
@@ -37,7 +39,20 @@ class QuestionAutocompletion
         }
 
       }
-      console.log(searchResult);
+      // console.log(searchResult);
+      // console.log(this._input);
+      
+      console.log(ul);
+
+      for (let questionToDisplay of searchResult) {
+
+        let newLi = document.createElement('li')
+        let title = document.createTextNode(questionToDisplay.getQuestionTitle());
+        newLi.appendChild(title);
+        
+        ul.appendChild(newLi);
+      }
+
 
     });
 

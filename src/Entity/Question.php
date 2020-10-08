@@ -27,6 +27,11 @@ class Question
      */
     private $title;
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     /**
      * @ORM\Column(type="text")
      * @Groups({"question_browse"})
@@ -54,7 +59,7 @@ class Question
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")
+     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question", orphanRemoval=true)
      */
     private $answer;
 
