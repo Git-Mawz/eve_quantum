@@ -29,11 +29,13 @@ class Question
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"question_browse"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"question_browse"})
      */
     private $createdAt;
 
@@ -46,6 +48,7 @@ class Question
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="questions")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"question_browse"})
      */
     private $category;
 
@@ -56,11 +59,13 @@ class Question
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"question_browse"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"question_browse"})
      */
     private $updatedAt;
 

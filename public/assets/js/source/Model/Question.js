@@ -7,13 +7,21 @@ class Question {
         this._data = data;
         return this;
     }
+    
+    getQuestionId() {
+        return this._data.id;
+    }
 
     getQuestionTitle() {
         return this._data.title;
     }
 
-    getQuestionId() {
-        return this._data.id;
+    getQuestionContent() {
+        return this._data.content;
+    }
+
+    getQuestionContent() {
+        return this._data.slug;
     }
 
     // foo() {

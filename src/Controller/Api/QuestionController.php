@@ -20,7 +20,7 @@ class QuestionController extends AbstractController
     public function browse(QuestionRepository $questionRepository, SerializerInterface $serializer)
     {
         $questions = $questionRepository->findAll();
-        $data = $serializer->serialize($questions, 'json', ['groups' => ['question_browse']]);
+        $data = $serializer->normalize($questions, 'json', ['groups' => ['question_browse']]);
 
         return $this->json(['questions' => $data]);
     }

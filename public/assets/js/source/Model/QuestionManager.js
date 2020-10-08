@@ -14,7 +14,7 @@ class QuestionManager
     }).then((rawData) => {
       // console.log(rawData);
 
-      const questions = JSON.parse(rawData.questions);
+      const questions = rawData.questions;
 
       let questionList = [];
 
