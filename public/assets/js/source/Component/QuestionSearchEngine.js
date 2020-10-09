@@ -12,17 +12,18 @@ class QuestionSearchEngine
   }
 
   initialize() {
-    console.log('initialize QuestionAutocompletion');
+    console.log('initialize QuestionSearchEngine');
     console.log(this._input);
     
     this._input.addEventListener('keyup', (event) => {
       this.handleChange(event);
     });
+    
   }
 
   handleChange(event) {
     //let input = event.currentTarget;
-    const search = this._input.value;
+    const search = this._input.value.toLowerCase();
     console.log(search);
 
     const manager = new QuestionManager();
@@ -43,7 +44,7 @@ class QuestionSearchEngine
 
       // matching between title and input value
       for (let questionInstance of questionList) {
-        if (questionInstance.getTitle().includes(search) == true) {
+        if (questionInstance.getTitle().toLowerCase().includes(search) == true) {
           searchResult.push(questionInstance);
         }
       }
