@@ -8,28 +8,36 @@ class Question {
         return this;
     }
     
-    getQuestionId() {
+    getId() {
         return this._data.id;
     }
 
-    getQuestionTitle() {
+    getTitle() {
         return this._data.title;
     }
 
-    getQuestionContent() {
+    getContent() {
         return this._data.content;
     }
 
-    getQuestionslug() {
+    getSlug() {
         return this._data.slug;
     }
 
-    getQuestionCategory() {
+    getCategory() {
         return this._data.category;
     }
 
-    getQuestionUser() {
+    getUser() {
         return this._data.user;
+    }
+
+    getCreatedAt() {
+        return this._data.createdAt;
+    }
+
+    getUpdatedAt() {
+        return this._data.updatedAt;
     }
 
     // foo() {

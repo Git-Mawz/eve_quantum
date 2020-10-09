@@ -4,9 +4,11 @@ class QuestionAutocompletion
 {
 
   _input;
+  _tbodyInitialValue;
 
   constructor(targetElement) {
     this._input = targetElement;
+    this._tbodyInitialInnerHTML = document.querySelector('.search-result-tbody').innerHTML;
   }
 
   initialize() {
@@ -26,33 +28,43 @@ class QuestionAutocompletion
     const manager = new QuestionManager();
     manager.loadQuestions().then((questionList) => {
 
-    let searchResult = [];
-    let ul = document.getElementById('search-result');
-    ul.innerHTML = '';
+      // Initialize search result 
+      let searchResult = [];
 
-      for (let questionInstance of questionList) {
-
-        if (questionInstance.getQuestionTitle().includes(search) == true) {
-
-          searchResult.push(questionInstance);
-
-        }
-
-      }
-      // console.log(searchResult);
-      // console.log(this._input);
+      // Initialize caseUrl
+      let baseUrl = new BaseUrl();
+      baseUrl = baseUrl.getBaseUrl();
+      // console.log(baseUrl);
       
-      console.log(ul);
+      // Initialize tbody element
+      let tbody = document.querySelector('.search-result-tbody');
+      
+      // console.log(this._tbodyInitialInnerHTML);
 
-      for (let questionToDisplay of searchResult) {
-
-        let newLi = document.createElement('li')
-        let title = document.createTextNode(questionToDisplay.getQuestionTitle());
-        newLi.appendChild(title);
-        
-        ul.appendChild(newLi);
+      // matching between title and input value
+      for (let questionInstance of questionList) {
+        if (questionInstance.getTitle().includes(search) == true) {
+          searchResult.push(questionInstance);
+        }
       }
 
+      // using original value if nothing in search input
+      if (this._input.value.length == 0) {
+        tbody.innerHTML = this._tbodyInitialInnerHTML;
+        searchResult = [];
+      } else {
+        tbody.innerHTML = '';
+      }
+
+      // display of search result in the table
+      for (let questionToDisplay of searchResult) {
+        tbody.innerHTML += 
+          '<td><a href="' + baseUrl + '/read/' + questionToDisplay.getSlug() + '">' + questionToDisplay.getTitle() + '</a></td>' +
+          '<td>' + questionToDisplay.getCategory().name + '</td>' +
+          '<td scope="row">' + questionToDisplay.getUser().name + '</td>' +
+          '<td>' + questionToDisplay.getCreatedAt() + '</td>';
+
+      }
 
     });
 

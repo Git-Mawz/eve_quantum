@@ -19,8 +19,8 @@
             <th scope="col">Posté</th>
         </tr>
     </thead>
-    <tbody>
 
+    <tbody class = "search-result-tbody">
     {% for question in questions %}
     <tr class="table">
         <td><a href="{{ path('question_read_slug', {slug: question.slug}) }}">{{ question.title }}</a></td>
@@ -30,8 +30,8 @@
         <td>{{ question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</td>
     </tr>
     {% endfor %}
-    
     </tbody>
+
 </table> 
 
 
