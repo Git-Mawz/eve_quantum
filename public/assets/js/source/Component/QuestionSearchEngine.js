@@ -59,11 +59,15 @@ class QuestionSearchEngine
 
       // display of search result in the table
       for (let questionToDisplay of searchResult) {
+
+        // date format 08/10/2020 à 17:43
+        let date = new Date(questionToDisplay.getCreatedAt());
+
         tbody.innerHTML += 
           '<td><a href="' + baseUrl + '/read/' + questionToDisplay.getSlug() + '">' + questionToDisplay.getTitle() + '</a></td>' +
           '<td>' + questionToDisplay.getCategory().name + '</td>' +
           '<td scope="row">' + questionToDisplay.getUser().name + '</td>' +
-          '<td>' + questionToDisplay.getCreatedAt() + '</td>';
+          '<td>' + date.getDate()+ '/' + date.getMonth() + '/' + date.getFullYear() + ' à ' + date.getHours() + ':' + date.getMinutes() + '</td>';
 
       }
 
