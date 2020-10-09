@@ -14,9 +14,9 @@ class Application
 
   // micro controller
   actionQuestionSearchEngine() {
-    console.log("%cQuestion autocompletion", 'font-size: 1.1rem;');
+    console.log("%cQuestion search engine", 'font-size: 1.1rem;');
 
-    const selector = ".component-question-autocompletion";
+    const selector = ".component-question-search-engine";
 
     const questionSearchEngine = new QuestionSearchEngine(
       document.querySelector(selector)

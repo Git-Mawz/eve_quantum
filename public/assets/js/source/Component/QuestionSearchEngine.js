@@ -1,4 +1,4 @@
-console.log("QuestionAutocompletion.js loaded");
+console.log("QuestionSearchEngine.js loaded");
 
 class QuestionSearchEngine
 {
