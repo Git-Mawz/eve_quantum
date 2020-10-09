@@ -1,6 +1,6 @@
 console.log("QuestionAutocompletion.js loaded");
 
-class QuestionAutocompletion
+class QuestionSearchEngine
 {
 
   _input;

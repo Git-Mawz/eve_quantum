@@ -7,22 +7,22 @@ class Application
 
     // micro router
     if(document.location.toString().match(/question\/list/)) {
-      this.actionQuestionAutocompletion();
+      this.actionQuestionSearchEngine();
     }
   }
 
 
   // micro controller
-  actionQuestionAutocompletion() {
+  actionQuestionSearchEngine() {
     console.log("%cQuestion autocompletion", 'font-size: 1.1rem;');
 
     const selector = ".component-question-autocompletion";
 
-    const questionAutocompletion = new QuestionAutocompletion(
+    const questionSearchEngine = new QuestionSearchEngine(
       document.querySelector(selector)
     );
 
-    questionAutocompletion.initialize();
+    questionSearchEngine.initialize();
 
 
 
