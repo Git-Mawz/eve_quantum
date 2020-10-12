@@ -21,7 +21,7 @@ class QuestionDisplayByCategory
   handleClickOnCategory(event) {
       console.log(event.target);
       this._curentTarget = event.target;
-      this._categoryId = this._curentTarget.className.slice(18,20);
+      this._categoryId = this._curentTarget.dataset.category;
 
       console.log(this._categoryId);
 
@@ -51,7 +51,7 @@ class QuestionDisplayByCategory
           
         }
       });
-      
+
   }
 
 }
