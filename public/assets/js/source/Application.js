@@ -1,7 +1,5 @@
 class Application
 {
-
-
   run() {
     console.log("Application start");
 

@@ -33,6 +33,7 @@ class QuestionDisplayByCategory
       let tbody = document.querySelector('.search-result-tbody');
 
       const manager = new QuestionManager();
+      
       manager.loadQuestionByCategory(this._categoryId).then((questionList) => {
         
         // init of tbody to prepare search results
@@ -49,10 +50,8 @@ class QuestionDisplayByCategory
           '<td>' + date.getDate()+ '/' + date.getMonth() + '/' + date.getFullYear() + ' à ' + date.getHours() + ':' + date.getMinutes() + '</td>';
           
         }
-        
-        
       });
-     
+      
   }
 
 }

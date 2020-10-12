@@ -31,12 +31,14 @@ class QuestionController extends AbstractController
      */
     public function browseByCategory(Category $category, QuestionRepository $questionRepository, SerializerInterface $serializer)
     {
-        $questions = $questionRepository->findBy([
-            'category' => $category
-        ]);
+        if ($category instanceof Category) {
 
-        $data = $serializer->normalize($questions, 'json', ['groups' => ['question_browse']]);
+            $questions = $questionRepository->findBy(['category' => $category]);
+            $data = $serializer->normalize($questions, 'json', ['groups' => ['question_browse']]);
+            return $this->json(['questions' => $data]);
 
-        return $this->json(['questions' => $data]);
+        } else {
+            return $this->json(['message' => 'Category not found']);
+        }
     }
 }
