@@ -6,6 +6,7 @@ use App\Entity\Answer;
 use App\Form\AnswerType;
 use App\Entity\Question;
 use App\Form\QuestionType;
+use App\Repository\CategoryRepository;
 use App\Repository\QuestionRepository;
 use App\Service\QuestionSlugger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,12 +22,13 @@ class QuestionController extends AbstractController
     /**
      * @Route("/list", name="list")
      */
-    public function list(QuestionRepository $questionRepository)
+    public function list(QuestionRepository $questionRepository, CategoryRepository $categoryRepository)
     {   
         // Exemple d'accès avec le role ROLE_USER necessaire
         // $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('question/list.html.twig', [
-            'questions' => $questionRepository->findAll()
+            'questions' => $questionRepository->findAll(),
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 

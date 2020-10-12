@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Category;
 use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +21,20 @@ class QuestionController extends AbstractController
     public function browse(QuestionRepository $questionRepository, SerializerInterface $serializer)
     {
         $questions = $questionRepository->findAll();
+        $data = $serializer->normalize($questions, 'json', ['groups' => ['question_browse']]);
+
+        return $this->json(['questions' => $data]);
+    }
+
+    /**
+     * @Route("/category/{id}", name="by_category")
+     */
+    public function browseByCategory(Category $category, QuestionRepository $questionRepository, SerializerInterface $serializer)
+    {
+        $questions = $questionRepository->findBy([
+            'category' => $category
+        ]);
+
         $data = $serializer->normalize($questions, 'json', ['groups' => ['question_browse']]);
 
         return $this->json(['questions' => $data]);

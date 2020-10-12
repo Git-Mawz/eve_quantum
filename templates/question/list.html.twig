@@ -10,6 +10,16 @@
     <input class="form-control mr-sm-2 component-question-search-engine" type="text" placeholder="Recherche...">
 </form>
 
+<ul class="nav nav-tabs mt-3">
+
+{% for category in categories %}
+  <li class="nav-item li-category-{{category.id}}">
+    <a class="nav-link a-category-{{category.id}}" data-toggle="tab" href="">{{category.name}}</a>
+  </li>
+{% endfor %}
+
+</ul>
+
 {# <input class="component-question-search-engine"></input> #}
 {# <div id="search-result"></div> #}
 
