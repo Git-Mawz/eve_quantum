@@ -4,11 +4,9 @@ class QuestionDisplayByCategory
   _curentTarget;
   _categoryId;
   _tbodyInitialInnerHTML;
-  _searchNavItems;
 
   constructor() {
     this._tbodyInitialInnerHTML = document.querySelector('.search-result-tbody').innerHTML;
-    this._searchNavItems = document.querySelector('.nav-search')
   }
 
 
