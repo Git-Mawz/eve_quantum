@@ -23,13 +23,9 @@ class Application
     
 
     // Question by Category component
-
-    // Initialize baseUrl
-    let baseUrl = new BaseUrl();
-    const manager = new QuestionManager();
-
-
     console.log("%cQuestion by category", 'font-size: 1.1rem;');
+    const baseUrl = new BaseUrl();
+    const manager = new QuestionManager();
     const questionDisplayByCategory = new QuestionDisplayByCategory(baseUrl, manager);
     questionDisplayByCategory.initialize();
   }

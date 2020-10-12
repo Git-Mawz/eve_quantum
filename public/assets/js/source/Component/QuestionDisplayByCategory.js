@@ -17,7 +17,6 @@ class QuestionDisplayByCategory
 
   initialize() {
     console.log('initialize QuestionDisplayByCategory');
-    console.log(this._searchNavItems);
     document.addEventListener('click', (event) => {this.handleClickOnCategory(event)})
   }
 
