@@ -4,7 +4,7 @@ class QuestionSearchEngine
 {
 
   _input;
-  _tbodyInitialValue;
+  _tbodyInitialInnerHTML;
 
   constructor(targetElement) {
     this._input = targetElement;
@@ -32,7 +32,7 @@ class QuestionSearchEngine
       // Initialize search result 
       let searchResult = [];
 
-      // Initialize caseUrl
+      // Initialize baseUrl
       let baseUrl = new BaseUrl();
       baseUrl = baseUrl.getBaseUrl();
       // console.log(baseUrl);

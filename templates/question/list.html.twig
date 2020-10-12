@@ -13,8 +13,8 @@
 <ul class="nav nav-tabs mt-3">
 
 {% for category in categories %}
-  <li class="nav-item li-category-{{category.id}}">
-    <a class="nav-link a-category-{{category.id}}" data-toggle="tab" href="">{{category.name}}</a>
+  <li class="nav-item">
+    <a class="nav-link category-{{category.id}}" data-toggle="tab" href="">{{category.name}}</a>
   </li>
 {% endfor %}
 
@@ -55,4 +55,5 @@
 <script src="{{ asset('assets/js/source/Model/Question.js') }}"></script>
 <script src="{{ asset('assets/js/source/Model/QuestionManager.js') }}"></script>
 <script src="{{ asset('assets/js/source/Component/QuestionSearchEngine.js') }}"></script>
+<script src="{{ asset('assets/js/source/Component/QuestionDisplayByCategory.js') }}"></script>
 {% endblock %}
