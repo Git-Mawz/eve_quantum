@@ -5,8 +5,13 @@ class QuestionDisplayByCategory
   _categoryId;
   _tbodyInitialInnerHTML;
 
-  constructor() {
+  _baseUrl;
+  _manager
+
+  constructor(baseUrl, manager) {
     this._tbodyInitialInnerHTML = document.querySelector('.search-result-tbody').innerHTML;
+    this._baseUrl = baseUrl;
+    this._manager = manager;
   }
 
 
@@ -27,15 +32,15 @@ class QuestionDisplayByCategory
       } else {
 
         // Initialize baseUrl
-        let baseUrl = new BaseUrl();
-        baseUrl = baseUrl.getBaseUrl();
+        // let baseUrl = new BaseUrl();
+        let baseUrl = this._baseUrl.getBaseUrl();
         
         // initialize tbody
         let tbody = document.querySelector('.search-result-tbody');
         
-        const manager = new QuestionManager();
+        // const manager = new QuestionManager();
         
-        manager.loadQuestionByCategory(this._categoryId).then((questionList) => {
+        this._manager.loadQuestionByCategory(this._categoryId).then((questionList) => {
           
           // init of tbody to prepare search results
           tbody.innerHTML = '';
