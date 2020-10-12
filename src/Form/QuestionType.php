@@ -17,22 +17,22 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        ->add('category', EntityType::class, [
+            'placeholder' => 'Choissez une catégorie',
+            'required' => true,
+            'class' => Category::class,
+            'label' => 'Catégorie',
+            'choice_label' => 'name',
+            'expanded' => false,
+            'multiple' => false,
+            ])
             ->add('title', TextType::class, [
-                'label' => 'Titre'
+                'label' => 'Sujet'
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Question'
-            ])
-            ->add('category', EntityType::class, [
-                'placeholder' => 'Choissez une catégorie',
-                'required' => true,
-                'class' => Category::class,
-                'label' => 'Catégorie',
-                'choice_label' => 'name',
-                'expanded' => false,
-                'multiple' => false,
-            ])
-            ->add('submit', SubmitType::class, [
+                ])
+                ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer'
             ])
         ;
