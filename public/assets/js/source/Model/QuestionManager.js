@@ -3,7 +3,6 @@ console.log("QuestionManager.js loaded");
 class QuestionManager
 {
   
-
   endPoints = {
     getQuestions: '/api/question/browse',
     getQuestionsByCategory : '/api/question/category/'
