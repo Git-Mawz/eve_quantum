@@ -12,8 +12,28 @@
 
 <h1>Bienvenue {{ app.user.name }} </h1>
 <img src="{{ app.user.portrait }}">
-{{dump(app.user)}}
-{{ dump(app.session) }}
-{{ dump(app.session.get('accessToken').token) }}
-{{ dump(app.session.get('accessToken').refreshToken) }}
+
+
+<section class="favorite-waypoint mt-3">
+
+    <form class="form-group my-2 my-lg-0">
+        <label for="add-solar-system">Ajouter un système solaire</label>
+        <input id="add-solar-system" class="form-control mr-sm-2 component-question-search-engine" type="text" placeholder="Recherche">
+        <button type="submit" class="mt-2 btn btn-primary">Ajouter</button>
+    </form>
+
+    <div class"solar-system-board">
+        <ul class="solar-system-list">
+
+        </ul>
+    </div>
+
+</section>
+
+
+{# ! DEBUG #}
+{# {{dump(app.user)}} #}
+{# {{ dump(app.session) }} #}
+{# {{ dump(app.session.get('accessToken').token) }} #}
+{# {{ dump(app.session.get('accessToken').refreshToken) }} #}
 {% endblock %}

@@ -75,11 +75,17 @@ class User implements UserInterface
      */
     private $suggests;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=SolarSystem::class, mappedBy="user")
+     */
+    private $solarSystems;
+
     public function __construct()
     {
         $this->question = new ArrayCollection();
         $this->answer = new ArrayCollection();
         $this->suggests = new ArrayCollection();
+        $this->solarSystems = new ArrayCollection();
     }
 
     public function __toString() {
@@ -305,6 +311,34 @@ class User implements UserInterface
             if ($suggest->getUser() === $this) {
                 $suggest->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SolarSystem[]
+     */
+    public function getSolarSystems(): Collection
+    {
+        return $this->solarSystems;
+    }
+
+    public function addSolarSystem(SolarSystem $solarSystem): self
+    {
+        if (!$this->solarSystems->contains($solarSystem)) {
+            $this->solarSystems[] = $solarSystem;
+            $solarSystem->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSolarSystem(SolarSystem $solarSystem): self
+    {
+        if ($this->solarSystems->contains($solarSystem)) {
+            $this->solarSystems->removeElement($solarSystem);
+            $solarSystem->removeUser($this);
         }
 
         return $this;
