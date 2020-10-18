@@ -8,21 +8,28 @@ class SolarSystemManager
 
     searchSolarSystem(search) {
 
-        let solarSystemsArray = [];
-
         return fetch(this.endPoints.searchSolarSystem + search).then((response) => {
             return response.json()
         }).then((rawData) => {
             // console.log(rawData);
-            return rawData.solar_system;
+            let solarSystemsIds = rawData.solar_system;
+            return solarSystemsIds;
         }).then((solarSystemsIds) => {
-            // console.log(solarSystemsIds);
+            // console.log(solarSystemsIds)
+
+            let solarSystemsArray = [];
+
             for (let solarSystemId of solarSystemsIds) {
                 // console.log(solarSystemId);
                 fetch(this.endPoints.searchSolarSystemName + solarSystemId).then((response) =>{
                     return response.json();
-                }).then((solarSystem) => {
+                }).then((data) => {
+                    const solarSystemData = data;
+                    // console.log(solarSystemData);
+                    const solarSystem = new SolarSystem();
+                    solarSystem.loadData(solarSystemData)
                     solarSystemsArray.push(solarSystem);
+                    // console.log(solarSystem.getName());
                 })
             }
             // console.log(solarSystemsArray);

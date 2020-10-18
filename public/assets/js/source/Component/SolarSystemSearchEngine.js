@@ -24,13 +24,16 @@ class SolarSystemSearchEngine
     handleSubmit(event) {
         event.preventDefault();
         console.log('prevent default OK');
-        this._manager.searchSolarSystem(this._input.value).then((results) => {
 
-            console.log(results);
+        this._manager.searchSolarSystem(this._input.value).then((solarSystems) => {
 
+            console.log(solarSystems);
+
+            for (let solarSystem in solarSystems) {
+                console.log(solarSystem);
+            }
 
         })
-
 
         
     }

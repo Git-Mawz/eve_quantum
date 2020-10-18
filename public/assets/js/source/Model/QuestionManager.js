@@ -22,7 +22,6 @@ class QuestionManager
         const question = new Question();
         question.loadData(data);
 
-        // questionList[] = question;
         questionList.push(question);
       }
       return questionList;
@@ -33,7 +32,7 @@ class QuestionManager
     return fetch(this.endPoints.getQuestionsByCategory+categoryId).then((response) => {
       return response.json();
     }).then((rawData) => {
-      // console.log(rawData);
+      console.log(rawData);
 
       const questions = rawData.questions;
 
@@ -46,6 +45,7 @@ class QuestionManager
         // questionList[] = question;
         questionList.push(question);
       }
+      console.log(questionList);
       return questionList;
     });
   }

@@ -40,15 +40,4 @@ class Question {
         return this._data.updatedAt;
     }
 
-    // foo() {
-    //     /** ici du code */
-    //     console.log('called foo');
-    //     return this;
-    // }
-
-    // bar() {
-    //     /** ici du code */
-    //     console.log('called bar');
-    //     return this;
-    // }
 }
