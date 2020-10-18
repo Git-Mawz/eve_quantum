@@ -16,10 +16,10 @@
 
 <section class="favorite-waypoint mt-3">
 
-    <form class="form-group my-2 my-lg-0">
-        <label for="add-solar-system">Ajouter un système solaire</label>
-        <input id="add-solar-system" class="form-control mr-sm-2 component-question-search-engine" type="text" placeholder="Recherche">
-        <button type="submit" class="mt-2 btn btn-primary">Ajouter</button>
+    <form class="solar-system-form form-group my-2 my-lg-0" action="" method="POST">
+        <label for="search-solar-system">Ajouter un système solaire</label>
+        <input id="search-solar-system" class="form-control mr-sm-2 component-solar-system-search" type="text" placeholder="Système Solaire">
+        <button type="submit" class="mt-2 btn btn-primary">Rechercher</button>
     </form>
 
     <div class"solar-system-board">
@@ -36,4 +36,10 @@
 {# {{ dump(app.session) }} #}
 {# {{ dump(app.session.get('accessToken').token) }} #}
 {# {{ dump(app.session.get('accessToken').refreshToken) }} #}
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="{{ asset('assets/js/source/Component/SolarSystemSearchEngine.js') }}"></script>
+<script src="{{ asset('assets/js/source/Model/SolarSystemManager.js') }}"></script>
 {% endblock %}

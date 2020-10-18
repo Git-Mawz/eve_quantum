@@ -1,4 +1,3 @@
-console.log("QuestionSearchEngine.js loaded");
 
 class QuestionSearchEngine
 {
