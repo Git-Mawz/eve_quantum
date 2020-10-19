@@ -49,13 +49,14 @@ class SolarSystemSearchEngine
     }
 
     makeSolarSystemList(solarSytem) {
-        console.log(solarSytem);
+        // console.log(solarSytem);
 
         let button = document.createElement('button');
-        button.setAttribute('class', 'btn btn-secondary');
+        button.setAttribute('class', 'btn btn-secondary found-solar-system');
         button.setAttribute('type', 'button');
         button.setAttribute('data-system-id', solarSytem.getSystemId());
-        button.setAttribute('data-security-status', solarSytem.getSecurityStatus());
+        // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
+        button.setAttribute('data-system-name', solarSytem.getName());
         let textNode = document.createTextNode(solarSytem.getName());
         button.appendChild(textNode);
         this._resultDiv.appendChild(button);

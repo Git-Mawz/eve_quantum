@@ -1,9 +1,19 @@
 console.log("SolarSystemManager.js loaded");
 class SolarSystemManager
 {
+    _baseUrl;
+
+    constructor(baseUrl) {
+        this._baseUrl = baseUrl;
+    }
+
+
     endPoints = {
         searchSolarSystem: 'https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&strict=false&search=' ,
-        searchSolarSystemName: 'https://esi.evetech.net/latest/universe/systems/'
+        searchSolarSystemName: 'https://esi.evetech.net/latest/universe/systems/',
+
+        // addSystemToFavorite: baseUrl + '/api/character/solar_system'
+
       };
 
     searchSolarSystem(search) {
@@ -41,5 +51,12 @@ class SolarSystemManager
             return solarSystem;
         })
     }
+
+    // addSolarSystemToFavorite(baseUrl, manager, solarSystemId, solarSystemName) {
+
+
+
+    // }
+
     
 }

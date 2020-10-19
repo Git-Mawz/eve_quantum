@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CharacterController extends AbstractController
 {
     /**
-     * @Route("/solar_system", name="solar_system_add", methods={"POST"})
+     * @Route("/solar_system", name="add_solar_system", methods={"POST"})
      */
     public function addFavoriteSystem(Request $request, EntityManagerInterface $em)
     {   
@@ -24,8 +24,8 @@ class CharacterController extends AbstractController
         $jsonData = json_decode($request->getContent(), true);
 
         $newSolarSystem = new SolarSystem();
-        $newSolarSystem->setName($jsonData['name']);
-        $newSolarSystem->setUniverseId($jsonData['universeId']);
+        $newSolarSystem->setName($jsonData['systemName']);
+        $newSolarSystem->setUniverseId($jsonData['systemUniverseId']);
 
         
         $em->persist($newSolarSystem);

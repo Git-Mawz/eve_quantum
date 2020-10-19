@@ -38,14 +38,14 @@ class Application
     // Search Engine
     console.log("%cSolar System Search engine", 'font-size: 1.1rem;');
     const baseUrl = new BaseUrl();
-    const manager = new SolarSystemManager();
+    const manager = new SolarSystemManager(baseUrl);
     const form = document.querySelector(".solar-system-form");
     const input = document.querySelector(".component-solar-system-search");
     const solarSystemSearchEnigne = new SolarSystemSearchEngine(baseUrl, form, input, manager);
     solarSystemSearchEnigne.initialize();
 
     // Favorite Solar System management
-    const favoriteSolarSystemManager = new FavoriteSolarSystemManager();
+    const favoriteSolarSystemManager = new FavoriteSolarSystemManager(baseUrl, manager);
     favoriteSolarSystemManager.initialize();
   }
 
