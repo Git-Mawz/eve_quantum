@@ -19,30 +19,27 @@ class SolarSystemManager
 
             let solarSystemsArray = [];
 
+            let promiseList = [];
             for (let solarSystemId of solarSystemsIds) {
-                // console.log(solarSystemId);
-                fetch(this.endPoints.searchSolarSystemName + solarSystemId).then((response) =>{
-                    return response.json();
-                }).then((data) => {
-                    const solarSystemData = data;
-                    // console.log(solarSystemData);
-                    const solarSystem = new SolarSystem();
-                    solarSystem.loadData(solarSystemData)
-                    solarSystemsArray.push(solarSystem);
-                    // console.log(solarSystem.getName());
-                })
+                let promise = this.searchSystemById(solarSystemId);
+                promiseList.push(promise);
             }
             // console.log(solarSystemsArray);
-            return solarSystemsArray;
+            return promiseList;
 
         });
-
-
-
-
-
-
     }
 
+    searchSystemById(solarSystemId) {
+        // console.log(solarSystemId);
+        return fetch(this.endPoints.searchSolarSystemName + solarSystemId).then((response) =>{
+            return response.json();
+        }).then((data) => {
+            // console.log(solarSystemData);
+            const solarSystem = new SolarSystem();
+            solarSystem.loadData(data);
+            return solarSystem;
+        })
+    }
     
 }

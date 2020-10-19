@@ -25,15 +25,20 @@ class SolarSystemSearchEngine
         event.preventDefault();
         console.log('prevent default OK');
 
-        this._manager.searchSolarSystem(this._input.value).then((solarSystems) => {
+        this._manager.searchSolarSystem(this._input.value).then((promiseList) => {
+            
+            return Promise.all(promiseList).then((responses) => {
+                console.log(responses);
+                const solarSytems = responses[0];
+                //.....
+                console.log(responses);
+                // console.log(solarSytems);
 
-            console.log(solarSystems);
+                return solarSytems;
+            });
 
-            for (let solarSystem in solarSystems) {
-                console.log(solarSystem);
-            }
+        });
 
-        })
 
         
     }
