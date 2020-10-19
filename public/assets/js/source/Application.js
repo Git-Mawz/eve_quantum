@@ -43,6 +43,10 @@ class Application
     const input = document.querySelector(".component-solar-system-search");
     const solarSystemSearchEnigne = new SolarSystemSearchEngine(baseUrl, form, input, manager);
     solarSystemSearchEnigne.initialize();
+
+    // Favorite Solar System management
+    const favoriteSolarSystemManager = new FavoriteSolarSystemManager();
+    favoriteSolarSystemManager.initialize();
   }
 
 }

@@ -17,15 +17,26 @@
 <section class="favorite-waypoint mt-3">
 
     <form class="solar-system-form form-group my-2 my-lg-0" action="" method="POST">
-        <label for="search-solar-system">Ajouter un système solaire</label>
-        <input id="search-solar-system" class="form-control mr-sm-2 component-solar-system-search" type="text" placeholder="Système Solaire">
+        <label for="search-solar-system">Rechercher un système solaire</label>
+        <input id="search-solar-system" class="form-control mr-sm-2 component-solar-system-search" type="text" placeholder="3 premières lettres minimum">
         <button type="submit" class="mt-2 btn btn-primary">Rechercher</button>
     </form>
 
-    <div class"solar-system-board">
-        <ul class="solar-system-list">
+    <div class="solar-system-result">
+        <div class="solar-system-result-text">
+        </div>
+        {# <ul class="solar-system-list">
+        </ul> #}
 
-        </ul>
+
+        <div class="solar-system-list btn-group" role="group" aria-label="Basic example">
+            {# <button type="button" class="btn btn-secondary">Left</button>
+            <button type="button" class="btn btn-secondary">Middle</button>
+            <button type="button" class="btn btn-secondary">Right</button> #}
+        </div>
+
+
+
     </div>
 
 </section>
@@ -43,4 +54,6 @@
 <script src="{{ asset('assets/js/source/Component/SolarSystemSearchEngine.js') }}"></script>
 <script src="{{ asset('assets/js/source/Model/SolarSystemManager.js') }}"></script>
 <script src="{{ asset('assets/js/source/Model/SolarSystem.js') }}"></script>
+<script src="{{ asset('assets/js/source/Component/FavoriteSolarSystemManager.js') }}"></script>
+
 {% endblock %}

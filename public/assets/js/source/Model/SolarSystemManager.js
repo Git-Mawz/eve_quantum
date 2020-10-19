@@ -17,8 +17,6 @@ class SolarSystemManager
         }).then((solarSystemsIds) => {
             // console.log(solarSystemsIds)
 
-            let solarSystemsArray = [];
-
             let promiseList = [];
             for (let solarSystemId of solarSystemsIds) {
                 let promise = this.searchSystemById(solarSystemId);
@@ -27,6 +25,8 @@ class SolarSystemManager
             // console.log(solarSystemsArray);
             return promiseList;
 
+        }).catch((error) => {
+            console.log('No solar system found');
         });
     }
 

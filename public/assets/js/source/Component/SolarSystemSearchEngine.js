@@ -6,14 +6,16 @@ class SolarSystemSearchEngine
     _form;
     _input;
     _manager;
-    _ul;
+    _resultDiv;
+    _resultDivText;
 
     constructor(baseUrl, form, input, manager) {
         this._baseUrl = baseUrl;
         this._form = form;
         this._input = input;
         this._manager = manager;
-        this._ul = document.querySelector('.solar-system-list');
+        this._resultDiv = document.querySelector('.solar-system-list');
+        this._resultDivText = document.querySelector('.solar-system-result-text');
       }
 
     initialize() {
@@ -25,11 +27,15 @@ class SolarSystemSearchEngine
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('prevent default OK');
+        // console.log('prevent default OK');
 
+        
         if (this._input.value.length > 2) {
-            this._manager.searchSolarSystem(this._input.value).then((promiseList) => {    
-                this._ul.innerHTML = '';
+            this._manager.searchSolarSystem(this._input.value).then((promiseList) => {
+                // Init of ul to display new results 
+                this._resultDiv.innerHTML = '';
+                this._resultDivText.innerHTML = '<p> Cliquez sur un système pour l\'ajouter à vos favoris et ainsi pouvoir définir votre destination in-game en cliquant dessus <br> Résultat : </p>'
+
                 return Promise.all(promiseList).then((responses) => {
                     const solarSytems = responses;
                     // console.log(solarSytems)
@@ -37,24 +43,21 @@ class SolarSystemSearchEngine
                         // console.log(solarSytem.getName());
                         this.makeSolarSystemList(solarSytem);
                     } 
-                })
+                })       
             }); 
         }
-            
     }
 
     makeSolarSystemList(solarSytem) {
-
         console.log(solarSytem);
 
-        let li = document.createElement('li');
+        let button = document.createElement('button');
+        button.setAttribute('class', 'btn btn-secondary');
+        button.setAttribute('type', 'button');
+        button.setAttribute('data-system-id', solarSytem.getSystemId());
+        button.setAttribute('data-security-status', solarSytem.getSecurityStatus());
         let textNode = document.createTextNode(solarSytem.getName());
-        li.appendChild(textNode);
-
-        this._ul.appendChild(li);
-
+        button.appendChild(textNode);
+        this._resultDiv.appendChild(button);
     }
-
-
-
 }
