@@ -27,21 +27,20 @@ class SolarSystemSearchEngine
         event.preventDefault();
         console.log('prevent default OK');
 
-        this._manager.searchSolarSystem(this._input.value).then((promiseList) => {
+        if (this._input.value.length > 2) {
+            this._manager.searchSolarSystem(this._input.value).then((promiseList) => {    
+                this._ul.innerHTML = '';
+                return Promise.all(promiseList).then((responses) => {
+                    const solarSytems = responses;
+                    // console.log(solarSytems)
+                    for (let solarSytem of solarSytems) {
+                        // console.log(solarSytem.getName());
+                        this.makeSolarSystemList(solarSytem);
+                    } 
+                })
+            }); 
+        }
             
-            this._ul.innerHTML = '';
-
-            return Promise.all(promiseList).then((responses) => {
-                const solarSytems = responses;
-                // console.log(solarSytems)
-                for (let solarSytem of solarSytems) {
-                    // console.log(solarSytem.getName());
-                    this.makeSolarSystemList(solarSytem);
-                } 
-
-            })
-
-        }); 
     }
 
     makeSolarSystemList(solarSytem) {
