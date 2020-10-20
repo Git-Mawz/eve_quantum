@@ -5,7 +5,6 @@ namespace App\Controller\Api;
 use App\Entity\SolarSystem;
 use App\Repository\SolarSystemRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use SolarSystemChecker;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +18,7 @@ class CharacterController extends AbstractController
     /**
      * @Route("/solar_system", name="add_solar_system", methods={"POST"})
      */
-    public function addFavoriteSystem(Request $request, EntityManagerInterface $em, SolarSystemRepository $solarSystemRepository, SolarSystemChecker $solarSystemChecker)
+    public function addFavoriteSystem(Request $request, EntityManagerInterface $em)
     {   
         $this->denyAccessUnlessGranted("ROLE_USER");
 
@@ -28,28 +27,22 @@ class CharacterController extends AbstractController
         $solarSystemUniverseId = $jsonData['systemUniverseId'];
         $solarSystemName = $jsonData['systemName'];
 
-        // $newSolarSystem = new SolarSystem();
-        // $newSolarSystem->setName($jsonData['systemName']);
-        // $newSolarSystem->setUniverseId($jsonData['systemUniverseId']);
 
-        // $em->persist($newSolarSystem);
+        $newSolarSystem = new SolarSystem();
+        $newSolarSystem->setUniverseId($solarSystemUniverseId);
+        $newSolarSystem->setName($solarSystemName);
+
+        $em->persist($newSolarSystem);
    
-        // $currentUser = $this->getUser();
-        // $currentUser->addSolarSystem($newSolarSystem);
+        $currentUser = $this->getUser();
+        $currentUser->addSolarSystem($newSolarSystem);
 
-        // $em->flush();
+        $em->flush();
 
-        $solarSystem = $solarSystemChecker->saveSystemForUser($solarSystemUniverseId, $solarSystemName, $this->getUser());
-
-        // return $this->json([
-        //     'message' => $solarSystem->getName() . ' added to ' . $this->getUser()->getName() . '\'s favorite solar system',
-        // ]);
 
         return $this->json([
-            'message' => 'Solar System Added',
+            'message' => $newSolarSystem->getName() . ' added to ' . $currentUser->getName() . '\'s favorite solar system'
         ]);
-
-
     }
 
     /**
