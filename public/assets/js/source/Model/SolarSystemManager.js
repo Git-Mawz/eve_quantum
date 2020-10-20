@@ -6,7 +6,7 @@ class SolarSystemManager
         searchSolarSystem: 'https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&strict=false&search=' ,
         searchSolarSystemName: 'https://esi.evetech.net/latest/universe/systems/',
 
-        // addSystemToFavorite: baseUrl + '/api/character/solar_system'
+        addSystemToFavorite: '/api/character/solar_system'
 
       };
 
@@ -46,11 +46,26 @@ class SolarSystemManager
         })
     }
 
-    // addSolarSystemToFavorite(baseUrl, manager, solarSystemId, solarSystemName) {
+    addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName) {
 
+        let options = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'systemName': solarSystemName,
+                'systemUniverseId': solarSystemUniverseId
+            }),
+            mode: 'cors',
+            cache: 'no-cache'
+        };
 
-
-    // }
-
-    
+        fetch(this.endPoints.addSystemToFavorite, options)
+        .then((response) => {
+            console.log(response);
+        })
+    }
+   
 }
