@@ -38,7 +38,7 @@ class Application
     // Search Engine
     console.log("%cSolar System Search engine", 'font-size: 1.1rem;');
     const baseUrl = new BaseUrl();
-    const manager = new SolarSystemManager(baseUrl);
+    const manager = new SolarSystemManager();
     const form = document.querySelector(".solar-system-form");
     const input = document.querySelector(".component-solar-system-search");
     const solarSystemSearchEnigne = new SolarSystemSearchEngine(baseUrl, form, input, manager);

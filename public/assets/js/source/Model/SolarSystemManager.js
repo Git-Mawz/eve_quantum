@@ -1,12 +1,6 @@
 console.log("SolarSystemManager.js loaded");
 class SolarSystemManager
 {
-    _baseUrl;
-
-    constructor(baseUrl) {
-        this._baseUrl = baseUrl;
-    }
-
 
     endPoints = {
         searchSolarSystem: 'https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&strict=false&search=' ,
