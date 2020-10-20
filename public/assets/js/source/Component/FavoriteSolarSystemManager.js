@@ -1,35 +1,41 @@
 class FavoriteSolarSystemManager
 {
-    _baseUrl;
     _manager;
     _buttonsParent;
 
-    constructor(baseUrl, manager) {
-
-        this._baseUrl = baseUrl;
+    constructor(manager) {
         this._manager = manager
         this._buttonsParent = document.querySelector('.solar-system-list');
-
     }
 
     initialize() {
-        // console.log('FavoriteSolarSystemManager initialized');
+        console.log('FavoriteSolarSystemManager initialized');
 
-        if (this._buttonsParent.addEventListener) {
-            parent.addEventListener('click', this.handleClick, false);
-        }else if (this._buttonsParent.attachEvent) {
-            parent.attachEvent('onclick', this.handleClick);
-        }
+        let config = { childList: true };
 
+        let callback = function(mutationsList) {
+
+            let buttons = document.querySelectorAll('.found-solar-system');
+            // console.log(buttons);
+            for (let button of buttons) {
+                console.log(this.handleClick);
+                // button.addEventListener('click', this.handleClick);
+            }
+        };
+
+        let observer = new MutationObserver(callback);
+        observer.observe(this._buttonsParent, config);
     }
 
     handleClick(event) {
+
+        console.log(event);
         
         const solarSystemUniverseId = event.target.dataset['systemId'];
         const solarSystemName = event.target.dataset['systemName'];
 
-
-        
+        console.log(solarSystemUniverseId);
+        console.log(solarSystemName);
 
     }
 

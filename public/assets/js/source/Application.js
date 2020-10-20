@@ -45,7 +45,7 @@ class Application
     solarSystemSearchEnigne.initialize();
 
     // Favorite Solar System management
-    const favoriteSolarSystemManager = new FavoriteSolarSystemManager(baseUrl, manager);
+    const favoriteSolarSystemManager = new FavoriteSolarSystemManager(manager);
     favoriteSolarSystemManager.initialize();
   }
 
