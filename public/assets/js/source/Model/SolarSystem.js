@@ -16,7 +16,7 @@ class SolarSystem {
         return this._data.security_status;
     }
 
-    getSystemId() {
+    getUniverseId() {
         return this._data.system_id;
     }
 

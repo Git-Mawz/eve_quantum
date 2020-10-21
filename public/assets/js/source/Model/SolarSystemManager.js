@@ -40,7 +40,7 @@ class SolarSystemManager
         return fetch(this.endPoints.searchSolarSystemName + solarSystemId).then((response) =>{
             return response.json();
         }).then((data) => {
-            // console.log(solarSystemData);
+            console.log(data);
             const solarSystem = new SolarSystem();
             solarSystem.loadData(data);
             return solarSystem;
@@ -48,6 +48,9 @@ class SolarSystemManager
     }
 
     addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName) {
+
+        // console.log(solarSystemUniverseId);
+        // console.log(solarSystemName);
 
         let options = {
             method: 'POST',

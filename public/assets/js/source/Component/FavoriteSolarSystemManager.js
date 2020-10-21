@@ -29,8 +29,11 @@ class FavoriteSolarSystemManager
     handleClickOnSolarSystemButton (event) {
         console.log(event);
         
-        const solarSystemUniverseId = event.target.dataset['systemId'];
+        const solarSystemUniverseId = event.target.dataset['systemUniverseId'];
         const solarSystemName = event.target.dataset['systemName'];
+
+        console.log(solarSystemUniverseId);
+        console.log(solarSystemName);
 
         // console.log(solarSystemUniverseId);
         // console.log(solarSystemName);
