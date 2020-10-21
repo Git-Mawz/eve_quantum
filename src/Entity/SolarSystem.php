@@ -7,6 +7,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=SolarSystemRepository::class)
@@ -22,11 +23,13 @@ class SolarSystem
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"favorite_solar_system"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"favorite_solar_system"})
      */
     private $universeId;
 

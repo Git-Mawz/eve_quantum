@@ -61,12 +61,10 @@ class CharacterController extends AbstractController
     {
         $this->denyAccessUnlessGranted("ROLE_USER");
 
-        $userFavoriteSolarSystems = $this->getUser()->getSolarSystem();
+        $userFavoriteSolarSystems = $this->getUser()->getSolarSystems();
         $data = $serializer->normalize($userFavoriteSolarSystems, 'json', ['groups' => ['favorite_solar_system']]);
 
         return $this->json(['solarSystems' => $data]);
-
     }
-
 
 }

@@ -12,8 +12,11 @@ class FavoriteSolarSystemManager
         let observer = new MutationObserver(() => {this.observerCallback()});
         let config = { childList: true };
         observer.observe(this._buttonsParent, config);
+
+        this.displayFavoriteSolarSystems();
     }
 
+    // Methods to add solar system to favorite
     observerCallback () {
 
         let buttons = document.querySelectorAll('.found-solar-system');
@@ -29,10 +32,14 @@ class FavoriteSolarSystemManager
         const solarSystemUniverseId = event.target.dataset['systemId'];
         const solarSystemName = event.target.dataset['systemName'];
 
-        console.log(solarSystemUniverseId);
-        console.log(solarSystemName);
+        // console.log(solarSystemUniverseId);
+        // console.log(solarSystemName);
 
         this._manager.addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName);
+    }
+
+    displayFavoriteSolarSystems () {
+       this._manager.getFavoriteSolarSystem()
     }
 
 }
