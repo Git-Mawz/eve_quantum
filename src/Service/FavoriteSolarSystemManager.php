@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class FavoriteSolarSystemManager
 {
-
     private $solarSystemRepository;
     private $em;
 
@@ -49,7 +48,5 @@ class FavoriteSolarSystemManager
         $user->addSolarSystem($newSolarSystem);
 
         $this->em->flush();
-
     }
-
 }
