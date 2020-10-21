@@ -40,7 +40,7 @@ class SolarSystemManager
         return fetch(this.endPoints.searchSolarSystemName + solarSystemId).then((response) =>{
             return response.json();
         }).then((data) => {
-            console.log(data);
+            // console.log(data);
             const solarSystem = new SolarSystem();
             solarSystem.loadData(data);
             return solarSystem;
@@ -87,7 +87,7 @@ class SolarSystemManager
                 solarSystem.loadData(data);
                 solarSystemList.push(solarSystem);
             }
-            console.log(solarSystemList);
+            // console.log(solarSystemList);
             return solarSystemList;
         })
     }

@@ -32,17 +32,14 @@ class FavoriteSolarSystemManager
         const solarSystemUniverseId = event.target.dataset['systemUniverseId'];
         const solarSystemName = event.target.dataset['systemName'];
 
-        console.log(solarSystemUniverseId);
-        console.log(solarSystemName);
-
-        // console.log(solarSystemUniverseId);
-        // console.log(solarSystemName);
-
         this._manager.addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName);
     }
 
     displayFavoriteSolarSystems () {
        this._manager.getFavoriteSolarSystem()
+       .then((solarSystems)=> {
+            console.log(solarSystems);
+       })
     }
 
 }
