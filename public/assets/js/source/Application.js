@@ -1,5 +1,55 @@
 class Application
 {
+
+  _services = {};
+
+  constructor() {
+    console.log('instanciation');
+    //this._services['urlManager'] = new BaseUrl();
+    //this._services['solarSystemManager'] = new SolarSystemManager();
+  }
+
+
+  //==================================================================================
+  // Manager getters
+  //==================================================================================
+
+  getSolarSystemManager() {
+    if(typeof(this._services['solarSystemManager']) == 'undefined') {
+      this._services['solarSystemManager'] = new SolarSystemManager();
+    }
+    return this._services['solarSystemManager'];
+  }
+
+  getBaseURL() {
+    if(typeof(this._services['baseUrl']) == 'undefined') {
+      if(document.location.toString().match(/localhost/)) {
+        console.log('Loading baseUrl manager');
+      }
+      this._services['baseUrl'] = new BaseUrl();
+    }
+    return this._services['baseUrl'];
+  }
+
+  getQuestionManager() {
+    if(typeof(this._services['questionManager']) == 'undefined') {
+      this._services['questionManager'] = new QuestionManager();
+    }
+    return this._services['questionManager'];
+  }
+
+  //==================================================================================
+
+  loadDependencies(dependencies = null) {
+
+    if(dependencies) {
+      for(let serviceName in dependencies) {
+        this._services[serviceName] = dependencies[serviceName];
+      }
+    }
+  }
+
+
   run() {
     console.log("Application start");
 
@@ -28,9 +78,9 @@ class Application
     
     // Question by Category component
     console.log("%cQuestion by category", 'font-size: 1.1rem;');
-    const baseUrl = new BaseUrl();
-    const manager = new QuestionManager();
-    const questionDisplayByCategory = new QuestionDisplayByCategory(baseUrl, manager);
+    //const baseUrl = new BaseUrl();
+    // const manager = new QuestionManager();
+    const questionDisplayByCategory = new QuestionDisplayByCategory(this.getBaseURL(), this.getQuestionManager());
     questionDisplayByCategory.initialize();
   }
 
@@ -38,11 +88,12 @@ class Application
   actionSolarSystemSearchEngine() {
     // Search Engine
     console.log("%cSolar System Search engine", 'font-size: 1.1rem;');
-    const baseUrl = new BaseUrl();
-    const manager = new SolarSystemManager();
+    //const baseUrl = new BaseUrl();
+    
+    
     const form = document.querySelector(".solar-system-form");
     const input = document.querySelector(".component-solar-system-search");
-    const solarSystemSearchEnigne = new SolarSystemSearchEngine(baseUrl, form, input, manager);
+    const solarSystemSearchEnigne = new SolarSystemSearchEngine(this.getBaseURL(), form, input, this.getSolarSystemManager());
     solarSystemSearchEnigne.initialize();
 
     // Favorite Solar System management
@@ -52,8 +103,7 @@ class Application
 
   // Favorite Solar System Manager
   actionFavoriteSolarSystemManager() {
-    const manager = new SolarSystemManager();
-    const favoriteSolarSystemManager = new FavoriteSolarSystemManager(manager);
+    const favoriteSolarSystemManager = new FavoriteSolarSystemManager(this.getSolarSystemManager());
     favoriteSolarSystemManager.initialize();
   }
 

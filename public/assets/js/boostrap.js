@@ -1,13 +1,15 @@
 let app = {
 
     init: function() {
-      /*
-      let question = new Question;
-      question.load();
-      console.log(question);
-      */
-
       const application = new Application();
+
+      /*
+      application.loadDependencies({
+        baseUrl: new BaseUrl(),
+        solarSystemManager: new SolarSystemManager(),
+      });
+      */
+      
       application.run();
     },
 
