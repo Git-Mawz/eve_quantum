@@ -84,7 +84,7 @@ class Application
   actionSolarSystemSearchEngine() {
     // Search Engine
     console.log("%cSolar System Search engine", 'font-size: 1.1rem;');
-    
+
     const form = document.querySelector(".solar-system-form");
     const input = document.querySelector(".component-solar-system-search");
     const solarSystemSearchEnigne = new SolarSystemSearchEngine(this.getBaseURL(), form, input, this.getSolarSystemManager());

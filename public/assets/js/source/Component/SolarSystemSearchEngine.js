@@ -28,7 +28,6 @@ class SolarSystemSearchEngine
     handleSubmit(event) { //: promise
         event.preventDefault();
         // console.log('prevent default OK');
-
         
         if (this._input.value.length > 2) {
 
@@ -47,7 +46,7 @@ class SolarSystemSearchEngine
                         instance.loadData(solarSystemData);
                         solarSytems.push(instance);
                     }
-                    console.log(solarSytems);
+                    // console.log(solarSytems);
                     for (let solarSytem of solarSytems) {
                         // console.log(solarSytem);
                         // console.log(solarSytem.getName());

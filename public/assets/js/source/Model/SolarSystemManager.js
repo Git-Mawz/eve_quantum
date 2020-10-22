@@ -9,7 +9,7 @@ class SolarSystemManager
         addSystemToFavorite: '/api/character/solar_system',
         getFavoriteSolarSystem: '/api/character/solar_system'
 
-      };
+    };
 
     searchSolarSystem(search) {
 
