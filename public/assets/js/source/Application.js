@@ -10,6 +10,7 @@ class Application
 
     if(document.location.toString().match(/profile/)) {
       this.actionSolarSystemSearchEngine();
+      this.actionFavoriteSolarSystemManager();
     }
 
   }
@@ -45,6 +46,13 @@ class Application
     solarSystemSearchEnigne.initialize();
 
     // Favorite Solar System management
+    // const favoriteSolarSystemManager = new FavoriteSolarSystemManager(manager);
+    // favoriteSolarSystemManager.initialize();
+  }
+
+  // Favorite Solar System Manager
+  actionFavoriteSolarSystemManager() {
+    const manager = new SolarSystemManager();
     const favoriteSolarSystemManager = new FavoriteSolarSystemManager(manager);
     favoriteSolarSystemManager.initialize();
   }
