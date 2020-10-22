@@ -2,10 +2,13 @@ class SolarSystem {
 
     _data;
 
-
     loadData(data) {
         this._data = data;
         return this;
+    }
+
+    getData() {
+        return this._data;
     }
     
     getName() {
@@ -23,6 +26,5 @@ class SolarSystem {
     getConstellationId() {
         return this._data.constellation_id;
     }
-
 
 }

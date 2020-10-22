@@ -9,6 +9,7 @@ class QuestionManager
   };
 
   loadQuestions() {
+
     return fetch(this.endPoints.getQuestions).then((response) => {
       return response.json();
     }).then((rawData) => {
