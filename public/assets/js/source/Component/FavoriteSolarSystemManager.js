@@ -13,7 +13,7 @@ class FavoriteSolarSystemManager
         let config = { childList: true };
         observer.observe(this._buttonsParent, config);
 
-        this.displayFavoriteSolarSystems();
+        // this.displayFavoriteSolarSystems();
     }
 
     // Methods to add solar system to favorite
@@ -35,11 +35,11 @@ class FavoriteSolarSystemManager
         this._manager.addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName);
     }
 
-    displayFavoriteSolarSystems () {
-       this._manager.getFavoriteSolarSystem()
-       .then((solarSystems)=> {
-            console.log(solarSystems);
-       })
-    }
+    // displayFavoriteSolarSystems () {
+    //    this._manager.getFavoriteSolarSystem()
+    //    .then((solarSystems)=> {
+    //         console.log(solarSystems);
+    //    })
+    // }
 
 }
