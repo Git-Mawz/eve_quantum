@@ -12,6 +12,8 @@ class FavoriteSolarSystemManager
         let observer = new MutationObserver(() => {this.observerCallback()});
         let config = { childList: true };
         observer.observe(this._buttonsParent, config);
+
+        this.displayFavoriteSolarSystem();
     }
 
     // Methods to add solar system to favorite
@@ -31,6 +33,32 @@ class FavoriteSolarSystemManager
         const solarSystemName = event.target.dataset['systemName'];
 
         this._solarSystemRepository.addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName);
+    }
+
+    displayFavoriteSolarSystem() {
+        this._solarSystemRepository.getFavoriteSolarSystem().then((solarSystemPromiseList)=> {
+
+            // console.log(solarSystemPromiseList);
+
+            return Promise.all(solarSystemPromiseList).then((solarSystems) => {
+
+                for(let solarSystem of solarSystems) {
+                    console.log(solarSystem.getUniverseId());
+
+                    // let button = document.createElement('button');
+                    // button.setAttribute('class', 'btn btn-secondary favorite-solar-system');
+                    // button.setAttribute('type', 'button');
+                    // button.setAttribute('data-system-universe-id', solarSytem.getUniverseId());
+                    // // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
+                    // button.setAttribute('data-system-name', solarSytem.getName());
+                    // let textNode = document.createTextNode(solarSytem.getName());
+                    // button.appendChild(textNode);
+                    // this._resultDiv.appendChild(button);
+
+                }
+            })
+
+        })
     }
 
 }

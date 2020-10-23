@@ -85,7 +85,7 @@ class SolarSystemSearchEngine
         // console.log(solarSytem);
 
         let button = document.createElement('button');
-        button.setAttribute('class', 'btn btn-secondary found-solar-system');
+        button.setAttribute('class', 'btn btn-secondary btn-sm found-solar-system');
         button.setAttribute('type', 'button');
         button.setAttribute('data-system-universe-id', solarSytem.getUniverseId());
         // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());

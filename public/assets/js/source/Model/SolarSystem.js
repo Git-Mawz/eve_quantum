@@ -20,6 +20,10 @@ class SolarSystem {
     }
 
     getUniverseId() {
+        // patch to either match with solar system coming for Eve Online API or Eve Quantum API
+        if (typeof this._data.system_id === 'undefined') {
+            return this._data.universeId;
+        }
         return this._data.system_id;
     }
 

@@ -11,7 +11,30 @@
     {% endfor %}
 
 <h1>Bienvenue {{ app.user.name }} </h1>
-<img src="{{ app.user.portrait }}" style="width: 256px" class="rounded-circle">
+
+<section class="favorite-systems-dashboard">
+    <img src="{{ app.user.portrait }}" style="width: 256px" class="rounded-circle">
+
+    <div class="mt-3">
+        <h3>Tableau de Navigation</h3>
+        <p>Trouver des systèmes solaire à ajouter à votre tableau de navigation avec la fonction de recherche.<br>
+        Cliquez sur un système solaire pour définir votre destination in-game</p>
+    </div>
+
+    <div class="dashboard-system-list">
+        {# <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button>
+        <button type="button" class="mt-2 btn btn-primary">Primary</button> #}
+    
+    </div>
+</section>
 
 
 <section class="favorite-waypoint mt-3">
@@ -23,17 +46,8 @@
     </form>
 
     <div class="solar-system-result">
-        <div class="solar-system-result-text">
-        </div>
-        {# <ul class="solar-system-list">
-        </ul> #}
-
-        <div class="solar-system-list btn-group" role="group" aria-label="Basic example">
-            {# <button type="button" class="btn btn-secondary found-solar-system">Left</button>
-            <button type="button" class="btn btn-secondary found-solar-system">Middle</button>
-            <button type="button" class="btn btn-secondary found-solar-system">Right</button> #}
-        </div>
-
+        <div class="solar-system-result-text"></div>
+        <div class="solar-system-list" role="group" aria-label="Basic example"></div>
     </div>
 
 </section>
