@@ -43,17 +43,19 @@ class FavoriteSolarSystemManager
             return Promise.all(solarSystemPromiseList).then((solarSystems) => {
 
                 for(let solarSystem of solarSystems) {
-                    console.log(solarSystem.getUniverseId());
 
-                    // let button = document.createElement('button');
-                    // button.setAttribute('class', 'btn btn-secondary favorite-solar-system');
-                    // button.setAttribute('type', 'button');
-                    // button.setAttribute('data-system-universe-id', solarSytem.getUniverseId());
-                    // // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
-                    // button.setAttribute('data-system-name', solarSytem.getName());
-                    // let textNode = document.createTextNode(solarSytem.getName());
-                    // button.appendChild(textNode);
-                    // this._resultDiv.appendChild(button);
+                    console.log(solarSystem.getUniverseId());
+                    console.log(solarSystem.getName());
+
+                    let button = document.createElement('button');
+                    button.setAttribute('class', 'btn btn-secondary favorite-solar-system');
+                    button.setAttribute('type', 'button');
+                    button.setAttribute('data-system-universe-id', solarSytem.getUniverseId());
+                    // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
+                    button.setAttribute('data-system-name', solarSystem.getName());
+                    let textNode = document.createTextNode(solarSystem.getName());
+                    button.appendChild(textNode);
+                    this._resultDiv.appendChild(button);
 
                 }
             })

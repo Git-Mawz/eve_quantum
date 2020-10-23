@@ -81,16 +81,16 @@ class SolarSystemSearchEngine
         }
     }
 
-    makeSolarSystemList(solarSytem) {
+    makeSolarSystemList(solarSystem) {
         // console.log(solarSytem);
 
         let button = document.createElement('button');
         button.setAttribute('class', 'btn btn-secondary btn-sm found-solar-system');
         button.setAttribute('type', 'button');
-        button.setAttribute('data-system-universe-id', solarSytem.getUniverseId());
+        button.setAttribute('data-system-universe-id', solarSystem.getUniverseId());
         // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
-        button.setAttribute('data-system-name', solarSytem.getName());
-        let textNode = document.createTextNode(solarSytem.getName());
+        button.setAttribute('data-system-name', solarSystem.getName());
+        let textNode = document.createTextNode(solarSystem.getName());
         button.appendChild(textNode);
         this._resultDiv.appendChild(button);
     }
