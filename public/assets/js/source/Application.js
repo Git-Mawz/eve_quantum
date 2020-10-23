@@ -29,11 +29,11 @@ class Application
     return this._services['baseUrl'];
   }
 
-  getQuestionManager() {
-    if(typeof(this._services['questionManager']) == 'undefined') {
-      this._services['questionManager'] = new QuestionManager();
+  getQuestionRepository() {
+    if(typeof(this._services['questionRepository']) == 'undefined') {
+      this._services['questionRepository'] = new QuestionRepository();
     }
-    return this._services['questionManager'];
+    return this._services['questionRepository'];
   }
 
   //==================================================================================
@@ -69,14 +69,12 @@ class Application
     // Search Engine
     console.log("%cQuestion search engine", 'font-size: 1.1rem;');
     const selector = ".component-question-search-engine";
-    const questionSearchEngine = new QuestionSearchEngine(
-      document.querySelector(selector)
-    );
+    const questionSearchEngine = new QuestionSearchEngine(document.querySelector(selector), this.getQuestionRepository() );
     questionSearchEngine.initialize();
     
     // Question by Category component
     console.log("%cQuestion by category", 'font-size: 1.1rem;');
-    const questionDisplayByCategory = new QuestionDisplayByCategory(this.getBaseURL(), this.getQuestionManager());
+    const questionDisplayByCategory = new QuestionDisplayByCategory(this.getBaseURL(), this.getQuestionRepository());
     questionDisplayByCategory.initialize();
   }
 

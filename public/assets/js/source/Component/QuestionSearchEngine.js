@@ -3,10 +3,12 @@ class QuestionSearchEngine
 {
 
   _input;
+  _questionRepository;
   _tbodyInitialInnerHTML;
 
-  constructor(targetElement) {
+  constructor(targetElement, questionRepository) {
     this._input = targetElement;
+    this._questionRepository = questionRepository;
     this._tbodyInitialInnerHTML = document.querySelector('.search-result-tbody').innerHTML;
   }
 
@@ -25,8 +27,7 @@ class QuestionSearchEngine
     const search = this._input.value.toLowerCase();
     console.log(search);
 
-    const manager = new QuestionManager();
-    manager.loadQuestions().then((questionList) => {
+    this._questionRepository.loadQuestions().then((questionList) => {
 
       // Initialize search result 
       let searchResult = [];

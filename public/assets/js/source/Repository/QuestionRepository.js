@@ -1,6 +1,6 @@
 console.log("QuestionManager.js loaded");
 
-class QuestionManager
+class QuestionRepository
 {
   
   endPoints = {

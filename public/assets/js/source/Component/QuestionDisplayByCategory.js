@@ -6,12 +6,12 @@ class QuestionDisplayByCategory
   _tbodyInitialInnerHTML;
 
   _baseUrl;
-  _manager
+  _questionRepository
 
-  constructor(baseUrl, manager) {
+  constructor(baseUrl, questionRepository) {
     this._tbodyInitialInnerHTML = document.querySelector('.search-result-tbody').innerHTML;
     this._baseUrl = baseUrl;
-    this._manager = manager;
+    this._questionRepository = questionRepository;
   }
 
 
@@ -39,7 +39,7 @@ class QuestionDisplayByCategory
         
         // const manager = new QuestionManager();
         
-        this._manager.loadQuestionByCategory(this._categoryId).then((questionList) => {
+        this._questionRepository.loadQuestionByCategory(this._categoryId).then((questionList) => {
           
           // init of tbody to prepare search results
           tbody.innerHTML = '';
