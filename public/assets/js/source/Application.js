@@ -59,6 +59,7 @@ class Application
     if(document.location.toString().match(/profile/)) {
       this.actionSolarSystemSearchEngine();
       this.actionFavoriteSolarSystemManager();
+      this.actionSetDestination();
     }
 
   }
@@ -93,6 +94,12 @@ class Application
   actionFavoriteSolarSystemManager() {
     const favoriteSolarSystemManager = new FavoriteSolarSystemManager(this.getSolarSystemRepository());
     favoriteSolarSystemManager.initialize();
+  }
+
+  // Set in game destination
+  actionSetDestination() {
+    const inGameSetDestination = new InGameSetDestination();
+    inGameSetDestination.initialize();
   }
 
 

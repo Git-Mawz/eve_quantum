@@ -11,7 +11,7 @@
     {% endfor %}
 
 <h1>Bienvenue {{ app.user.name }} </h1>
-<img src="{{ app.user.portrait }}">
+<img src="{{ app.user.portrait }}" style="width: 256px" class="rounded-circle">
 
 
 <section class="favorite-waypoint mt-3">
@@ -48,9 +48,10 @@
 
 
 {% block javascripts %}
-<script src="{{ asset('assets/js/source/Component/SolarSystemSearchEngine.js') }}"></script>
-<script src="{{ asset('assets/js/source/Repository/SolarSystemRepository.js') }}"></script>
-<script src="{{ asset('assets/js/source/Model/SolarSystem.js') }}"></script>
 <script src="{{ asset('assets/js/source/Component/FavoriteSolarSystemManager.js') }}"></script>
+<script src="{{ asset('assets/js/source/Component/SolarSystemSearchEngine.js') }}"></script>
+<script src="{{ asset('assets/js/source/Component/InGameSetDestination.js') }}"></script>
+<script src="{{ asset('assets/js/source/Model/SolarSystem.js') }}"></script>
+<script src="{{ asset('assets/js/source/Repository/SolarSystemRepository.js') }}"></script>
 
 {% endblock %}

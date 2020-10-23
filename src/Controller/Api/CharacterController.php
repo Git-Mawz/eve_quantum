@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\SolarSystem;
+use App\Service\EsiClient;
 use App\Service\FavoriteSolarSystemManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,6 +66,18 @@ class CharacterController extends AbstractController
         $data = $serializer->normalize($userFavoriteSolarSystems, 'json', ['groups' => ['favorite_solar_system']]);
 
         return $this->json(['solarSystems' => $data]);
+    }
+
+    /**
+     * @Route("/set_destination/{solarSystemUniverseId}", name="set_destination", methods={"POST"})
+     */
+    public function setDestination($solarSystemUniverseId, EsiClient $esiClient)
+    {
+        $this->denyAccessUnlessGranted("ROLE_USER");
+
+        $esiClient->setDestination($solarSystemUniverseId);
+
+        return $this->json(['message' => 'New Destination have been set !']);
     }
 
 }
