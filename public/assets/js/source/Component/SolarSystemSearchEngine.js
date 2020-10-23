@@ -36,25 +36,28 @@ class SolarSystemSearchEngine
             const sessionStorage = window.sessionStorage;
             const cacheKey = 'search_solar_system-' + search;
 
-            if(sessionStorage.getItem(cacheKey)) {
-                const promise = new Promise(() => {
-                    const solarSytemsDatas = JSON.parse(sessionStorage.getItem(cacheKey));
+
+            // ! local session cache code start
+            // if(sessionStorage.getItem(cacheKey)) {
+            //     const promise = new Promise(() => {
+            //         const solarSytemsDatas = JSON.parse(sessionStorage.getItem(cacheKey));
                     
-                    let solarSytems= [];
-                    for(let solarSystemData of solarSytemsDatas) {
-                        let instance  = new SolarSystem();
-                        instance.loadData(solarSystemData);
-                        solarSytems.push(instance);
-                    }
-                    // console.log(solarSytems);
-                    for (let solarSytem of solarSytems) {
-                        // console.log(solarSytem);
-                        // console.log(solarSytem.getName());
-                        this.makeSolarSystemList(solarSytem);
-                    } 
-                });
-                return promise;
-            }
+            //         let solarSytems= [];
+            //         for(let solarSystemData of solarSytemsDatas) {
+            //             let instance  = new SolarSystem();
+            //             instance.loadData(solarSystemData);
+            //             solarSytems.push(instance);
+            //         }
+            //         // console.log(solarSytems);
+            //         for (let solarSytem of solarSytems) {
+            //             // console.log(solarSytem);
+            //             // console.log(solarSytem.getName());
+            //             this.makeSolarSystemList(solarSytem);
+            //         } 
+            //     });
+            //     return promise;
+            // }
+            // ! local session cache code end
 
 
             this._manager.searchSolarSystem(this._input.value).then((promiseList) => {
@@ -63,12 +66,14 @@ class SolarSystemSearchEngine
                 this._resultDivText.innerHTML = '<p> Cliquez sur un système pour l\'ajouter à vos favoris et ainsi pouvoir définir votre destination in-game en cliquant dessus <br> Résultat : </p>'
 
                 return Promise.all(promiseList).then((solarSytems) => {
-                    // console.log(solarSytems);
-                    sessionStorage.setItem(cacheKey, JSON.stringify(solarSytems));
-                    // console.log(JSON.stringify(solarSytems));
-                    // console.log(solarSytems)
+
+                    // ! local session cache code start
+                    // sessionStorage.setItem(cacheKey, JSON.stringify(solarSytems));
+                    // ! local session cache code end
+
+
                     for (let solarSytem of solarSytems) {
-                        // console.log(solarSytem.getName());
+
                         this.makeSolarSystemList(solarSytem);
                     } 
                 })       
