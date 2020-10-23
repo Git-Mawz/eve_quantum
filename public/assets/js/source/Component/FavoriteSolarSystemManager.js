@@ -1,10 +1,10 @@
 class FavoriteSolarSystemManager
 {
-    _manager;
+    _solarSystemRepository;
     _buttonsParent;
 
-    constructor(manager) {
-        this._manager = manager
+    constructor(solarSystemRepository) {
+        this._solarSystemRepository = solarSystemRepository
         this._buttonsParent = document.querySelector('.solar-system-list');
     }
 
@@ -32,14 +32,7 @@ class FavoriteSolarSystemManager
         const solarSystemUniverseId = event.target.dataset['systemUniverseId'];
         const solarSystemName = event.target.dataset['systemName'];
 
-        this._manager.addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName);
+        this._solarSystemRepository.addSolarSystemToFavorite(solarSystemUniverseId, solarSystemName);
     }
-
-    // displayFavoriteSolarSystems () {
-    //    this._manager.getFavoriteSolarSystem()
-    //    .then((solarSystems)=> {
-    //         console.log(solarSystems);
-    //    })
-    // }
 
 }

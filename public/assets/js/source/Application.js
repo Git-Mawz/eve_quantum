@@ -9,14 +9,14 @@ class Application
 
 
   //==================================================================================
-  // Manager getters
+  // Repository getters
   //==================================================================================
 
-  getSolarSystemManager() {
-    if(typeof(this._services['solarSystemManager']) == 'undefined') {
-      this._services['solarSystemManager'] = new SolarSystemManager();
+  getSolarSystemRepository() {
+    if(typeof(this._services['solarSystemRepository']) == 'undefined') {
+      this._services['solarSystemRepository'] = new SolarSystemRepository();
     }
-    return this._services['solarSystemManager'];
+    return this._services['solarSystemRepository'];
   }
 
   getBaseURL() {
@@ -85,13 +85,13 @@ class Application
 
     const form = document.querySelector(".solar-system-form");
     const input = document.querySelector(".component-solar-system-search");
-    const solarSystemSearchEnigne = new SolarSystemSearchEngine(this.getBaseURL(), form, input, this.getSolarSystemManager());
+    const solarSystemSearchEnigne = new SolarSystemSearchEngine(this.getBaseURL(), form, input, this.getSolarSystemRepository());
     solarSystemSearchEnigne.initialize();
   }
 
   // Favorite Solar System Manager
   actionFavoriteSolarSystemManager() {
-    const favoriteSolarSystemManager = new FavoriteSolarSystemManager(this.getSolarSystemManager());
+    const favoriteSolarSystemManager = new FavoriteSolarSystemManager(this.getSolarSystemRepository());
     favoriteSolarSystemManager.initialize();
   }
 

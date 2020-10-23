@@ -5,15 +5,15 @@ class SolarSystemSearchEngine
     _baseUrl;
     _form;
     _input;
-    _manager;
+    _solarSystemRepository;
     _resultDiv;
     _resultDivText;
 
-    constructor(baseUrl, form, input, manager) {
+    constructor(baseUrl, form, input, solarSystemRepository) {
         this._baseUrl = baseUrl;
         this._form = form;
         this._input = input;
-        this._manager = manager;
+        this._solarSystemRepository = solarSystemRepository;
         this._resultDiv = document.querySelector('.solar-system-list');
         this._resultDivText = document.querySelector('.solar-system-result-text');
       }
@@ -60,7 +60,7 @@ class SolarSystemSearchEngine
             // ! local session cache code end
 
 
-            this._manager.searchSolarSystem(this._input.value).then((promiseList) => {
+            this._solarSystemRepository.searchSolarSystem(this._input.value).then((promiseList) => {
                 // Init of ul to display new results 
                 this._resultDiv.innerHTML = '';
                 this._resultDivText.innerHTML = '<p> Cliquez sur un système pour l\'ajouter à vos favoris et ainsi pouvoir définir votre destination in-game en cliquant dessus <br> Résultat : </p>'

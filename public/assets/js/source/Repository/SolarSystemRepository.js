@@ -1,5 +1,5 @@
-console.log("SolarSystemManager.js loaded");
-class SolarSystemManager
+console.log("SolarSystemRepository.js loaded");
+class SolarSystemRepository
 {
 
     endPoints = {
