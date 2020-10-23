@@ -12,8 +12,6 @@ class FavoriteSolarSystemManager
         let observer = new MutationObserver(() => {this.observerCallback()});
         let config = { childList: true };
         observer.observe(this._buttonsParent, config);
-
-        // this.displayFavoriteSolarSystems();
     }
 
     // Methods to add solar system to favorite
