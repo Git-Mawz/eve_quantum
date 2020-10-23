@@ -72,9 +72,9 @@ class SolarSystemSearchEngine
                     // ! local session cache code end
 
 
-                    for (let solarSytem of solarSytems) {
+                    for (let solarSystem of solarSytems) {
 
-                        this.makeSolarSystemList(solarSytem);
+                        this.makeSolarSystemList(solarSystem);
                     } 
                 })       
             }); 

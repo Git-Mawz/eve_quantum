@@ -45,14 +45,10 @@ class FavoriteSolarSystemManager
 
                 for(let solarSystem of solarSystems) {
 
-                    console.log(solarSystem.getUniverseId());
-                    console.log(solarSystem.getName());
-                    console.log(this._favoriteListDiv);
-
                     let button = document.createElement('button');
                     button.setAttribute('class', 'btn btn-secondary favorite-solar-system');
                     button.setAttribute('type', 'button');
-                    button.setAttribute('data-system-universe-id', solarSytem.getUniverseId());
+                    button.setAttribute('data-system-universe-id', solarSystem.getUniverseId());
                     // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
                     button.setAttribute('data-system-name', solarSystem.getName());
                     let textNode = document.createTextNode(solarSystem.getName());
@@ -64,5 +60,6 @@ class FavoriteSolarSystemManager
 
         })
     }
+
 
 }
