@@ -6,6 +6,7 @@ class FavoriteSolarSystemManager
     constructor(solarSystemRepository) {
         this._solarSystemRepository = solarSystemRepository
         this._buttonsParent = document.querySelector('.solar-system-list');
+        this._favoriteListDiv = document.querySelector('.dashboard-system-list');;
     }
 
     initialize () {
@@ -46,6 +47,7 @@ class FavoriteSolarSystemManager
 
                     console.log(solarSystem.getUniverseId());
                     console.log(solarSystem.getName());
+                    console.log(this._favoriteListDiv);
 
                     let button = document.createElement('button');
                     button.setAttribute('class', 'btn btn-secondary favorite-solar-system');
@@ -55,7 +57,7 @@ class FavoriteSolarSystemManager
                     button.setAttribute('data-system-name', solarSystem.getName());
                     let textNode = document.createTextNode(solarSystem.getName());
                     button.appendChild(textNode);
-                    this._resultDiv.appendChild(button);
+                    this._favoriteListDiv.appendChild(button);
 
                 }
             })
