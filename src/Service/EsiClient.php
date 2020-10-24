@@ -96,7 +96,7 @@ class EsiClient
         $response = $this->client->request('POST', $this->baseEsiUrl . '/ui/autopilot/waypoint/', [
             'query' => [
                 'add_to_beginning' => false,
-                'clear_other_waypoints' => false,
+                'clear_other_waypoints' => true,
                 'destination_id' => $destinationId
             ]
         ]);

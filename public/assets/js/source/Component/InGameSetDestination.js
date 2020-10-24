@@ -1,15 +1,24 @@
 class InGameSetDestination
 {
+
     endPoints = {
         setDestination : '/api/character/set_destination/'
     }
     
     initialize() {
         console.log('SetDestination initilized')
-        // TODO attach event listener on solar system favorite buttons
+        document.addEventListener('click', (event) => this.handleClickOnFavoriteSystem(event));
     }
     
     // TODO handler for solar system favorite button
+    handleClickOnFavoriteSystem(event) {
+        const eventTargetClasses = event.target.className;
+        // console.log(eventTargetClasses);
+        // console.log(eventTargetClasses.search(/favorite-solar-system/));
+        if (eventTargetClasses.search(/favorite-solar-system/) != -1) {
+            this.setDestination(event.target.dataset.systemUniverseId);
+        }
+    }
 
 
     
