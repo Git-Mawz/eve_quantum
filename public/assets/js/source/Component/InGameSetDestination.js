@@ -10,18 +10,14 @@ class InGameSetDestination
         document.addEventListener('click', (event) => this.handleClickOnFavoriteSystem(event));
     }
     
-    // TODO handler for solar system favorite button
     handleClickOnFavoriteSystem(event) {
         const eventTargetClasses = event.target.className;
-        // console.log(eventTargetClasses);
-        // console.log(eventTargetClasses.search(/favorite-solar-system/));
         if (eventTargetClasses.search(/favorite-solar-system/) != -1) {
+            console.log(event.target.dataset);
             this.setDestination(event.target.dataset.systemUniverseId);
         }
     }
 
-
-    
     setDestination(solarSystemUniverseId) {
         
         let options = {
@@ -37,7 +33,6 @@ class InGameSetDestination
         fetch(this.endPoints.setDestination + solarSystemUniverseId, options)
         .then((response) => {
             console.log(response);
-        });
-        
+        });   
     }
 }
