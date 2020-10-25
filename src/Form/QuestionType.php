@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Question;
 use App\Entity\Category;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,23 +18,26 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('category', EntityType::class, [
-            'placeholder' => 'Choissez une catégorie',
-            'required' => true,
-            'class' => Category::class,
-            'label' => 'Catégorie',
-            'choice_label' => 'name',
-            'expanded' => false,
-            'multiple' => false,
+            ->add('category', EntityType::class, [
+                'placeholder' => 'Choissez une catégorie',
+                'required' => true,
+                'class' => Category::class,
+                'label' => 'Catégorie',
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => false,
             ])
             ->add('title', TextType::class, [
                 'label' => 'Sujet'
             ])
-            ->add('content', TextareaType::class, [
+            // ->add('content', TextareaType::class, [
+            //     'label' => 'Question'
+            // ])
+            ->add('content', CKEditorType::class, [
                 'label' => 'Question'
-                ])
-                ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer'
+            ])
+            ->add('submit', SubmitType::class, [
+            'label' => 'Envoyer'
             ])
         ;
     }

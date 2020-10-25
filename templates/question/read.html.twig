@@ -10,7 +10,7 @@
             <img style="width: 128px" class="rounded-circle" src="{{ question.user.portrait }}" alt="Portrait de l'auteur de la question: {{ question.user.name }}">
             <p>{{question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</p>
         </div>
-        <p class="align-self-center m-3">{{ question.content|nl2br }}</p>
+        <p class="align-self-center m-3">{{ question.content|raw }}</p>
 
     </div>
     {% if app.user is not null %}
@@ -23,7 +23,7 @@
     <div class="border-bottom border-dark mt-3">
         <img style="width: 64px" class="rounded-circle" src="{{ answer.user.portrait }}" alt="Portrait de l'auteur de la réponse: {{ answer.user.name }}"> 
         <span>{{answer.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</span>
-        <p>{{answer.content|nl2br}}</p>
+        <p>{{answer.content|raw}}</p>
     </div>
 
     {% endfor %}

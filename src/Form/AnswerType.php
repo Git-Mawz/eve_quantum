@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Answer;
-
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -15,7 +15,10 @@ class AnswerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextareaType::class, [
+            // ->add('content', TextareaType::class, [
+            //     'label' => 'Votre réponse'
+            // ])
+            ->add('content', CKEditorType::class, [
                 'label' => 'Votre réponse'
             ])
             ->add('submit', SubmitType::class, [
