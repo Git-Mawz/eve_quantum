@@ -67,7 +67,7 @@ class QuestionSearchEngine
           '<td><a href="' + baseUrl + '/read/' + questionToDisplay.getSlug() + '">' + questionToDisplay.getTitle() + '</a></td>' +
           '<td>' + questionToDisplay.getCategory().name + '</td>' +
           '<td scope="row">' + questionToDisplay.getUser().name + '</td>' +
-          '<td>' + date.getDate()+ '/' + date.getMonth() + '/' + date.getFullYear() + ' à ' + date.getHours() + ':' + date.getMinutes() + '</td>';
+          '<td>' + date.getDate()+ '/' + date.getMonth() + '/' + date.getFullYear() + ' à ' + date.getHours() + ':' + ((date.getMinutes()<10?'0':'') + date.getMinutes()) + '</td>';
 
       }
 

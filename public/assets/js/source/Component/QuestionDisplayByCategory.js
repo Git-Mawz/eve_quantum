@@ -52,7 +52,7 @@ class QuestionDisplayByCategory
             '<td><a href="' + baseUrl + '/read/' + question.getSlug() + '">' + question.getTitle() + '</a></td>' +
             '<td>' + question.getCategory().name + '</td>' +
             '<td scope="row">' + question.getUser().name + '</td>' +
-            '<td>' + date.getDate()+ '/' + date.getMonth() + '/' + date.getFullYear() + ' à ' + date.getHours() + ':' + date.getMinutes() + '</td>';
+            '<td>' + date.getDate()+ '/' + (date.getMonth()+1) + '/' + date.getFullYear() + ' à ' + date.getHours() + ':' + ((date.getMinutes()<10?'0':'') + date.getMinutes()) + '</td>';
             
           }
         });
