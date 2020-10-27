@@ -19,7 +19,7 @@ class AnswerType extends AbstractType
             //     'label' => 'Votre réponse'
             // ])
             ->add('content', CKEditorType::class, [
-                'label' => 'Votre réponse'
+                'label' => false
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Répondre'
