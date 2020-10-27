@@ -41,8 +41,11 @@
         <td>{{ question.category.name }}</td>
         <td scope="row">{#<img src="{{question.user.portrait}}" class="rounded-circle" style="max-height: 30px">#}{{ question.user.name }}</td>
         {# <td>{{ question.content|slice(0,60) }} ...</td> #}
-        <td>{{ question.updatedAt|date("d/m/Y à H:i", "Europe/Paris") }}</td>
-
+        {% if question.updatedAt is null %}
+            <td>{{ question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</td>
+        {% else %}
+            <td>{{ question.updatedAt|date("d/m/Y à H:i", "Europe/Paris") }}</td>
+        {% endif %}
     </tr>
     {% endfor %}
     </tbody>
