@@ -10,6 +10,11 @@
             <img style="width: 128px" class="rounded-circle" src="{{ question.user.portrait }}" alt="Portrait de l'auteur de la question: {{ question.user.name }}">
             <p>{{question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</p>
             <p class="align-self-center">{{ question.content|raw }}</p>
+            
+            {% if app.user == question.user %}
+            <button class="btn-primary btn"><a style="text-decoration: none" href="{{ path('question_edit', {slug:question.slug}) }}">Editer</a></button>
+            {% endif %}
+
         </div>
 
     </div>

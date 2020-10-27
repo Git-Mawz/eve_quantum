@@ -32,35 +32,35 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="read_id", requirements={"id"="\d+"}, methods={"GET","POST"})
-     */
-    public function read(Question $question, Request $request)
-    {   
-        $newAnswer = new Answer();
-        $form = $this->createForm(AnswerType::class, $newAnswer);
+    // /**
+    //  * @Route("/{id}", name="read_id", requirements={"id"="\d+"}, methods={"GET","POST"})
+    //  */
+    // public function read(Question $question, Request $request)
+    // {   
+    //     $newAnswer = new Answer();
+    //     $form = $this->createForm(AnswerType::class, $newAnswer);
 
-        $form->handleRequest($request);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    //     if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->denyAccessUnlessGranted('ROLE_USER');
+    //         $this->denyAccessUnlessGranted('ROLE_USER');
 
-            $em = $this->getDoctrine()->getManager();
-            $newAnswer->setUser($this->getUser());
-            $newAnswer->setCreatedAt(new \DateTime());
-            $newAnswer->setQuestion($question);
-            $em->persist($newAnswer);
-            $em->flush();
+    //         $em = $this->getDoctrine()->getManager();
+    //         $newAnswer->setUser($this->getUser());
+    //         $newAnswer->setCreatedAt(new \DateTime());
+    //         $newAnswer->setQuestion($question);
+    //         $em->persist($newAnswer);
+    //         $em->flush();
 
-            return $this->redirectToRoute('question_read_id', ['id' => $question->getId()]);
-        }
+    //         return $this->redirectToRoute('question_read_id', ['id' => $question->getId()]);
+    //     }
 
-        return $this->render('question/read.html.twig', [
-            'question' => $question,
-            'form' => $form->createView()
-        ]);
-    }
+    //     return $this->render('question/read.html.twig', [
+    //         'question' => $question,
+    //         'form' => $form->createView()
+    //     ]);
+    // }
 
     /**
      * @Route("/read/{slug}", name="read_slug", methods={"GET","POST"}, requirements={})
@@ -120,4 +120,33 @@ class QuestionController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/edit/{slug}", name="edit", methods={"GET","POST"})
+     */
+    public function edit(Question $question, Request $request, QuestionSlugger $questionSlugger)
+    {
+
+        if($question->getUser() === $this->getUser()) {
+   
+            $form = $this->createForm(QuestionType::class, $question);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                
+                $em = $this->getDoctrine()->getManager();
+                $question->setSlug($questionSlugger->sluggifyQuestionTitle($question->getTitle()));
+                $em->flush();
+                
+                return $this->redirectToRoute('question_list');
+            }
+            
+            return $this->render('question/edit.html.twig', [
+                'form' => $form->createView()
+                ]);
+        } else {
+            return $this->redirectToRoute('question_list');
+        }
+    }
+
+
 }
