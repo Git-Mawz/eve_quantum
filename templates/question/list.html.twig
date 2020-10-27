@@ -37,7 +37,7 @@
     <tbody class = "search-result-tbody">
     {% for question in questions %}
     <tr class="table">
-        <td><a href="{{ path('question_read_slug', {slug: question.slug}) }}">{{ question.title }}</a></td>
+        <td><a href="{{ path('question_read', {slug: question.slug}) }}">{{ question.title }}</a></td>
         <td>{{ question.category.name }}</td>
         <td scope="row">{#<img src="{{question.user.portrait}}" class="rounded-circle" style="max-height: 30px">#}{{ question.user.name }}</td>
         {# <td>{{ question.content|slice(0,60) }} ...</td> #}

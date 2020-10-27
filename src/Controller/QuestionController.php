@@ -63,7 +63,7 @@ class QuestionController extends AbstractController
     // }
 
     /**
-     * @Route("/read/{slug}", name="read_slug", methods={"GET","POST"}, requirements={})
+     * @Route("/read/{slug}", name="read", methods={"GET","POST"}, requirements={})
      */
     public function readSlug(Question $question, Request $request)
     {   
@@ -83,7 +83,7 @@ class QuestionController extends AbstractController
             $em->persist($newAnswer);
             $em->flush();
 
-            return $this->redirectToRoute('question_read_slug', ['slug' => $question->getSlug()]);
+            return $this->redirectToRoute('question_read', ['slug' => $question->getSlug()]);
         }
 
         return $this->render('question/read.html.twig', [
