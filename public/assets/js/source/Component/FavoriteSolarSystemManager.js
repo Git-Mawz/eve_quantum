@@ -67,6 +67,7 @@ class FavoriteSolarSystemManager
                     button.setAttribute('data-system-universe-id', solarSystem.getUniverseId());
                     // ! drag and drop
                     button.setAttribute('draggable', true);
+                    button.setAttribute('id', solarSystem.getUniverseId())
                     // ! drag and drop
                     // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
                     button.setAttribute('data-system-name', solarSystem.getName());
@@ -89,6 +90,11 @@ class FavoriteSolarSystemManager
         button.setAttribute('class', 'btn btn-secondary favorite-solar-system');
         button.setAttribute('type', 'button');
         button.setAttribute('data-system-universe-id', solarSystemUniverseId);
+
+        // ! drag and drop
+        button.setAttribute('id', solarSystemUniverseId)
+        // ! drag and drop
+
         // button.setAttribute('data-system-security-status', solarSytem.getSecurityStatus());
         button.setAttribute('data-system-name', solarSystemName);
         let textNode = document.createTextNode(solarSystemName);
@@ -124,9 +130,9 @@ class FavoriteSolarSystemManager
     handleDrop(event) {
         event.preventDefault();
         let systemId = event.dataTransfer.getData('system-id');
-        console.log(systemId)
+        // console.log(systemId)
 
-        // this._favoriteListDiv
+        this._favoriteListDiv.removeChild(document.getElementById(systemId));
         this._solarSystemRepository.removeFavoriteSolarSystem(systemId)
     }
 
