@@ -92,6 +92,7 @@ class FavoriteSolarSystemManager
         button.setAttribute('data-system-universe-id', solarSystemUniverseId);
 
         // ! drag and drop
+        button.setAttribute('draggable', true);
         button.setAttribute('id', solarSystemUniverseId)
         // ! drag and drop
 
@@ -135,7 +136,6 @@ class FavoriteSolarSystemManager
         this._favoriteListDiv.removeChild(document.getElementById(systemId));
         this._solarSystemRepository.removeFavoriteSolarSystem(systemId)
     }
-
 
     // ! drag and drop
 
