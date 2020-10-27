@@ -41,7 +41,7 @@ class QuestionType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Il semblerait qu\'il manque votre question.',
+                        'message' => 'Il semblerait qu\'il manque votre question.'
                     ])
                 ]
             ])

@@ -12,7 +12,8 @@
             <p class="align-self-center">{{ question.content|raw }}</p>
             
             {% if app.user == question.user %}
-            <button class="btn-primary btn"><a style="text-decoration: none" href="{{ path('question_edit', {slug:question.slug}) }}">Editer</a></button>
+            {# <button class="btn-primary btn"><a style="text-decoration: none" href="{{ path('question_edit', {slug:question.slug}) }}">Editer</a></button> #}
+            <a class="btn-primary btn" style="text-decoration: none" href="{{ path('question_edit', {slug:question.slug}) }}">Editer</a>
             {% endif %}
 
         </div>
@@ -31,7 +32,7 @@
         <p>{{answer.content|raw}}</p>
 
         {% if app.user == answer.user %}
-            <button class="btn-primary btn"><a style="text-decoration: none" href="{{ path('answer_edit', {id:answer.id}) }}">Editer</a></button>
+            <a class="btn-primary btn" style="text-decoration: none" href="{{ path('answer_edit', {id:answer.id}) }}">Editer</a>
         {% endif %}
 
     </div>
