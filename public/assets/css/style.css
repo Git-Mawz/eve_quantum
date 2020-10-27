@@ -20,3 +20,8 @@ td a {
    display:block;
    width:100%;
 }
+
+.fa-trash-alt{
+   font-size : 20px;
+   color: red;
+}

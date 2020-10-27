@@ -4,9 +4,9 @@ class FavoriteSolarSystemManager
     _buttonsParent;
 
     constructor(solarSystemRepository) {
-        this._solarSystemRepository = solarSystemRepository
+        this._solarSystemRepository = solarSystemRepository;
         this._buttonsParent = document.querySelector('.solar-system-list');
-        this._favoriteListDiv = document.querySelector('.dashboard-system-list');;
+        this._favoriteListDiv = document.querySelector('.dashboard-system-list');
     }
 
     initialize () {
@@ -15,6 +15,14 @@ class FavoriteSolarSystemManager
         observer.observe(this._buttonsParent, config);
 
         this.displayFavoriteSolarSystem();
+
+
+        // ! Drag and drop
+
+
+
+        // ! Drag and drop
+
     }
 
     // Methods to add solar system to favorite
