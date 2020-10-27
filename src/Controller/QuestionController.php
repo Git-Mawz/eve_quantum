@@ -27,7 +27,7 @@ class QuestionController extends AbstractController
         // Exemple d'accès avec le role ROLE_USER necessaire
         // $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('question/list.html.twig', [
-            'questions' => $questionRepository->findAll(),
+            'questions' => $questionRepository->findBy([], ['updatedAt' => 'DESC']),
             'categories' => $categoryRepository->findAll(),
         ]);
     }
@@ -108,6 +108,7 @@ class QuestionController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $newQuestion->setUser($this->getUser());
             $newQuestion->setCreatedAt(new \DateTime());
+            $newQuestion->setUpdatedAt(new \DateTime());
             $newQuestion->setSlug($questionSlugger->sluggifyQuestionTitle($newQuestion->getTitle()));
 
             $em->persist($newQuestion);
@@ -135,6 +136,7 @@ class QuestionController extends AbstractController
                 
                 $em = $this->getDoctrine()->getManager();
                 $question->setSlug($questionSlugger->sluggifyQuestionTitle($question->getTitle()));
+                $question->setUpdatedAt(new \DateTime());
                 $em->flush();
                 
                 return $this->redirectToRoute('question_list');

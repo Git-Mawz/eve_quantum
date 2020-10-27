@@ -8,7 +8,7 @@
     <div class="mb-3">
         <div class="twig-raw">
             <img style="width: 128px" class="rounded-circle" src="{{ question.user.portrait }}" alt="Portrait de l'auteur de la question: {{ question.user.name }}">
-            <p>{{question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</p>
+            <p> {{question.user.name}} le {{question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</p>
             <p class="align-self-center">{{ question.content|raw }}</p>
             
             {% if app.user == question.user %}
@@ -26,8 +26,8 @@
     {% for answer in question.answer|reverse %}
     
     <div class="twig-raw border-bottom border-dark mb-3">
-        <img style="width: 64px" class="rounded-circle" src="{{ answer.user.portrait }}" alt="Portrait de l'auteur de la réponse: {{ answer.user.name }}"> 
-        <span>{{answer.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</span>
+        <img style="width: 64px" class="rounded-circle" src="{{ answer.user.portrait }}" alt="Portrait de l'auteur de la réponse: {{ answer.user.name }}">
+        <span> {{ answer.user.name }} <br> {{answer.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</span>
         <p>{{answer.content|raw}}</p>
     </div>
 

@@ -30,7 +30,7 @@
             <th scope="col">Catégorie</th>
             <th scope="col">Auteur</th>
             {# <th scope="col">Aperçu</th> #}
-            <th scope="col">Posté</th>
+            <th scope="col">Dernier message</th>
         </tr>
     </thead>
 
@@ -41,7 +41,8 @@
         <td>{{ question.category.name }}</td>
         <td scope="row">{#<img src="{{question.user.portrait}}" class="rounded-circle" style="max-height: 30px">#}{{ question.user.name }}</td>
         {# <td>{{ question.content|slice(0,60) }} ...</td> #}
-        <td>{{ question.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</td>
+        <td>{{ question.updatedAt|date("d/m/Y à H:i", "Europe/Paris") }}</td>
+
     </tr>
     {% endfor %}
     </tbody>
