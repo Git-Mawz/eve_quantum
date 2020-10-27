@@ -7,7 +7,8 @@ class SolarSystemRepository
         searchSolarSystemName: 'https://esi.evetech.net/latest/universe/systems/',
 
         addSystemToFavorite: '/api/character/solar_system',
-        getFavoriteSolarSystem: '/api/character/solar_system'
+        getFavoriteSolarSystem: '/api/character/solar_system',
+        removeFavoriteSolarSystem: '/api/character/solar_system/'
 
     };
 
@@ -89,6 +90,20 @@ class SolarSystemRepository
             }
             // console.log(solarSystemList);
             return solarSystemList;
+        })
+    }
+
+    removeFavoriteSolarSystem(solarSystemUniverseId)
+    {
+        let options = {
+            method: 'DELETE',
+            mode: 'cors',
+            cache: 'no-cache'
+        };
+
+        fetch(this.endPoints.removeFavoriteSolarSystem + solarSystemUniverseId, options)
+        .then((response) => {
+            console.log(response);
         })
     }
 
