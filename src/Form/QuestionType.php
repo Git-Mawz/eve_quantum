@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class QuestionType extends AbstractType
 {
@@ -28,13 +29,21 @@ class QuestionType extends AbstractType
                 'multiple' => false,
             ])
             ->add('title', TextType::class, [
-                'label' => 'Sujet'
+                'label' => 'Sujet',
+                'required' => true,
+
             ])
             // ->add('content', TextareaType::class, [
             //     'label' => 'Question'
             // ])
             ->add('content', CKEditorType::class, [
-                'label' => 'Question'
+                'label' => 'Question',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Il semblerait qu\'il manque votre question.',
+                    ])
+                ]
             ])
             ->add('submit', SubmitType::class, [
             'label' => 'Envoyer'

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AnswerType extends AbstractType
 {
@@ -19,7 +20,13 @@ class AnswerType extends AbstractType
             //     'label' => 'Votre réponse'
             // ])
             ->add('content', CKEditorType::class, [
-                'label' => false
+                'label' => false,
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Il semblerait qu\'il manque votre réponse.',
+                    ])
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Répondre'
