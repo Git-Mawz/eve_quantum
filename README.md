@@ -21,7 +21,7 @@ Enfin, à la connexion il est redirigé vers Eve Quantum et également authentif
 
 A titre d'exemple de fonctionnalité utilisant l'ESI : actuellement un utilisateur peut rechercher le nom d'un système solaire et définir sa destination in-game en utilisant l'interface de Eve Quantum.
 
-Pour la partie administration, j'ai souhaité la séparer du reste site à l'aide d'une autre authentification n'étant pas dépendante de celle fourni par la connexion OAuth à Eve Online.
+Concernant la partie administration, j'ai souhaité la séparer du reste du site à l'aide d'une autre authentification n'étant pas dépendante de la connexion OAuth à Eve Online.
 Toute la modération est disponible dans cette interface d'administration:
 De l'édition de contenu au banissement temporaire ou définitif des membres qui n'auraient pas respecté les règles de l'application.
 
