@@ -75,6 +75,11 @@ class Question
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isClosed;
+
     public function __construct()
     {
         $this->answer = new ArrayCollection();
@@ -196,6 +201,18 @@ class Question
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getIsClosed(): ?bool
+    {
+        return $this->isClosed;
+    }
+
+    public function setIsClosed(?bool $isClosed): self
+    {
+        $this->isClosed = $isClosed;
 
         return $this;
     }
