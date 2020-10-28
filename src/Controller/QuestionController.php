@@ -70,20 +70,28 @@ class QuestionController extends AbstractController
         $newAnswer = new Answer();
         $form = $this->createForm(AnswerType::class, $newAnswer);
 
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($question->getIsClosed() !== true) {
 
-            $this->denyAccessUnlessGranted('ROLE_USER');
+            $form->handleRequest($request);
 
-            $em = $this->getDoctrine()->getManager();
-            $newAnswer->setUser($this->getUser());
-            $newAnswer->setCreatedAt(new \DateTime());
-            $newAnswer->setQuestion($question);
-            $em->persist($newAnswer);
-            $em->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->denyAccessUnlessGranted('ROLE_USER');
+                $em = $this->getDoctrine()->getManager();
+                $newAnswer->setUser($this->getUser());
+                $newAnswer->setCreatedAt(new \DateTime());
+                $newAnswer->setQuestion($question);
+                $em->persist($newAnswer);
+                $em->flush();
 
-            return $this->redirectToRoute('question_read', ['slug' => $question->getSlug()]);
+                return $this->redirectToRoute('question_read', ['slug' => $question->getSlug()]);
+            }  
+        } else {
+            // if question status isClosed === true we do not display any form
+            // we add some controle in twig so there's no error in case variable 'form does not exist'
+            return $this->render('question/read.html.twig', [
+                'question' => $question,
+            ]);
         }
 
         return $this->render('question/read.html.twig', [
@@ -128,7 +136,7 @@ class QuestionController extends AbstractController
     public function edit(Question $question, Request $request, QuestionSlugger $questionSlugger)
     {
 
-        if($question->getUser() === $this->getUser()) {
+        if($question->getUser() === $this->getUser() && $question->getIsClosed() !== true) {
    
             $form = $this->createForm(QuestionType::class, $question);
             $form->handleRequest($request);

@@ -19,7 +19,7 @@ class AnswerController extends AbstractController
      */
     public function edit(Answer $answer, Request $request)
     {
-        if($answer->getUser() === $this->getUser()) {
+        if($answer->getUser() === $this->getUser() && $answer->getQuestion()->getIsClosed() !== true ) {
    
             $form = $this->createForm(AnswerType::class, $answer);
             $form->handleRequest($request);

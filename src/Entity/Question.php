@@ -83,6 +83,7 @@ class Question
     public function __construct()
     {
         $this->answer = new ArrayCollection();
+        $this->isClosed = false;
     }
 
     public function getId(): ?int

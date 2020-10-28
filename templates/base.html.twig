@@ -51,7 +51,7 @@
                     {% endif %}
 
                     {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_MODERATOR')) %}
-                        <a href="{{path('admin_dashboard')}}" type="button" class="btn btn-link">Admin</a>
+                        <a href="{{path('admin_dashboard')}}" target="_blank" type="button" class="btn btn-link">Admin</a>
                     {% endif %}
 
                     {% if app.user is defined and app.user is not null %}

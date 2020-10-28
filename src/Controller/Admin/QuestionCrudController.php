@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Question;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -27,6 +28,7 @@ class QuestionCrudController extends AbstractCrudController
             TextEditorField::new('content'),
             AssociationField::new('user'),
             DateTimeField::new('createdAt'),
+            BooleanField::new('isClosed')
         ];
     }
 }
