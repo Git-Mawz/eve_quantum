@@ -27,7 +27,7 @@ De l'édition de contenu au banissement temporaire ou définitif des membres qui
 
 ## Dépendances
 
-* API
+* API :
   * [Eve Swagger Interface](https://esi.evetech.net/ui/)
 * Connexion OAuth :
   * [php league oauth2 client](https://oauth2-client.thephpleague.com/)
@@ -36,5 +36,5 @@ De l'édition de contenu au banissement temporaire ou définitif des membres qui
   * [EasyAdmin 3](https://symfony.com/doc/current/bundles/EasyAdminBundle/index.html)
 * Options de mise en page des input textarea :
   * [FOSCKEditorBundle](https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html)
-* CSS en front :
+* CSS :
   * [Bootstrap 4 / Bootswatch](https://bootswatch.com/slate/) 
