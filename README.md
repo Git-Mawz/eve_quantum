@@ -39,4 +39,4 @@ De l'édition de contenu au banissement temporaire ou définitif des membres qui
 * Options de mise en page des input textarea :
   * [FOSCKEditorBundle](https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html)
 * CSS :
-  * [Bootstrap 4 / Bootswatch](https://bootswatch.com/slate/) 
+  * [Bootstrap 4 / Bootswatch](https://bootswatch.com/slate/)
