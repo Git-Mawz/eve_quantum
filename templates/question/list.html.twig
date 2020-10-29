@@ -11,13 +11,11 @@
 </form>
 
 <ul class="nav nav-tabs mt-3">
-
 {% for category in categories %}
   <li class="nav-item">
     <a data-category="{{category.id}}" class="nav-link nav-search" data-toggle="tab" href="#">{{category.name}}</a>
   </li>
 {% endfor %}
-
 </ul>
 
 {# <input class="component-question-search-engine"></input> #}
