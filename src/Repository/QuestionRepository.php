@@ -19,6 +19,18 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function findUserLastQuestion($currentUser)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.user = :val')
+            ->setParameter('val', $currentUser)
+            ->orderBy('q.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */

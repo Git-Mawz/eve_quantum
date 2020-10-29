@@ -17,7 +17,13 @@
     <ul class="stat-list list-group ml-5">
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Dernier sujet actif
-            <span class="badge badge-primary badge-light ml-5">Titre dela question + lien</span>
+            <span class="badge badge-primary badge-light ml-5">
+                {% if lastSubject is null %}
+                    Aucun
+                {% else %}
+                    {{ lastSubject.title }}
+                {% endif %}
+            </span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Question Posé
@@ -27,14 +33,14 @@
             Réponses apporté
             <span class="badge badge-primary badge-light ml-5">{{ userAnswersCount }}</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        {# <li class="list-group-item d-flex justify-content-between align-items-center">
             Nombre d'avis favorables
-            <span class="badge badge-primary badge-light ml-5">1</span>
+            <span class="badge badge-primary badge-light ml-5"> (placeholder) 10 </span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Titre
-            <span class="badge badge-primary badge-light ml-5">Encyclopédie Jove</span>
-        </li>
+            <span class="badge badge-primary badge-light ml-5"> (placeholder) Encyclopédie Jove </span>
+        </li> #}
     </ul>
 </section>
 
