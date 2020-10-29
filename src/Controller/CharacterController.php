@@ -13,6 +13,13 @@ class CharacterController extends AbstractController
      */
     public function profile(EsiClient $esiClient)
     {
-        return $this->render('character/profile.html.twig');
+        $user = $this->getUser();
+        // on cherche si l'utilisateur à des question
+
+
+        return $this->render('character/profile.html.twig', [
+            'userQuestionsCount' => count($user->getQuestion()),
+            'userAnswersCount' => count($user->getAnswer())
+        ]);
     }
 }

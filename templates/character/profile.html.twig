@@ -12,8 +12,33 @@
 
 <h1>Bienvenue {{ app.user.name }} </h1>
 
-<section class="favorite-systems-dashboard">
+<section class="container d-flex">
     <img src="{{ app.user.portrait }}" style="width: 256px" class="rounded-circle">
+    <ul class="stat-list list-group ml-5">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Dernier sujet actif
+            <span class="badge badge-primary badge-light ml-5">Titre dela question + lien</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Question Posé
+            <span class="badge badge-primary badge-light ml-5">{{ userQuestionsCount }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Réponses apporté
+            <span class="badge badge-primary badge-light ml-5">{{ userAnswersCount }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Nombre d'avis favorables
+            <span class="badge badge-primary badge-light ml-5">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Titre
+            <span class="badge badge-primary badge-light ml-5">Encyclopédie Jove</span>
+        </li>
+    </ul>
+</section>
+
+<section class="favorite-systems-dashboard">
 
     <div class="mt-3">
         <h3>Tableau de Navigation</h3>
@@ -21,18 +46,7 @@
         Cliquez sur un système solaire pour définir votre destination in-game</p>
     </div>
 
-    <div class="dashboard-system-list">
-        {# <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button>
-        <button type="button" class="mt-2 btn btn-primary">Primary</button> #}
-    </div>
+    <div class="dashboard-system-list"></div>
     <div class="favorite-system-trash">
         <button id="drop-target" type="button" class="mt-2 btn btn-primary"><i class="far fa-trash-alt"></i></button>
         <span>Glisser/Déposer le système à supprimer</span>
