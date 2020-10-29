@@ -63,7 +63,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="user")
      */
-    private $answer;
+    private $answers;
 
     /**
      * @ORM\Column(type="boolean")
@@ -83,7 +83,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->questions = new ArrayCollection();
-        $this->answer = new ArrayCollection();
+        $this->answers = new ArrayCollection();
         $this->suggests = new ArrayCollection();
         $this->solarSystems = new ArrayCollection();
     }
@@ -245,15 +245,15 @@ class User implements UserInterface
     /**
      * @return Collection|Answer[]
      */
-    public function getAnswer(): Collection
+    public function getAnswers(): Collection
     {
-        return $this->answer;
+        return $this->answers;
     }
 
     public function addAnswer(Answer $answer): self
     {
-        if (!$this->answer->contains($answer)) {
-            $this->answer[] = $answer;
+        if (!$this->answers->contains($answer)) {
+            $this->answers[] = $answer;
             $answer->setUser($this);
         }
 

@@ -19,7 +19,7 @@ class CharacterController extends AbstractController
 
         return $this->render('character/profile.html.twig', [
             'userQuestionsCount' => count($user->getQuestions()),
-            'userAnswersCount' => count($user->getAnswer())
+            'userAnswersCount' => count($user->getAnswers())
         ]);
     }
 }
