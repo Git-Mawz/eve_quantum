@@ -8,6 +8,7 @@ use App\Entity\Admin;
 use App\Entity\Answer;
 use App\Entity\Category;
 use App\Entity\Question;
+use App\Entity\SolarSystem;
 use App\Entity\Suggest;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -62,6 +63,10 @@ class DashboardController extends AbstractDashboardController
 
         if ($this->isGranted('ROLE_ADMIN')) {
             yield MenuItem::linkToCrud('Idées', 'far fa-lightbulb', Suggest::class);
+        }
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('Système Solaires', 'fas fa-sun', SolarSystem::class);
         }
         
         yield MenuItem::linkToCrud('Questions', 'fas fa-file-alt', Question::class);
