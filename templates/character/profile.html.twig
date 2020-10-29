@@ -21,7 +21,7 @@
                 {% if lastSubject is null %}
                     Aucun
                 {% else %}
-                    {{ lastSubject.title }}
+                    <a style="color:black" href="{{ path('question_read',{'slug': lastSubject.slug } ) }}">{{ lastSubject.title }}</a>
                 {% endif %}
             </span>
         </li>
