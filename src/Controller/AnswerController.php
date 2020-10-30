@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Answer;
+use App\Entity\Like;
 use App\Form\AnswerType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,4 +42,24 @@ class AnswerController extends AbstractController
             return $this->redirectToRoute('question_list');
         }
     }
+
+    /**
+     * @Route("/{id}/add_like", name="add_like", requirements={"id"="\d+"}, methods={"POST"})
+     */
+    public function addLike(Answer $answer, EntityManagerInterface $em)
+    {
+        $user = $this->getUser();
+
+        $like = new Like();
+        $like->setUser($user);
+        $like->setAnswer($answer);
+        $em->persist($like);
+
+        $em->flush();
+
+        return $this->redirectToRoute('question_read', ['slug' => $answer->getQuestion()->getSlug()]);
+
+
+    }
+
 }

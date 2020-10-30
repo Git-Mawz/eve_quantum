@@ -33,6 +33,15 @@
         <span> {{ answer.user.name }} <br> {{answer.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</span>
         <p>{{answer.content|raw}}</p>
 
+        {# ! Likes #}
+
+
+        <form method="post" action="{{ path('answer_add_like', {id:answer.id}) }}"><button type="submit" class="like-button-toggle"><i class="fas fa-check"></i></button></form>
+        <span class="badge badge-primary badge-light"> {{ answer.likes|length }} </span>
+
+        {# ! Likes #}
+
+
         {% if app.user == answer.user and question.isClosed != true %}
             <a class="btn-primary btn" style="text-decoration: none" href="{{ path('answer_edit', {id:answer.id}) }}">Editer</a>
         {% endif %}
