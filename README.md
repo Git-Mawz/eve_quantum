@@ -11,11 +11,11 @@ Une fois la formation terminée, j'ai commencé le developpement de Eve Quantum 
 ## Technologies
 
 Pour la partie back-end, Symfony 5 est utilisé suivant le design pattern MVC, avec twig en complément comme moteur de templating.
-Symfony est également utilisé comme API Rest pour les parties dynamiques de l'application, qui elles, sont en JS vanilla.
+Symfony est également utilisé comme API REST pour les parties dynamiques de l'application, qui elles, sont en JS vanilla.
 
-Eve Online propose aux developpeurs une API Rest très complète (Eve Swagger Interface ou ESI) permettant aux utilisateurs connectés de pouvoir consulter les informations concernant leur personnage, mais également pouvoir les modifier sans être directement connecté au jeu.
-La connexion à cette API s'effectué via le protocale OAuth 2.0.
-Un de mes challenges personnels à été d'intégrer la connexion OAuth de l'ESI au composant Security de Symfony.
+Eve Online propose aux developpeurs une API REST très complète (Eve Swagger Interface ou ESI) permettant aux utilisateurs connectés de pouvoir consulter les informations concernant leur personnage, mais également pouvoir les modifier sans être directement connecté au jeu.
+La connexion à cette API s'effectué via un SSO et le protocale OAuth 2.0.
+Un de mes challenges personnels à été d'intégrer le SSO de Eve Online au composant Security de Symfony.
 
 Lorsque l'utilisateur arrive sur Eve Quantum, il est invité à se connecter afin de profiter de plus de fonctionnalités.
 Lorsqu'il se connecte, il est redirigé vers le site officiel Eve Online, où une interface lui demande son nom d'utilisateur et son mot de passe de jeu. Il est également averti des scopes de l'API qui sont necessaires à l'application pour fonctionner.
@@ -23,7 +23,7 @@ Enfin, à la connexion il est redirigé vers Eve Quantum et également authentif
 
 A titre d'exemple de fonctionnalité utilisant l'ESI : actuellement un utilisateur peut rechercher le nom d'un système solaire et définir sa destination in-game en utilisant l'interface de Eve Quantum.
 
-Concernant la partie administration, j'ai souhaité la séparer du reste du site à l'aide d'une autre authentification n'étant pas dépendante de la connexion OAuth à Eve Online.
+Concernant la partie administration, j'ai souhaité la séparer du reste du site à l'aide d'une autre authentification n'étant pas dépendante de la connexion OAuth au SSO de Eve Online.
 Toute la modération est disponible dans cette interface d'administration:
 De l'édition de contenu au banissement temporaire ou définitif des membres qui n'auraient pas respecté les règles de l'application.
 
