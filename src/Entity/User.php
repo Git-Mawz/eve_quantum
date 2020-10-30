@@ -80,12 +80,18 @@ class User implements UserInterface
      */
     private $solarSystems;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
         $this->answers = new ArrayCollection();
         $this->suggests = new ArrayCollection();
         $this->solarSystems = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function __toString() {
@@ -339,6 +345,37 @@ class User implements UserInterface
         if ($this->solarSystems->contains($solarSystem)) {
             $this->solarSystems->removeElement($solarSystem);
             $solarSystem->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+            // set the owning side to null (unless already changed)
+            if ($like->getUser() === $this) {
+                $like->setUser(null);
+            }
         }
 
         return $this;
