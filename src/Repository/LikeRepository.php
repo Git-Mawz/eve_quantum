@@ -19,6 +19,21 @@ class LikeRepository extends ServiceEntityRepository
         parent::__construct($registry, Like::class);
     }
 
+
+    public function findIfUserAndAnswerMatchOnLike($user, $answer)
+    {
+
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.user = :user')
+            ->andWhere('l.answer = :answer')
+            ->setParameter('user', $user)
+            ->setParameter('answer', $answer)
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
     // /**
     //  * @return Like[] Returns an array of Like objects
     //  */

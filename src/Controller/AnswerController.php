@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Answer;
 use App\Entity\Like;
 use App\Form\AnswerType;
+use App\Repository\AnswerRepository;
+use App\Repository\LikeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,19 +48,26 @@ class AnswerController extends AbstractController
     /**
      * @Route("/{id}/add_like", name="add_like", requirements={"id"="\d+"}, methods={"POST"})
      */
-    public function addLike(Answer $answer, EntityManagerInterface $em)
+    public function addLike(Answer $answer, EntityManagerInterface $em, LikeRepository $likeRepository)
     {
         $user = $this->getUser();
+    
+        if($likeRepository->findIfUserAndAnswerMatchOnLike($user, $answer)) {
 
-        $like = new Like();
-        $like->setUser($user);
-        $like->setAnswer($answer);
-        $em->persist($like);
+            return $this->redirectToRoute('question_read', ['slug' => $answer->getQuestion()->getSlug()]);
 
-        $em->flush();
+        } else {
 
-        return $this->redirectToRoute('question_read', ['slug' => $answer->getQuestion()->getSlug()]);
-
+            $newLike = new Like();
+            $newLike->setUser($user);
+            $newLike->setAnswer($answer);
+            $em->persist($newLike);
+    
+            $em->flush();
+    
+            return $this->redirectToRoute('question_read', ['slug' => $answer->getQuestion()->getSlug()]);
+            
+        }
 
     }
 
