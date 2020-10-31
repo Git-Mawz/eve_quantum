@@ -38,7 +38,7 @@
         {# ! Likes #}
 
         {% if app.user is not null %}
-            <form method="post" action="{{ path('answer_toggle_like', {id:answer.id}) }}">
+            <form data-answer-id={{ answer.id }} class="like-form" method="post" action="{{ path('answer_toggle_like', {id:answer.id}) }}">
                 <button type="submit" class="btn btn-sm">
                     <i
                     {% for like in answer.likes %}
@@ -65,4 +65,9 @@
     {% endfor %}
     
 
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('assets/js/source/Repository/LikeRepository.js') }}"></script>
+<script src="{{ asset('assets/js/source/Component/ToggleLike.js') }}"></script>
 {% endblock %}

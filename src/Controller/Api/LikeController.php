@@ -33,7 +33,8 @@ class LikeController extends AbstractController
 
             return $this->json([
                 'message' => $user->getName() . ' a enlever son like de la réponse de ' . $answer->getUser(),
-                'likeCount' => count($answer->getLikes())
+                'likeCount' => count($answer->getLikes()),
+                'likeStatus' => false
             ]);
 
         } else {
@@ -47,7 +48,8 @@ class LikeController extends AbstractController
     
             return $this->json([
                 'message' => $user->getName() . ' viens de like la réponse de ' . $answer->getUser(),
-                'likeCount' => count($answer->getLikes())
+                'likeCount' => count($answer->getLikes()),
+                'likeStatus' => true
             ]);
 
         }

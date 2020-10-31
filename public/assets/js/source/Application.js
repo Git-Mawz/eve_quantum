@@ -36,6 +36,13 @@ class Application
     return this._services['questionRepository'];
   }
 
+  getLikeRepository() {
+    if(typeof(this._services['likeRepository']) == 'undefined') {
+      this._services['likeRepository'] = new LikeRepository();
+    }
+    return this._services['likeRepository'];
+  }
+
   //==================================================================================
 
   loadDependencies(dependencies = null) {
@@ -60,6 +67,10 @@ class Application
       this.actionSolarSystemSearchEngine();
       this.actionFavoriteSolarSystemManager();
       this.actionSetDestination();
+    }
+
+    if(document.location.toString().match(/question\/read/)) {
+      this.actionToggleLike();
     }
 
   }
@@ -100,6 +111,12 @@ class Application
   actionSetDestination() {
     const inGameSetDestination = new InGameSetDestination();
     inGameSetDestination.initialize();
+  }
+
+  // add and remove likes on answer
+  actionToggleLike() {
+    const toggleLike = new ToggleLike(this.getLikeRepository());
+    toggleLike.initialize();
   }
 
 
