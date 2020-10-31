@@ -43,7 +43,7 @@
 
         {# ! Likes #}
 
-        {% if app.user is not null %}
+        {% if app.user is not null and answer.user != app.user %}
             <form data-answer-id={{ answer.id }} class="like-form" method="post" action="{{ path('answer_toggle_like', {id:answer.id}) }}">
                 <button type="submit" class="btn btn-sm">
                     <i
@@ -56,7 +56,8 @@
                 </button>
             </form>
         {% endif %}
-        <span class="badge badge-primary"> Dans le mille </span>
+        <br>
+        <span class="badge badge-primary"> réponse utile </span>
         <span class="like-counter-{{ answer.id }} badge badge-pill badge-light"> {{ answer.likes|length }} </span>
 
         {# ! Likes #}

@@ -79,13 +79,13 @@ class Application
   // micro controller Questions
   actionQuestionSearchEngine() {
     // Search Engine
-    console.log("%cQuestion search engine", 'font-size: 1.1rem;');
+    // console.log("%cQuestion search engine", 'font-size: 1.1rem;');
     const selector = ".component-question-search-engine";
     const questionSearchEngine = new QuestionSearchEngine(document.querySelector(selector), this.getQuestionRepository() );
     questionSearchEngine.initialize();
     
     // Question by Category component
-    console.log("%cQuestion by category", 'font-size: 1.1rem;');
+    // console.log("%cQuestion by category", 'font-size: 1.1rem;');
     const questionDisplayByCategory = new QuestionDisplayByCategory(this.getBaseURL(), this.getQuestionRepository());
     questionDisplayByCategory.initialize();
   }
@@ -93,7 +93,7 @@ class Application
   // micro controller Solar System
   actionSolarSystemSearchEngine() {
     // Search Engine
-    console.log("%cSolar System Search engine", 'font-size: 1.1rem;');
+    // console.log("%cSolar System Search engine", 'font-size: 1.1rem;');
 
     const form = document.querySelector(".solar-system-form");
     const input = document.querySelector(".component-solar-system-search");
