@@ -35,9 +35,11 @@
 
         {# ! Likes #}
 
-
-        <form method="post" action="{{ path('answer_add_like', {id:answer.id}) }}"><button type="submit" class="like-button-toggle"><i class="fas fa-check"></i></button></form>
-        <span class="badge badge-primary badge-light"> {{ answer.likes|length }} </span>
+        {% if app.user is not null %}
+        <form method="post" action="{{ path('answer_toggle_like', {id:answer.id}) }}"><button type="submit" class="like-button-toggle"><i class="fas fa-check"></i></button></form>
+        {% endif %}
+        <span class="badge badge-primary"> Dans le mille </span>
+        <span class="badge badge-pill badge-light"> {{ answer.likes|length }} </span>
 
         {# ! Likes #}
 

@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Entity\Answer;
 use App\Entity\Like;
+use App\Repository\LikeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,24 +16,41 @@ class LikeController extends AbstractController
 {
     
     /**
-     * @Route("/add/{id}", name="add", methods={"POST"})
+     * @Route("/toggle/{id}", name="toggle", methods={"POST"})
      */
-    public function add(Answer $answer, EntityManagerInterface $em)
+    public function toggle(Answer $answer, EntityManagerInterface $em, LikeRepository $likeRepository)
     {
         $this->denyAccessUnlessGranted("ROLE_USER");
 
-        $currentUser = $this->getUser();
+        $user = $this->getUser();
+        $like = $likeRepository->findIfUserAndAnswerMatchOnLike($user, $answer);
+    
+        if($like) {
 
+            $user->removeLike($like);
+            $answer->removeLike($like);
+            $em->flush();
 
-        $like = new Like();
-        $like->setUser($currentUser);
-        $like->setAnswer($answer);
-        $em->persist($like);
-        $em->flush();
+            return $this->json([
+                'message' => $user->getName() . ' a enlever son like de la réponse de ' . $answer->getUser(),
+                'likeCount' => count($answer->getLikes())
+            ]);
 
-        return $this->json([
-            'message' => $currentUser->getName() . ' just liked the answer with ID ' . $answer->getId()
-        ]);
+        } else {
+            
+            $newLike = new Like();
+            $newLike->setUser($user);
+            $newLike->setAnswer($answer);
+            $em->persist($newLike);
+    
+            $em->flush();
+    
+            return $this->json([
+                'message' => $user->getName() . ' viens de like la réponse de ' . $answer->getUser(),
+                'likeCount' => count($answer->getLikes())
+            ]);
+
+        }
     }
 
     /**

@@ -46,18 +46,23 @@ class AnswerController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/add_like", name="add_like", requirements={"id"="\d+"}, methods={"POST"})
+     * @Route("/{id}/toggle_like", name="toggle_like", requirements={"id"="\d+"}, methods={"POST"})
      */
-    public function addLike(Answer $answer, EntityManagerInterface $em, LikeRepository $likeRepository)
+    public function toggleLike(Answer $answer, EntityManagerInterface $em, LikeRepository $likeRepository)
     {
         $user = $this->getUser();
+        $like = $likeRepository->findIfUserAndAnswerMatchOnLike($user, $answer);
     
-        if($likeRepository->findIfUserAndAnswerMatchOnLike($user, $answer)) {
+        if($like) {
+
+            $user->removeLike($like);
+            $answer->removeLike($like);
+            $em->flush();
 
             return $this->redirectToRoute('question_read', ['slug' => $answer->getQuestion()->getSlug()]);
 
         } else {
-
+            
             $newLike = new Like();
             $newLike->setUser($user);
             $newLike->setAnswer($answer);
@@ -66,7 +71,7 @@ class AnswerController extends AbstractController
             $em->flush();
     
             return $this->redirectToRoute('question_read', ['slug' => $answer->getQuestion()->getSlug()]);
-            
+
         }
 
     }

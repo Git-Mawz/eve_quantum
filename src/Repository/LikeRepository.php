@@ -29,7 +29,7 @@ class LikeRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->setParameter('answer', $answer)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
 
     }
