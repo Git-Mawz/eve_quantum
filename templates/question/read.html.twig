@@ -22,7 +22,9 @@
     {% if app.user is not null and form is defined %}
         {{ form_start(form) }}
         {{ form_end(form) }}
-    {% else %}
+    {% elseif app.user is null and question.isClosed == true %}
+        <button type="button" class="btn btn-primary mb-3">Sujet fermé <i class="fas fa-lock"></i></button>
+    {% elseif app.user is not null and question.isClosed == true %}
         <button type="button" class="btn btn-primary mb-3">Sujet fermé <i class="fas fa-lock"></i></button>
     {% endif %}
 
