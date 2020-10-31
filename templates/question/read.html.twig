@@ -35,6 +35,12 @@
         <span> {{ answer.user.name }} <br> {{answer.createdAt|date("d/m/Y à H:i", "Europe/Paris") }}</span>
         <p>{{answer.content|raw}}</p>
 
+
+        {% if app.user == answer.user and question.isClosed != true %}
+            <a class="mb-1 btn-primary btn" style="text-decoration: none" href="{{ path('answer_edit', {id:answer.id}) }}">Editer</a>
+        {% endif %}
+
+
         {# ! Likes #}
 
         {% if app.user is not null %}
@@ -46,19 +52,16 @@
                             style="color:green"
                         {% endif %}
                     {% endfor %}
-                    class="fas fa-check"></i>
+                    class="check-icon fas fa-check"></i>
                 </button>
             </form>
         {% endif %}
         <span class="badge badge-primary"> Dans le mille </span>
-        <span data-answer-id={{ answer.id }} class="badge badge-pill badge-light"> {{ answer.likes|length }} </span>
+        <span class="like-counter-{{ answer.id }} badge badge-pill badge-light"> {{ answer.likes|length }} </span>
 
         {# ! Likes #}
 
 
-        {% if app.user == answer.user and question.isClosed != true %}
-            <a class="btn-primary btn" style="text-decoration: none" href="{{ path('answer_edit', {id:answer.id}) }}">Editer</a>
-        {% endif %}
 
     </div>
 
