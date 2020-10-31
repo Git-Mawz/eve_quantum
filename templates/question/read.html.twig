@@ -36,10 +36,20 @@
         {# ! Likes #}
 
         {% if app.user is not null %}
-        <form method="post" action="{{ path('answer_toggle_like', {id:answer.id}) }}"><button type="submit" class="like-button-toggle"><i class="fas fa-check"></i></button></form>
+            <form method="post" action="{{ path('answer_toggle_like', {id:answer.id}) }}">
+                <button type="submit" class="btn btn-sm">
+                    <i
+                    {% for like in answer.likes %}
+                        {% if app.user == like.user %}
+                            style="color:green"
+                        {% endif %}
+                    {% endfor %}
+                    class="fas fa-check"></i>
+                </button>
+            </form>
         {% endif %}
         <span class="badge badge-primary"> Dans le mille </span>
-        <span class="badge badge-pill badge-light"> {{ answer.likes|length }} </span>
+        <span data-answer-id={{ answer.id }} class="badge badge-pill badge-light"> {{ answer.likes|length }} </span>
 
         {# ! Likes #}
 
