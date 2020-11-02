@@ -32,6 +32,17 @@ class AnswerRepository extends ServiceEntityRepository
         ;
     }
 
+    // public function currentUserTotalLikes($user) {
+    //     return $this->createQueryBuilder('a')
+    //     ->addSelect('like', 'l')
+    //     ->andWhere('a.user = :user')
+    //     ->andWhere('l.likedUser = :user')
+    //     ->setParameter('val', $user)
+    //     ->getQuery()
+    //     ->getResult()
+    //     ;
+    // }
+
     // /**
     //  * @return Answer[] Returns an array of Answer objects
     //  */
