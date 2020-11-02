@@ -35,12 +35,19 @@ class CharacterController extends AbstractController
             $lastSubject = null;
         }
             
-        // dd($lastQuestion, $lastAnswer);
+
+        $userAnswers = $user->getAnswers();
+        $likes = 0;
+        foreach($userAnswers as $userAnswer) {
+            $likes += count($userAnswer->getLikes());
+        }
+
 
         return $this->render('character/profile.html.twig', [
             'userQuestionsCount' => count($user->getQuestions()),
             'userAnswersCount' => count($user->getAnswers()),
             'lastSubject' => $lastSubject,
+            'userTotalLikes' => $likes
         ]);
     }
 }
