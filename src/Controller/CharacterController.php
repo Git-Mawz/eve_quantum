@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,7 +13,7 @@ class CharacterController extends AbstractController
     /**
      * @Route("/profile", name="character_profile")
      */
-    public function profile(QuestionRepository $questionRepository, AnswerRepository $answerRepository)
+    public function profile(QuestionRepository $questionRepository, AnswerRepository $answerRepository, UserRepository $userRepository)
     {
         $user = $this->getUser();
         
@@ -34,13 +35,15 @@ class CharacterController extends AbstractController
             $lastSubject = null;
         }
             
-
-        $userAnswers = $user->getAnswers();
-        $receivedLikes = 0;
-        foreach($userAnswers as $userAnswer) {
-            $receivedLikes += count($userAnswer->getLikes());
-        }
-
+        
+        // $userAnswers = $user->getAnswers();
+        // $receivedLikes = 0;
+        // foreach($userAnswers as $userAnswer) {
+        //     $receivedLikes += count($userAnswer->getLikes());
+        // }
+            
+        $receivedLikes = $userRepository->findAllReceivedLikes($user);
+        // dd($receivedLikes);
 
         return $this->render('character/profile.html.twig', [
             'userQuestionsCount' => count($user->getQuestions()),

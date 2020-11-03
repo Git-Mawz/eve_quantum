@@ -19,6 +19,22 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+
+    public function findAllReceivedLikes($user)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                '
+                SELECT count(DISTINCT l)
+                FROM App\Entity\Like l
+                JOIN App\Entity\Answer a
+                WHERE a.user = :user
+                '
+            )
+            ->setParameter(':user', $user)
+            ->getSingleScalarResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
