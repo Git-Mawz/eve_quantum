@@ -24,10 +24,10 @@ class QuestionRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('q')
             ->andWhere('q.user = :val')
             ->setParameter('val', $currentUser)
-            ->orderBy('q.id', 'DESC')
+            ->orderBy('q.createdAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
 

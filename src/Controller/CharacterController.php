@@ -21,16 +21,16 @@ class CharacterController extends AbstractController
         $lastQuestion = $questionRepository->findUserLastQuestion($user);
         $lastAnswer = $answerRepository->findUserLastAnswer($user);
 
-        if (isset($lastQuestion[0]) && isset($lastAnswer[0])) {
-            if($lastQuestion[0]->getCreatedAt() > $lastAnswer[0]->getCreatedAt()) {
-                $lastSubject = $lastQuestion[0];
+        if ($lastQuestion && $lastAnswer) {
+            if($lastQuestion->getCreatedAt() > $lastAnswer->getCreatedAt()) {
+                $lastSubject = $lastQuestion;
             } else {
-                $lastSubject = $lastAnswer[0]->getQuestion();
+                $lastSubject = $lastAnswer->getQuestion();
             }
-        } else if (isset($lastQuestion[0]) && !isset($lastAnswer[0])) {
-            $lastSubject = $lastQuestion[0];
-        } else if (!isset($lastQuestion[0]) && isset($lastAnswer[0])) {
-            $lastSubject = $lastAnswer[0]->getQuestion();
+        } else if ($lastQuestion && !$lastAnswer) {
+            $lastSubject = $lastQuestion;
+        } else if (!$lastQuestion && $lastAnswer) {
+            $lastSubject = $lastAnswer->getQuestion();
         } else {
             $lastSubject = null;
         }
