@@ -36,17 +36,17 @@ class CharacterController extends AbstractController
             
 
         $userAnswers = $user->getAnswers();
-        $likes = 0;
+        $receivedLikes = 0;
         foreach($userAnswers as $userAnswer) {
-            $likes += count($userAnswer->getLikes());
+            $receivedLikes += count($userAnswer->getLikes());
         }
 
-        
+
         return $this->render('character/profile.html.twig', [
             'userQuestionsCount' => count($user->getQuestions()),
             'userAnswersCount' => count($user->getAnswers()),
             'lastSubject' => $lastSubject,
-            'userTotalLikes' => $likes
+            'userTotalLikes' => $receivedLikes
         ]);
     }
 }
