@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
-use App\Service\EsiClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -42,7 +41,7 @@ class CharacterController extends AbstractController
             $likes += count($userAnswer->getLikes());
         }
 
-
+        
         return $this->render('character/profile.html.twig', [
             'userQuestionsCount' => count($user->getQuestions()),
             'userAnswersCount' => count($user->getAnswers()),
