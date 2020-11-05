@@ -1,0 +1,58 @@
+{
+    "caldari_stations": [
+      {
+        "id": 60015001,
+        "name": "Akiainavas III - School of Applied Knowledge"
+      },
+      {
+        "id": 60015005,
+        "name": "Jouvulen III - Science and Trade Institute School"
+      },
+      {
+        "id": 60015027,
+        "name": "Uitra VI - Moon 4 - State War Academy"
+      }
+    ],
+    "minmatar_stations" : [
+        {
+            "id": 60015041,
+            "name": "Malukker I - Republic University"
+        },
+        {
+            "id": 60015037,
+            "name": "Hadaugago II - Moon 1 - Republic Military School"
+        },
+        {
+            "id": 60015046,
+            "name": "Embod IV - Moon 10 - Pator Tech School"
+        }
+    ],
+    "amarr_stations" : [
+        {
+            "id": 60015020,
+            "name": "Conoban VII - Moon 8 - Hedion University"
+        },
+        {
+            "id": 60015010,
+            "name": "Pasha VII - Moon 3 - Royal Amarr Institute School"
+        },
+        {
+            "id": 60015021,
+            "name": "Deepari II - Imperial Academy"
+        }
+    ],
+    "gallente_stations" : [
+        {
+            "id": 60015036,
+            "name": "Clellinon VI - Moon 11 - Center for Advanced Studies School"
+        },
+        {
+            "id": 60015029,
+            "name": "Couster II - Moon 1 - Federal Navy Academy"
+        },
+        {
+            "id": 60015016,
+            "name": "Trossere VII - Moon 3 - University of Caille"
+        }
+    ]
+}
