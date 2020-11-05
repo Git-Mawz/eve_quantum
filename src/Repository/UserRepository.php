@@ -25,10 +25,12 @@ class UserRepository extends ServiceEntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 '
-                SELECT count(DISTINCT l)
+                SELECT COUNT(l.id)
                 FROM App\Entity\Like l
-                JOIN App\Entity\Answer a
-                WHERE a.user = :user
+                LEFT JOIN App\Entity\Answer a WITH a.id = l.answer
+                LEFT JOIN App\Entity\User u WITH u.id = a.user
+                WHERE u = :user
+                GROUP BY u
                 '
             )
             ->setParameter(':user', $user)
