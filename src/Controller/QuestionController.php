@@ -78,9 +78,13 @@ class QuestionController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->denyAccessUnlessGranted('ROLE_USER');
                 $em = $this->getDoctrine()->getManager();
+
                 $newAnswer->setUser($this->getUser());
                 $newAnswer->setCreatedAt(new \DateTime());
                 $newAnswer->setQuestion($question);
+
+                $question->setUpdatedAt(new \DateTime());
+
                 $em->persist($newAnswer);
                 $em->flush();
 
@@ -144,7 +148,8 @@ class QuestionController extends AbstractController
                 
                 $em = $this->getDoctrine()->getManager();
                 $question->setSlug($questionSlugger->sluggifyQuestionTitle($question->getTitle()));
-                $question->setUpdatedAt(new \DateTime());
+                // not necessary as we don't want edited subject to be bumped to the top of the list
+                // $question->setUpdatedAt(new \DateTime());
                 $em->flush();
                 
                 return $this->redirectToRoute('question_list');
