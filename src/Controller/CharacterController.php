@@ -18,7 +18,6 @@ class CharacterController extends AbstractController
     {
         $user = $this->getUser();
         
-        // TODO make a custom query to get last question or last answer for a given user
         $lastQuestion = $questionRepository->findUserLastQuestion($user);
         $lastAnswer = $answerRepository->findUserLastAnswer($user);
 
@@ -37,6 +36,12 @@ class CharacterController extends AbstractController
         }
         
         $userReceivedLikes = $userRepository->findAllReceivedLikes($user);
+        // patch so request result is turned into an int
+        if (count($userReceivedLikes) === 0) {
+            $userReceivedLikes = 0;
+        } else {
+            $userReceivedLikes = $userReceivedLikes[0][1];
+        }
 
         return $this->render('character/profile.html.twig', [
             'userQuestionsCount' => count($user->getQuestions()),
@@ -73,7 +78,13 @@ class CharacterController extends AbstractController
         }
 
         $userReceivedLikes = $userRepository->findAllReceivedLikes($foreignUser);
-
+        // patch so request result is turned into an int
+        if (count($userReceivedLikes) === 0) {
+            $userReceivedLikes = 0;
+        } else {
+            $userReceivedLikes = $userReceivedLikes[0][1];
+        }
+        
         
         return $this->render('character/other_profile.html.twig', [
             'foreignUser' => $foreignUser,
