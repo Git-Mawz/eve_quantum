@@ -20,7 +20,7 @@ class QuestionController extends AbstractController
      */
     public function browse(QuestionRepository $questionRepository, SerializerInterface $serializer)
     {
-        $questions = $questionRepository->findAll();
+        $questions = $questionRepository->findBy([], ['updatedAt' => 'DESC']);
         $data = $serializer->normalize($questions, 'json', ['groups' => ['question_browse']]);
 
         return $this->json(['questions' => $data]);
@@ -33,7 +33,7 @@ class QuestionController extends AbstractController
     {
         if ($category instanceof Category) {
 
-            $questions = $questionRepository->findBy(['category' => $category]);
+            $questions = $questionRepository->findBy(['category' => $category], ['updatedAt' => 'DESC']);
             $data = $serializer->normalize($questions, 'json', ['groups' => ['question_browse']]);
             return $this->json(['questions' => $data]);
 

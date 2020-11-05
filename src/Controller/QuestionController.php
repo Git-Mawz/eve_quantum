@@ -28,7 +28,7 @@ class QuestionController extends AbstractController
         // $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('question/list.html.twig', [
             'questions' => $questionRepository->findBy([], ['updatedAt' => 'DESC']),
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categoryRepository->findBy([], ['name' => 'ASC']),
         ]);
     }
 
