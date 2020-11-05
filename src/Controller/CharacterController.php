@@ -49,7 +49,7 @@ class CharacterController extends AbstractController
 
 
     /**
-     * @Route("/profile/{character_owner_hash}", name="other_character_profile", requirements={"character_owner_hash"=".+"})
+     * @Route("/profile/{character_owner_hash}", name="other_character_profile", requirements={"character_owner_hash"=".*"})
      */
 
     public function otherProfile (User $foreignUser, QuestionRepository $questionRepository, AnswerRepository $answerRepository, UserRepository $userRepository)
