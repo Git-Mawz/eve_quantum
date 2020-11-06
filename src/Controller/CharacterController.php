@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\UserRepository;
+use App\Service\LastSubjectFinder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,26 +15,11 @@ class CharacterController extends AbstractController
     /**
      * @Route("/profile", name="character_profile")
      */
-    public function profile(QuestionRepository $questionRepository, AnswerRepository $answerRepository, UserRepository $userRepository)
+    public function profile(LastSubjectFinder $lastSubjectFinder, UserRepository $userRepository, AnswerRepository $answerRepository, QuestionRepository $questionRepository)
     {
         $user = $this->getUser();
         
-        $lastQuestion = $questionRepository->findUserLastQuestion($user);
-        $lastAnswer = $answerRepository->findUserLastAnswer($user);
-
-        if ($lastQuestion && $lastAnswer) {
-            if($lastQuestion->getCreatedAt() > $lastAnswer->getCreatedAt()) {
-                $lastSubject = $lastQuestion;
-            } else {
-                $lastSubject = $lastAnswer->getQuestion();
-            }
-        } else if ($lastQuestion && !$lastAnswer) {
-            $lastSubject = $lastQuestion;
-        } else if (!$lastQuestion && $lastAnswer) {
-            $lastSubject = $lastAnswer->getQuestion();
-        } else {
-            $lastSubject = null;
-        }
+        $lastSubject = $lastSubjectFinder->findUserLastSubject($user, $questionRepository, $answerRepository);
         
         $userReceivedLikes = $userRepository->findAllReceivedLikes($user);
         // patch so request result is turned into an int
@@ -57,25 +43,9 @@ class CharacterController extends AbstractController
      * @Route("/profile/{character_owner_hash}", name="other_character_profile", requirements={"character_owner_hash"=".*"})
      */
 
-    public function otherProfile (User $foreignUser, QuestionRepository $questionRepository, AnswerRepository $answerRepository, UserRepository $userRepository)
+    public function otherProfile (User $foreignUser, LastSubjectFinder $lastSubjectFinder, UserRepository $userRepository, AnswerRepository $answerRepository, QuestionRepository $questionRepository)
     {
-
-        $lastQuestion = $questionRepository->findUserLastQuestion($foreignUser);
-        $lastAnswer = $answerRepository->findUserLastAnswer($foreignUser);
-
-        if ($lastQuestion && $lastAnswer) {
-            if($lastQuestion->getCreatedAt() > $lastAnswer->getCreatedAt()) {
-                $lastSubject = $lastQuestion;
-            } else {
-                $lastSubject = $lastAnswer->getQuestion();
-            }
-        } else if ($lastQuestion && !$lastAnswer) {
-            $lastSubject = $lastQuestion;
-        } else if (!$lastQuestion && $lastAnswer) {
-            $lastSubject = $lastAnswer->getQuestion();
-        } else {
-            $lastSubject = null;
-        }
+        $lastSubject = $lastSubjectFinder->findUserLastSubject($foreignUser, $questionRepository, $answerRepository);
 
         $userReceivedLikes = $userRepository->findAllReceivedLikes($foreignUser);
         // patch so request result is turned into an int
