@@ -141,13 +141,18 @@ class QuestionController extends AbstractController
     {
 
         if($question->getUser() === $this->getUser() && $question->getIsClosed() !== true) {
-   
+
+            $oldQuestionTitle = $question->getTitle();
             $form = $this->createForm(QuestionType::class, $question);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 
                 $em = $this->getDoctrine()->getManager();
-                $question->setSlug($questionSlugger->sluggifyQuestionTitle($question->getTitle()));
+                
+                if ($question->getTitle() !== $oldQuestionTitle) {
+                    $question->setSlug($questionSlugger->sluggifyQuestionTitle($question->getTitle()));
+                }
+
                 // not necessary as we don't want edited subject to be bumped to the top of the list
                 // $question->setUpdatedAt(new \DateTime());
                 $em->flush();
