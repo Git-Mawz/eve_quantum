@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}- Local Spy{% endblock %}
+
+{% block body %}
+
+    <h1 class="display-4">Local Spy</h1>
+    <p class="lead">Un pas beau en local ?</p>
+    <hr class="my-2">
+    <p>
+        1. Selectionner dans votre local le pas beau<br>
+        2. Ctrl + C <br>
+        3. Cliquer sur Identifier
+    </p>
+    <div id="spy-container">
+        <a id="local-spy">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Identifier
+        </a>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('assets/js/source/Component/KillboardClipboard.js') }}"></script>
+{% endblock %}

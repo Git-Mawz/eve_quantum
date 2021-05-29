@@ -73,6 +73,10 @@ class Application
       this.actionToggleLike();
     }
 
+    if(document.location.toString().match(/toolbox\/clipboard/)) {
+      this.actionKillboardClipboard();
+    }
+
   }
 
 
@@ -117,6 +121,11 @@ class Application
   actionToggleLike() {
     const toggleLike = new ToggleLike(this.getLikeRepository());
     toggleLike.initialize();
+  }
+
+  actionKillboardClipboard() {
+    const killboardClipboard = new KillboardClipboard();
+    killboardClipboard.initialize();
   }
 
 
