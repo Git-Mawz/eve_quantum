@@ -56,6 +56,10 @@ a.localspy {
    );
 }
 
+a.localspy:nth-child(2) {
+   filter: hue-rotate(90deg);
+}
+
 a.localspy:hover {
    background-color: #03e9f4;
    color: #1C1E22;
