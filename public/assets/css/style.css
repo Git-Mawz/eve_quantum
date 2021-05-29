@@ -38,11 +38,11 @@ div#spy-container{
    align-items: center;
 }
 
-a#local-spy {
+a.localspy {
    position: relative;
    display: inline-block;
    padding: 25px 30px;
-   margin: 100px 0;
+   margin: 100px 50px;
    box-sizing: border-box;
    color: #03e9f4;
    font-size: 24px;
@@ -56,7 +56,7 @@ a#local-spy {
    );
 }
 
-a#local-spy:hover {
+a.localspy:hover {
    background-color: #03e9f4;
    color: #1C1E22;
    box-shadow: 0 0 5px #03e9f4, 
@@ -65,12 +65,12 @@ a#local-spy:hover {
                0 0 200px #03e9f4;
 }
 
-a#local-spy > span {
+a.localspy > span {
    position: absolute;
    display: block;
 }
 
-a#local-spy > span:nth-child(1) {
+a.localspy > span:nth-child(1) {
    top: 0;
    left: -100%;
    width: 100%;
@@ -88,7 +88,7 @@ a#local-spy > span:nth-child(1) {
    }
 }
 
-a#local-spy > span:nth-child(2) {
+a.localspy > span:nth-child(2) {
    top: -100%;
    right: 0;
    width: 2px;
@@ -107,7 +107,7 @@ a#local-spy > span:nth-child(2) {
    }
 }
 
-a#local-spy > span:nth-child(3) {
+a.localspy > span:nth-child(3) {
    bottom: 0;
    right: 100%;
    width: 100%;
@@ -126,7 +126,7 @@ a#local-spy > span:nth-child(3) {
    }
 }
 
-a#local-spy > span:nth-child(4) {
+a.localspy > span:nth-child(4) {
    bottom: -100%;
    left: 0;
    width: 2px;
