@@ -30,6 +30,9 @@
                     <li class="nav-item {% if app.request.attributes.get('_route') == 'question_list' %} active {% endif %}">
                         <a class="nav-link" href="{{path('question_list')}}">Questions</a>
                     </li>
+                    <li class="nav-item {% if app.request.attributes.get('_route') == 'toolbox_clipboard' %} active {% endif %}">
+                        <a class="nav-link" href="{{path('toolbox_clipboard')}}">LocalSpy</a>
+                    </li>
                     {# <li class="nav-item {% if app.request.attributes.get('_route') == 'main_about' %} active {% endif %}">
                         <a class="nav-link" href="{{path('main_about')}}">A Propos</a>
                     </li> #}
