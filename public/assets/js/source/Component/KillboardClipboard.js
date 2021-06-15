@@ -2,24 +2,25 @@ class KillboardClipboard {
 
     _zkillButton;
     _analyzeButton;
-    _shipsData;
+    // _shipsData;
+
 
     constructor() {
         this._zkillButton = document.getElementById('zkill');
         this._analyzeButton = document.getElementById('analyze');
     }
 
-    async initialize() {
+    initialize() {
         this._zkillButton.addEventListener('click', (event) => {
             this.openZkillboardTab();
         })
         this._analyzeButton.addEventListener('click', (event) => {
-            this.getZkillCharacterStats();
+            this.displayCharacterStatsInTable();
         });
 
         // On charge la liste des ships si elle n'est pas déjà présente dans le session storage
         if (!sessionStorage.getItem('shipsData')) {
-            this._shipsData = await this.getAllShipInfo();
+            this.getAllShipInfo();
             console.log('shipData loaded in session storage');
         }
     }
@@ -52,7 +53,6 @@ class KillboardClipboard {
         return await fetch('https://zkillboard.com/api/stats/characterID/' + character.id +'/')
             .then(function(res){ return res.json(); })
             .then(function (characterStats) {
-                console.log(characterStats);
                 return characterStats;
             }) 
     }
@@ -96,10 +96,10 @@ class KillboardClipboard {
      * Si ils ont déjà été appeler on les récupère directement dans le session storage
      */
     async getAllShipInfo () {
-        if (sessionStorage.getItem('shipsData')) {
-            console.log('shipsData from session storage');
-            return JSON.parse(sessionStorage.getItem('shipsData'));
-        }
+        // if (sessionStorage.getItem('shipsData')) {
+        //     console.log('shipsData from session storage');
+        //     return JSON.parse(sessionStorage.getItem('shipsData'));
+        // }
 
         return await fetch('https://esi.evetech.net/v1/insurance/prices/?datasource=tranquility&language=en')
         .then(function(res){ return res.json(); })
@@ -126,6 +126,30 @@ class KillboardClipboard {
                 return data;
             });
         })
+    }
+
+    async displayCharacterStatsInTable () {
+        // On récupère les données du perso
+        let characterData = await this.getZkillCharacterStats();
+        // On en fait ce qu'on veut
+        console.log(characterData);
+
+
+        let template = document.querySelector('#display-template');
+        let tbody = document.querySelector('tbody');
+        let clone = document.importNode(template.content, true);
+        let td = clone.querySelectorAll('td');
+        td[0].textContent = characterData.info.name
+        td[1].textContent = characterData.dangerRatio
+        td[2].textContent = await this.getAllianceName(characterData.info.allianceID);
+        td[3].textContent = await this.getCorpName(characterData.info.corporationID);
+        tbody.appendChild(clone);
+
+        // On affiche la div portant le tableau
+        let tableDisplayDiv = document.getElementById('display-table');
+        tableDisplayDiv.style.display = 'block';
+
+
     }
 
 

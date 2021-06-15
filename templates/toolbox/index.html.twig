@@ -30,6 +30,37 @@
         </a>
     </div>
 
+    <div style="display: none" id="display-table">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Indice de danger</th>
+                    <th scope="col">Alliance</th>
+                    <th scope="col">Corporation</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    
+    <template id="display-template">
+    {# Template utilisé en JS #}
+        <tr>
+            <td class="record"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </template>
+
+
+
 
 {% endblock %}
 
