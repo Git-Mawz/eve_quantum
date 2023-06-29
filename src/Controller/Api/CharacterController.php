@@ -80,4 +80,18 @@ class CharacterController extends AbstractController
         return $this->json(['message' => 'New Destination have been set !']);
     }
 
+
+    /**
+     * @Route("/search/solar_system/{searchString}", name="solar_system_search", methods={"GET"})
+     */
+    public function searchSolarSystem($searchString, EsiClient $esiClient)
+    {
+        $this->denyAccessUnlessGranted("ROLE_USER");
+
+        $solarSystemIds = $esiClient->searchSolarSystem($searchString, $this->getUser()->getEveCharacterId());
+
+        return $this->json(['solarSystemIds' => $solarSystemIds]);
+    }
+
+
 }

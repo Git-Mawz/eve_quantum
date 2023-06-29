@@ -3,7 +3,8 @@ class SolarSystemRepository
 {
 
     endPoints = {
-        searchSolarSystem: 'https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&strict=false&search=' ,
+        // searchSolarSystem: 'https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&strict=false&search=',
+        searchSolarSystem: 'https://esi.evetech.net/latest/characters/469708989/search/?categories=solar_system&datasource=tranquility&language=en&strict=false&search=',
         searchSolarSystemName: 'https://esi.evetech.net/latest/universe/systems/',
 
         addSystemToFavorite: '/api/character/solar_system',
@@ -17,12 +18,11 @@ class SolarSystemRepository
         return fetch(this.endPoints.searchSolarSystem + search).then((response) => {
             return response.json()
         }).then((rawData) => {
-            // console.log(rawData);
+            console.log(rawData);
             let solarSystemsIds = rawData.solar_system;
             return solarSystemsIds;
         }).then((solarSystemsIds) => {
             // console.log(solarSystemsIds)
-
             let promiseList = [];
             for (let solarSystemId of solarSystemsIds) {
                 let promise = this.searchSystemById(solarSystemId);
@@ -32,6 +32,7 @@ class SolarSystemRepository
             return promiseList;
 
         }).catch((error) => {
+            console.log(error);
             console.log('No solar system found');
         });
     }

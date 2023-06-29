@@ -103,5 +103,26 @@ class EsiClient
 
     }
 
+    /**
+     * Return an array of 
+     *
+     * @param string $search
+     * @param string $search
+     * @return array array of solar system ids
+     */
+    public function searchSolarSystem($search, $characterId)
+    {
+
+        // dd($this->session->get('accessToken'));
+
+        $response = $this->client->request('GET', $this->baseEsiUrl . '/characters/' . $characterId . '/search/', [
+            'query' => [
+                'categories' => 'solar_system',
+                'search' => $search,
+            ]
+        ]);
+
+        return $response;
+    }
 
 }
